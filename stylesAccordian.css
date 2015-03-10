@@ -1,0 +1,290 @@
+#menu {
+    position:absolute;
+    left:0%;
+    top:0px;
+}
+
+#reckersLogo {
+    width:400px;
+    height:auto;
+    padding-left:100px;
+}
+
+#reckers_header {
+    height:92%;
+    width:auto;
+    top:3%;
+}
+
+#checkoutReckersLogo {
+    height:92%;
+    width:auto;
+    top:3%;
+}
+
+#cart_logo {
+    height:30px;
+    width:auto;
+}
+
+#items_in_cart {
+    color:red;
+    font-size:14pt;
+    padding-right:8px;
+    margin-bottom:3px;
+    padding-bottom:4px;
+}
+
+.orderFooter {
+    position:fixed;
+    height:65px;
+    z-index:999999;
+    line-height:65px;
+    display: inline-block;
+}
+
+.footerOrder {
+    height:55px;
+    width:auto;
+    text-align:left;
+    padding-top:5px;
+}
+
+.footerCheckout {
+    height:55px;
+    width:auto;
+    text-align:center;
+    padding-top:5px;
+}
+
+.footerPickup {
+    height:55px;
+    width:auto;
+    text-align:right;
+    padding-top:5px;
+    padding-left:8px;
+}
+
+.wrap {
+    position:relative;
+    margin:0 auto;
+    float:left;
+}
+
+.order {
+    position:absolute;
+    left:750px;
+    top:100px;
+  /*  background-color:ghostwhite;  */
+}
+
+#orderHeader {
+  /*  background-color:lightgray !important; */
+}
+
+.quantity {
+    font-weight:bold;
+    padding-right:14px;
+    vertical-align: top;
+}
+
+.itemName {  /* for item name in checkout screen */
+    padding-right:14px;
+    vertical-align:top;
+}
+
+.price {
+    vertical-align:top;
+    text-align:left;
+    padding-left:0;
+}
+
+#header_pizzas .ui-collapsible-heading-toggle {
+    background-image: url('img/header_pizza.png');
+    color:white;
+    font-family: Helvetica, Arial, sans-serif;
+    font-weight:500;
+}
+
+#header_piadinas .ui-collapsible-heading-toggle {
+    background-image: url('img/header_piadina.png');
+    color:white;
+    font-family: Helvetica, Arial, sans-serif;
+    font-weight:500;
+}
+
+#header_americanFare .ui-collapsible-heading-toggle {
+    background-image: url('img/header_sandwiches.png');
+    color:white;
+    font-family: Helvetica, Arial, sans-serif;
+    font-weight:500;
+}
+
+#header_salads .ui-collapsible-heading-toggle {
+    background-image: url('img/header_salads.png');
+    color:white;
+    font-family: Helvetica, Arial, sans-serif;
+    font-weight:500;
+}
+
+#header_breakfast .ui-collapsible-heading-toggle {
+    background-image: url('img/header_breakfast.png');
+    color:white;
+    font-family: Helvetica, Arial, sans-serif;
+    font-weight:500;
+}
+
+#header_sides .ui-collapsible-heading-toggle {
+    background-image: url('img/header_sides.png');
+    color:white;
+    font-family: Helvetica, Arial, sans-serif;
+    font-weight:500;
+}
+
+.ui-collapsible-heading-toggle {
+    font-size:20px;
+    color:white;
+    font-family: Helvetica, Arial, sans-serif;
+    font-weight:500;
+}
+
+.ui-collapsible {
+    font-size:19px;
+}
+
+#output {
+    text-align:center;
+    border:none;
+    outline:none;
+}
+
+#submit {
+    width:250px;
+    height:72px;
+    background:none;
+    background-repeat: no-repeat;
+    border-radius:8px;
+    position:absolute;
+    margin-top:50px;
+    font-family: Verdana, Tahoma, Century Gothic, Arial, sans-serif;
+    font-weight:500;
+    border:none;
+    border-color: transparent;
+    outline:none;
+    font-size:30pt;
+    color: rgb(48, 156, 254);
+    line-height: 1em;
+    vertical-align:middle;
+}
+
+#order_title{
+	/*font-family: Helvetica, Arial, sans-serif; */
+    font-family: Verdana, Tahoma, Century Gothic, Arial, sans-serif;
+	color: black;
+    font-weight:500;
+    font-size:40px;
+    padding-left:6px;
+    padding-top:0px;
+    padding-bottom:0px;
+    margin-bottom:0;
+}
+
+#order_container {
+    border:none;
+    height:100%;
+    margin-bottom: 65px;           /* must be same as footer height */
+    font-size:19px;
+    font-family: Verdana, Tahoma, Century Gothic, Arial, sans-serif;
+    font-weight:500;
+    padding-top:0px;
+    padding-left:0px;
+
+    position:fixed;
+    overflow:scroll;
+}
+
+#orderTable {
+    padding-right:0;
+}
+
+#totalLine {
+    text-align:right;
+}
+
+#total {
+    font-size:26px;
+    font-family: Helvetica, Arial, sans-serif;
+    position:relative;
+    text-align:right;
+}
+
+.description {
+    font-size:13px;
+}
+
+.rmButtonWrapper {         /* must have wrapper to format remove button correctly */
+    vertical-align: top;
+    padding-top:0;
+    margin-top:0;
+}
+
+.removeButton {
+    background:none;
+    border:none;
+    background-image:url('img/removeButton.png');
+    background-repeat:no-repeat;
+    left:0%;
+    padding-right:15px;
+
+}
+
+.addButton {
+    background:none;
+    border:none;
+    background-image:url('img/addButton.png');
+    background-repeat:no-repeat;
+    type:submit;
+    position:relative;
+    left:0%;
+    padding-right:15px;
+}
+
+#options {
+    font-family: Verdana, Tahoma, Century Gothic, Arial, sans-serif;
+    color:dimgray;
+    padding-top:50px;
+    text-align:center;
+}
+
+#addItems {
+    position:absolute;
+    left:20%
+}
+
+#cancelOrder {
+    position:absolute;
+    right:20%;
+}
+
+#output {
+    text-align:center;
+}
+
+#submitClicked {
+    text-align:center;    /* centers the "okay" button */
+}
+
+#emptyCartMessage {
+    text-align:center;    /* centers the "okay" button */
+}
+
+#checkoutWrapper {
+    text-align:center;
+}
+
+#wrapper {
+    margin-bottom:65px;
+    height:100%;
+    width:100%;
+    overflow:hidden;
+}
