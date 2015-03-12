@@ -126,6 +126,10 @@ var add = function(clicked_id) {
     menu[clicked_id].qty++; // adds 1 to the quantity of this item
     total += menu[clicked_id].price;
 
+    // immediately set "+" icon to another color. change back after a few milliseconds
+    qq(parseInt(clicked_id)).setAttribute("style","background-image:url('img/addButtonPressed.png')")
+    setTimeout(function(){qq(parseInt(clicked_id)).setAttribute("style","background-image:url('img/addButton.png')")},500)
+
     if(totalQuantity == 0) {   // just added first item
         document.getElementById("items_in_cart").style.visibility="visible";  // show counter label
         qq("cart_logo").src="img/cartWithItems.png"; // use this cart image so that the qty can be overlayed

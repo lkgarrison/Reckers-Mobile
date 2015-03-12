@@ -19,7 +19,7 @@
 
 <div data-role="page" id = "menu">
 
-  <div data-role="header" data-id="mainHeader" data-theme="a">
+  <div data-role="header" data-transition="none" data-position="fixed" data-tap-toggle="false" data-id="mainHeader" data-theme="a" style="position: fixed !important;">
     <img src="img/reckers_header.png" class="ui-btn-left" id="reckers_header">
     <h1 class="ui-btn-center">Menu</h1>
     <img src="img/cartEmpty.png" class="ui-btn-right" data-role="none" id="cart_logo" onclick="checkQuantity()" rel="external">
@@ -71,7 +71,7 @@
     </a>
   </div>
 
-  <div data-role="footer" data-id="mainFooter" data-theme="a" data-position="fixed" data-tap-toggle="false" class="orderFooter">
+  <div data-role="footer" data-transition="none" data-id="mainFooter" data-theme="a" data-position="fixed" data-tap-toggle="false" class="orderFooter" style="position: fixed !important;">
     <div class="ui-grid-d">
       <div class="ui-block-a" style="width:20%"><img src="img/padding.png"></div>
       <div class="ui-block-b footerOrder" style="width:20%"><img src="img/footer_order_filled.png"></div>
@@ -84,7 +84,7 @@
 
 
 <div data-role="page" id="order" class = "order">
-  <div data-role="header" data-theme="a" id="orderHeader">
+  <div data-role="header" data-id="mainHeader" data-transition="none" data-position="fixed" data-tap-toggle="false" data-theme="a" id="orderHeader" style="position: fixed !important;">
     <a href="#" data-role="button" data-icon="arrow-l" data-rel="back" class="ui-btn-left">Back</a>
     <h1></h1>
     <img src="img/reckers_header.png" class="ui-btn-right" id="checkoutReckersLogo">
@@ -112,7 +112,7 @@
       <div id="paymentWrapper">
           <h2 class = "order_title">Payment Method</h2>
           <form>
-              <fieldset data-role="controlgroup">
+              <fieldset data-role="controlgroup" id="paymentRadioGroup">
                   <input type="radio" name="radio-paymentMethod" id="creditCard" value="on" checked="checked">
                   <label for="creditCard">Credit Card</label>
                   <input type="radio" name="radio-paymentMethod" id="flexPoints" value="off">
@@ -122,7 +122,7 @@
               </fieldset>
           </form>
 
-          <button id="submit" data-role="button" onclick="done()" rel="external">Submit</button>
+          <button id="submit" data-role="button" class="ui-btn ui-icon-carat-r ui-btn-icon-right" onclick="done()" rel="external">Submit</button>
       </div>
   </div>
 
@@ -134,7 +134,7 @@
       </a>
     </div>
 
-  <div data-role="footer" data-id="mainFooter" data-theme="a" data-position="fixed" data-tap-toggle="false" class="orderFooter">
+  <div data-role="footer" data-transition="none" data-id="mainFooter" data-theme="a" data-position="fixed" data-tap-toggle="false" class="orderFooter" style="position: fixed !important;">
     <div class="ui-grid-d">
       <div class="ui-block-a" style="width:20%"><img src="img/padding.png"></div> <!-- vital to allow for top padding in footer. taller than images -->
       <div class="ui-block-b footerOrder" style="width:20%"><img src="img/footer_order.png" onclick="goToMenu()" rel="external"></div>

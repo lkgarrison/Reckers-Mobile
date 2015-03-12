@@ -172,7 +172,7 @@
     font-weight:500;
     padding-top:0px;
     padding-left:0px;
-    overflow:scroll;
+    overflow:auto;
     padding-bottom:0;
     margin-bottom:0;
 }
@@ -238,7 +238,6 @@
     margin-left:20%;           /* centered */
     width:60%;
     background-image: url('img/header_sandwiches.png') !important;
-    background-repeat:no-repeat;
     color:white;
     font-family: Helvetica, Arial, sans-serif;
 }
@@ -249,7 +248,6 @@
     margin-left:20%;           /* centered */
     width:60%;
     background-image: url('img/header_pizza.png') !important;
-    background-repeat:no-repeat;
     color:white;
     font-family: Helvetica, Arial, sans-serif;
 }
@@ -268,6 +266,9 @@
     height:100%;
     width:100%;
     overflow:hidden;
+   /* background-color:rgb(232,240,151); */
+   /* background-image: url('img/reckersBackground.PNG') !important; */
+
 }
 
 #addCancelWrapper {
@@ -285,7 +286,6 @@
     margin-left:20%;
     width:60%;
     background-image: url('img/header_salads.png') !important;
-    background-repeat:no-repeat;
     color:white;
     font-family: Helvetica, Arial, sans-serif;
 }
@@ -295,3 +295,11 @@
     margin-right:20px;      /* gives a touch of room along the right margin */
     padding-left:5px;
 }
+
+#paymentRadioGroup {
+    padding-left:10%;
+    width:80%;
+}
+
+:focus {outline:none;} ::-moz-focus-inner {border:0;}
+
