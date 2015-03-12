@@ -181,15 +181,6 @@ var add = function(clicked_id) {
     qq("items_in_cart").textContent = ++totalQuantity;
     qq("total").innerHTML = "Total: $" + parseFloat(Math.abs(total)).toFixed(2);  // update total
 
-    /*myScroll.destroy();
-    myScroll = null;
-    myScroll = new IScroll('#wrapper');
-
-    setTimeout(function() {
-        myScroll.refresh();
-    },0);
-    */
-    // myScroll.refresh();
 };
 
 var remove1 = function(id) {
@@ -205,13 +196,12 @@ var remove1 = function(id) {
     }
 
     if(menu[id].qty > 0) {
-        qq("qty" + parseInt(id)).textContent = "(" + parseInt(menu[id].qty) + ")";   // redisplay qty
+        qq("qty" + parseInt(id)).textContent = parseInt(menu[id].qty);   // redisplay qty
     } else { // qty == 0
         qq("row" + parseInt(id)).remove();
     }
     qq("total").innerHTML = "Total: $" + parseFloat(Math.abs(total)).toFixed(2);                           // redisplay total
     qq("items_in_cart").textContent = totalQuantity;
-    // myScroll.refresh();
 };
 
 var done = function() {
@@ -242,3 +232,4 @@ var goToMenu = function() {          // button click will change to menu page
 window.onload = function () {
     loadMenu();
 };
+

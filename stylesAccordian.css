@@ -72,7 +72,6 @@
 }
 
 .order {
-    position:absolute;
     left:750px;
     top:100px;
   /*  background-color:ghostwhite;  */
@@ -152,55 +151,30 @@
     font-size:19px;
 }
 
-#output {
-    text-align:center;
-    border:none;
-    outline:none;
-}
-
-#submit {
-    width:250px;
-    height:72px;
-    background:none;
-    background-repeat: no-repeat;
-    border-radius:8px;
-    position:absolute;
-    margin-top:50px;
-    font-family: Verdana, Tahoma, Century Gothic, Arial, sans-serif;
-    font-weight:500;
-    border:none;
-    border-color: transparent;
-    outline:none;
-    font-size:30pt;
-    color: rgb(48, 156, 254);
-    line-height: 1em;
-    vertical-align:middle;
-}
-
-#order_title{
+.order_title {
 	/*font-family: Helvetica, Arial, sans-serif; */
     font-family: Verdana, Tahoma, Century Gothic, Arial, sans-serif;
 	color: black;
     font-weight:500;
-    font-size:40px;
+    font-size:35px;
     padding-left:6px;
     padding-top:0px;
     padding-bottom:0px;
     margin-bottom:0;
+    margin-top:0;
 }
 
 #order_container {
     border:none;
     height:100%;
-    margin-bottom: 65px;           /* must be same as footer height */
     font-size:19px;
     font-family: Verdana, Tahoma, Century Gothic, Arial, sans-serif;
     font-weight:500;
     padding-top:0px;
     padding-left:0px;
-
-    position:fixed;
     overflow:scroll;
+    padding-bottom:0;
+    margin-bottom:0;
 }
 
 #orderTable {
@@ -208,6 +182,8 @@
 }
 
 #totalLine {
+    margin-top:0;
+    padding-top:0;
     text-align:right;
 }
 
@@ -252,22 +228,30 @@
 #options {
     font-family: Verdana, Tahoma, Century Gothic, Arial, sans-serif;
     color:dimgray;
-    padding-top:50px;
+    padding-top:10px;
     text-align:center;
 }
 
 #addItems {
-    position:absolute;
-    left:20%
+    padding-left:0;
+    padding-right:0;
+    margin-left:20%;           /* centered */
+    width:60%;
+    background-image: url('img/header_sandwiches.png') !important;
+    background-repeat:no-repeat;
+    color:white;
+    font-family: Helvetica, Arial, sans-serif;
 }
 
 #cancelOrder {
-    position:absolute;
-    right:20%;
-}
-
-#output {
-    text-align:center;
+    padding-left:0;
+    padding-right:0;
+    margin-left:20%;           /* centered */
+    width:60%;
+    background-image: url('img/header_pizza.png') !important;
+    background-repeat:no-repeat;
+    color:white;
+    font-family: Helvetica, Arial, sans-serif;
 }
 
 #submitClicked {
@@ -278,13 +262,36 @@
     text-align:center;    /* centers the "okay" button */
 }
 
-#checkoutWrapper {
-    text-align:center;
-}
-
 #wrapper {
-    margin-bottom:65px;
+    padding-left:8px;
+    padding-top:0;
     height:100%;
     width:100%;
     overflow:hidden;
+}
+
+#addCancelWrapper {
+    clear:both;
+}
+
+#paymentWrapper {
+    padding-top:15px;
+    clear:both;
+}
+
+#submit {
+    padding-left:0;
+    padding-right:0;
+    margin-left:20%;
+    width:60%;
+    background-image: url('img/header_salads.png') !important;
+    background-repeat:no-repeat;
+    color:white;
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+#totalWrapper {             /* necessary to keep TOTAL and total line right aligned with orderTable */
+    display:inline-block;
+    margin-right:20px;      /* gives a touch of room along the right margin */
+    padding-left:5px;
 }

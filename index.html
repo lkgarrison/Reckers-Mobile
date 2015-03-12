@@ -10,33 +10,10 @@
 
   <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
   <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
-  <!-- <script src="iscroll.js"></script>
-  <script src="jquery.mobile.iscrollview.js"></script> -->
   <script src="scriptAccordian.js" type="text/javascript"></script>
 
-  <!--
-  <script type="text/javascript">
-    var myScroll;
-    function loaded() {
-      setTimeout(function () {
-        myScroll = new iScroll('wrapper');
-      }, 100);
-    }
-    window.addEventListener('load', loaded, false);
-  </script>
-  -->
-
-  <!--
-  <script type="text/javascript">
-    var myScroll;
-    function loaded() {
-      myScroll = new IScroll('#wrapper');
-    }
-  </script>
-  -->
 
 </head>
-<!--<body onload="loaded()">-->
 <body>
 
 
@@ -109,30 +86,44 @@
 <div data-role="page" id="order" class = "order">
   <div data-role="header" data-theme="a" id="orderHeader">
     <a href="#" data-role="button" data-icon="arrow-l" data-rel="back" class="ui-btn-left">Back</a>
-    <h1>Reckers</h1>
+    <h1></h1>
     <img src="img/reckers_header.png" class="ui-btn-right" id="checkoutReckersLogo">
   </div>
 
 
-  <div data-role="content" id="wrapper" data-iscroll>
+  <div data-role="content" id="wrapper">
     <div id = "order_container">
-      <h2 id = "order_title">Checkout</h2>
-      <p id = "noOrders">Nothing has been ordered<br></p>
-      <table id ="orderTable"></table>
-      <div id="totalLine"><img src="img/totalLine.png" id="totalLinePNG"></div>
-      <div id = "total" class = "right">Total: </div>
-
-      <div id="bottomButtons">
-        <div id="options">
-          <a href="#menu" id="addItems">Add</a>
-          <a href="index.html" id="cancelOrder">Cancel</a>
+      <h2 class = "order_title">Order Summary</h2>
+        <p id = "noOrders">Nothing has been ordered<br></p>
+        <div id="totalWrapper">
+        <table id ="orderTable"></table>
+        <div id="totalLine"><img src="img/totalLine.png" id="totalLinePNG"></div>
+        <div id = "total" class = "right">Total: </div>
         </div>
 
-        <div id = "output">
-          <button id="submit" onclick="done()" rel="external">Submit</button>
-        </div>
-      </div>
     </div>
+      <div id="addCancelWrapper">
+          <div id="options">
+              <a href="#menu" data-role="button" data-icon="carat-l" id="addItems">Add More Food</a>
+              <a href="index.html" data-role="button" data-icon="carat-l" id="cancelOrder">Cancel</a>
+          </div>
+      </div>
+
+      <div id="paymentWrapper">
+          <h2 class = "order_title">Payment Method</h2>
+          <form>
+              <fieldset data-role="controlgroup">
+                  <input type="radio" name="radio-paymentMethod" id="creditCard" value="on" checked="checked">
+                  <label for="creditCard">Credit Card</label>
+                  <input type="radio" name="radio-paymentMethod" id="flexPoints" value="off">
+                  <label for="flexPoints">Flex Points</label>
+                  <input type="radio" name="radio-paymentMethod" id="domerDollars" value="other">
+                  <label for="domerDollars">Domer Dollars</label>
+              </fieldset>
+          </form>
+
+          <button id="submit" data-role="button" onclick="done()" rel="external">Submit</button>
+      </div>
   </div>
 
     <div data-role="popup" id="submitClicked" data-theme="a" class="ui-corner-bottom ui-content" data-overlay-theme="b">
