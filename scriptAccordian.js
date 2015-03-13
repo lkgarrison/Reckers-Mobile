@@ -135,6 +135,7 @@ var add = function(clicked_id) {
         qq("cart_logo").src="img/cartWithItems.png"; // use this cart image so that the qty can be overlayed
     }
 
+    // if 1st time item is being added to cart
     if(menu[clicked_id].qty == 1) {
         var tr = document.createElement("tr"); // create a new row
         tr.setAttribute("id", "row" + parseInt(clicked_id));
@@ -194,17 +195,20 @@ var remove1 = function(id) {
     menu[id].qty--;
     total -= menu[id].price;  // update total
 
+    // if there are no items in the cart now
     if(--totalQuantity == 0) {
         document.getElementById("items_in_cart").style.visibility="hidden";  // hide label
         qq("cart_logo").src="img/cartEmpty.png"; // change back to the regular cart image
     }
 
+    // if there is still at least 1 of these items in the cart
     if(menu[id].qty > 0) {
         qq("qty" + parseInt(id)).textContent = parseInt(menu[id].qty);   // redisplay qty
     } else { // qty == 0
         qq("row" + parseInt(id)).remove();
+        ordered.splice(ordered.indexOf(id), 1);     // remove this item from the ordered array list, since 0 are ordered now
     }
-    qq("total").innerHTML = "Total: $" + parseFloat(Math.abs(total)).toFixed(2);                           // redisplay total
+    qq("total").innerHTML = "Total: $" + parseFloat(Math.abs(total)).toFixed(2);    // redisplay total
     qq("items_in_cart").textContent = totalQuantity;
 };
 
@@ -217,7 +221,15 @@ var done = function() {
 }
 
 var cancelOrder = function() {
-    reload();
+    orderedCopy = ordered.slice();      // copy of ordered, since ordered is going to be changed by remove1 function
+
+    for(i = 0; i < orderedCopy.length; i++) {   // for every index in the array: ordered
+        itemQty = menu[orderedCopy[i]].qty; // save this value, because it will change as each item is removed
+        for(qty = 0; qty < itemQty; qty++) {   // for given qty of this item added to cart
+            remove1("rm" + orderedCopy[i]); // remove all items in cart (deletes rows, updates totalQuantity and total cost, ect
+        }
+    }
+    $( "#accordion" ).children().collapsible( "collapse" );     // collapse the collapsible set
 }
 
 var checkQuantity = function() {     // will determine whether to go to checkout page or not based on # items in cart
@@ -230,6 +242,7 @@ var checkQuantity = function() {     // will determine whether to go to checkout
 }
 
 var goToMenu = function() {          // button click will change to menu page
+    $( "#accordion" ).children().collapsible( "collapse" );     // collapse the collapsible set
     $.mobile.changePage("#menu");
 }
 

@@ -151,6 +151,12 @@
     font-size:19px;
 }
 
+/* default of 18 is too much. allows addButton to be larger */
+.ui-collapsible-inset.ui-collapsible-themed-content .ui-collapsible-content {
+    padding-left:10px;
+    padding-right:10px;
+}
+
 .order_title {
 	/*font-family: Helvetica, Arial, sans-serif; */
     font-family: Verdana, Tahoma, Century Gothic, Arial, sans-serif;
@@ -167,7 +173,7 @@
 #order_container {
     border:none;
     height:100%;
-    font-size:19px;
+    font-size:18px;
     font-family: Verdana, Tahoma, Century Gothic, Arial, sans-serif;
     font-weight:500;
     padding-top:0px;
@@ -207,10 +213,11 @@
 .removeButton {
     background:none;
     border:none;
-    background-image:url('img/removeButton.png');
+    background-image:url('img/removeButton1.5.png');
     background-repeat:no-repeat;
     left:0%;
     padding-right:15px;
+    align:left;
 
 }
 
