@@ -260,11 +260,15 @@
 }
 
 #submitClicked {
-    text-align:center;    /* centers the "okay" button */
+    text-align:center;      /* centers the "okay" button */
+}
+
+#paymentMethodInfo {
+    text-align:center;      /* centers the "okay" button */
 }
 
 #emptyCartMessage {
-    text-align:center;    /* centers the "okay" button */
+    text-align:center;      /* centers the "okay" button */
 }
 
 #wrapper {
@@ -288,6 +292,7 @@
 }
 
 #submit {
+    margin-top:15px;        /* more spacing from payment method selection */
     padding-left:0;
     padding-right:0;
     margin-left:20%;

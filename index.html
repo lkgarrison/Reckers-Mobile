@@ -120,7 +120,7 @@
           <h2 class = "order_title">Payment Method</h2>
           <form>
               <fieldset data-role="controlgroup" id="paymentRadioGroup">
-                  <input type="radio" name="radio-paymentMethod" id="creditCard" value="on" checked="checked">
+                  <input type="radio" name="radio-paymentMethod" id="creditCard" value="off">
                   <label for="creditCard">Credit Card</label>
                   <input type="radio" name="radio-paymentMethod" id="flexPoints" value="off">
                   <label for="flexPoints">Flex Points</label>
@@ -129,15 +129,26 @@
               </fieldset>
           </form>
 
-          <button id="submit" data-role="button" class="ui-btn ui-icon-carat-r ui-btn-icon-right" onclick="done()" rel="external">Submit</button>
+          <button id="submit" data-role="button" class="ui-btn ui-icon-carat-r ui-btn-icon-right" onclick="submitClicked()" rel="external">Submit</button>
       </div>
   </div>
 
+    <div data-role="popup" id="paymentMethodInfo" data-theme="a" class="ui-corner-bottom ui-content" data-overlay-theme="b">
+        <h3 class="ui-title">Select Payment Method</h3>
+        <p>Payment options coming soon</p>
+        <a href="#" data-role="button" data-theme="a" data-inline="true" data-rel="back" data-theme="c" data-type="horizontal">
+            Okay
+        </a>
+    </div>
+
     <div data-role="popup" id="submitClicked" data-theme="a" class="ui-corner-bottom ui-content" data-overlay-theme="b">
-      <h3 class="ui-title">Select Payment Method</h3>
-      <p>Payment options coming soon</p>
-      <a href="#" data-role="button" data-theme="a" data-inline="true" data-rel="back" data-theme="c" data-typ="horizontal">
-        Okay
+      <h3 class="ui-title">Confirm Payment</h3>
+      <p id="submitMessage"></p>
+      <a href="#" data-role="button" data-theme="a" data-inline="true" data-rel="back" data-theme="c" data-type="horizontal">
+        Yes
+      </a>
+      <a href="#" data-role="button" data-theme="a" data-inline="true" data-rel="back" data-theme="c" data-type="horizontal">
+          No
       </a>
     </div>
 

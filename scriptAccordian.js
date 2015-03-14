@@ -195,10 +195,11 @@ var remove1 = function(id) {
     menu[id].qty--;
     total -= menu[id].price;  // update total
 
-    // if there are no items in the cart now
+    // if there are no items in the cart now, change cart icon and go back to main page
     if(--totalQuantity == 0) {
         document.getElementById("items_in_cart").style.visibility="hidden";  // hide label
         qq("cart_logo").src="img/cartEmpty.png"; // change back to the regular cart image
+        goToMenu(); // go back to menu page automatically
     }
 
     // if there is still at least 1 of these items in the cart
@@ -212,14 +213,27 @@ var remove1 = function(id) {
     qq("items_in_cart").textContent = totalQuantity;
 };
 
-var done = function() {
-    if(total > .00) {
+// open pop-up to confirm payment and order
+var submitClicked = function() {
+    if(totalQuantity > 0) {
+        qq("submitMessage").textContent = "Would you like to confirm your order of $" + total.toFixed(2) + "?"; // set confirmation message
         $("#submitClicked").popup("open");
     } else {
-        confirm("You have not ordered any items.");
+        confirm("You have not ordered any items."); // should never occur with automatic transition to menu page when removing last item in cart
     }
 }
 
+// open pop-up to enter payment method information upon method selection
+var paymentMethodSelected = function() {
+    $("#paymentMethodInfo").popup("open");
+}
+
+// detect radio button selection change
+$(document).on('change', '[type="radio"]', function(){
+    paymentMethodSelected();
+});
+
+// function to clear all items from cart and go back to the menu page with the menu collapsed
 var cancelOrder = function() {
     orderedCopy = ordered.slice();      // copy of ordered, since ordered is going to be changed by remove1 function
 
@@ -229,18 +243,18 @@ var cancelOrder = function() {
             remove1("rm" + orderedCopy[i]); // remove all items in cart (deletes rows, updates totalQuantity and total cost, ect
         }
     }
-    $( "#accordion" ).children().collapsible( "collapse" );     // collapse the collapsible set
 }
 
+// function to see if there are any items in the cart or not and decide whether or not to change pages or display a msg
 var checkQuantity = function() {     // will determine whether to go to checkout page or not based on # items in cart
     if(totalQuantity == 0) {
-       // $.mobile.changePage("#emptyCartMessage");
         $("#emptyCartMessage").popup("open");
     } else {
         $.mobile.changePage("#order");
     }
 }
 
+// function to change to menu page and collapse the accordion
 var goToMenu = function() {          // button click will change to menu page
     $( "#accordion" ).children().collapsible( "collapse" );     // collapse the collapsible set
     $.mobile.changePage("#menu");
