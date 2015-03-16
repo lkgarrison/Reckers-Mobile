@@ -224,13 +224,47 @@ var submitClicked = function() {
 }
 
 // open pop-up to enter payment method information upon method selection
-var paymentMethodSelected = function() {
-    $("#paymentMethodInfo").popup("open");
+var paymentMethodSelected = function(paymentMethod) {
+    qq("paymentMethodPopupContent").innerHTML = ""; // clears the span so that the content can be appended
+
+    div = document.createElement("div");
+    div.setAttribute("class", "ui-field-contain");
+
+    if(paymentMethod === "creditCard") {
+        cardholderName = document.createElement("input");
+        cardholderName.setAttribute("type", "text");
+        cardholderName.setAttribute("name", "cardholderName");
+        cardholderName.setAttribute("id", "cardHolderName");
+        cardholderName.setAttribute("placeholder", "Cardholder Name");
+        cardholderName.setAttribute("value", "");
+        div.appendChild(cardholderName);
+
+        creditCardNumber = document.createElement("input");
+        creditCardNumber.setAttribute("type", "text");
+        creditCardNumber.setAttribute("name", "creditCardNumber");
+        creditCardNumber.setAttribute("id", "creditCardNumber");
+        creditCardNumber.setAttribute("placeholder", "Credit Card Number");
+        creditCardNumber.setAttribute("value", "");
+        div.appendChild(creditCardNumber);
+    }
+
+    else if(paymentMethod === "flexPoints" || paymentMethod === "domerDollars") {
+        netID = document.createElement("input");
+        netID.setAttribute("type", "text");
+        netID.setAttribute("name", "netID");
+        netID.setAttribute("id", "netID");
+        netID.setAttribute("placeholder", "netID");
+        netID.setAttribute("value", "");
+        div.appendChild(netID);
+    }
+
+    qq("paymentMethodPopupContent").appendChild(div);       // add form contents to popup
+    $("#paymentMethodInfo").popup("open");                  // display the pop-up
 }
 
 // detect radio button selection change
 $(document).on('change', '[type="radio"]', function(){
-    paymentMethodSelected();
+    paymentMethodSelected($(this).attr('id'));  // pass id of selected radio button
 });
 
 // function to clear all items from cart and go back to the menu page with the menu collapsed

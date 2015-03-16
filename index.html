@@ -118,7 +118,7 @@
 
       <div id="paymentWrapper">
           <h2 class = "order_title">Payment Method</h2>
-          <form>
+          <form id="paymentMethodForm">
               <fieldset data-role="controlgroup" id="paymentRadioGroup">
                   <input type="radio" name="radio-paymentMethod" id="creditCard" value="off">
                   <label for="creditCard">Credit Card</label>
@@ -135,10 +135,19 @@
 
     <div data-role="popup" id="paymentMethodInfo" data-theme="a" class="ui-corner-bottom ui-content" data-overlay-theme="b">
         <h3 class="ui-title">Select Payment Method</h3>
-        <p>Payment options coming soon</p>
+        <!--<p>Payment options coming soon</p>-->
+        <span id="paymentMethodPopupContent"></span>
         <a href="#" data-role="button" data-theme="a" data-inline="true" data-rel="back" data-theme="c" data-type="horizontal">
-            Okay
+            Confirm
         </a>
+        <a href="#" data-role="button" data-theme="a" data-inline="true" data-rel="back" data-theme="c" data-type="horizontal">
+            Cancel
+        </a>
+    </div>
+
+    <div class="ui-field-contain">
+        <label for="textinput-1">Text Input:</label>
+        <input type="text" name="textinput-1" id="textinput-1" placeholder="Text input" value="">
     </div>
 
     <div data-role="popup" id="submitClicked" data-theme="a" class="ui-corner-bottom ui-content" data-overlay-theme="b">
