@@ -129,16 +129,60 @@
               </fieldset>
           </form>
 
+          <div id="enterPaymentDetails">
+              <h3>Enter Payment Information</h3>
+              <span id="paymentMethodPopupContent"></span>
+              <form id = "creditCardExpDate">
+                  <div class="ui-field-contain">
+                      <label for="selectMonth">Expiration Date</label>
+                      <fieldset data-role="controlgroup" data-type="horizontal">
+
+                          <label for="selectMonth">Expiration Date</label>
+                          <select name="selectMonth" id="selectMonth">
+                              <option value="#">January</option>
+                              <option value="#">February</option>
+                              <option value="#">March</option>
+                              <option value="#">April</option>
+                              <option value="#">May</option>
+                              <option value="#">June</option>
+                              <option value="#">July</option>
+                              <option value="#">August</option>
+                              <option value="#">September</option>
+                              <option value="#">October</option>
+                              <option value="#">November</option>
+                              <option value="#">December</option>
+                          </select>
+
+                          <select name="selectYear" id="selectYear">
+                              <option value="#">2015</option>
+                              <option value="#">2016</option>
+                              <option value="#">2017</option>
+                              <option value="#">2018</option>
+                              <option value="#">2019</option>
+                              <option value="#">2020</option>
+                              <option value="#">2021</option>
+                          </select>
+
+
+                      </fieldset>
+                  </div>
+              </form>
+          </div>
+
           <button id="submit" data-role="button" class="ui-btn ui-icon-carat-r ui-btn-icon-right" onclick="submitClicked()" rel="external">Submit</button>
       </div>
   </div>
 
     <div data-role="popup" id="paymentMethodInfo" data-theme="a" class="ui-corner-bottom ui-content" data-overlay-theme="b">
-        <h3 class="ui-title">Enter Payment Information</h3>
-        <!--<p>Payment options coming soon</p>-->
+        <!--<h3 class="ui-title">Enter Payment Information</h3>
+        <p>Payment options coming soon</p>
         <span id="paymentMethodPopupContent"></span>
-            <form id = "creditCardExpDate">
+        <form id = "creditCardExpDate">
+            <div class="ui-field-contain">
+                <label for="selectMonth">Expiration Date</label>
                 <fieldset data-role="controlgroup" data-type="horizontal">
+
+                    <label for="selectMonth">Expiration Date</label>
                     <select name="selectMonth" id="selectMonth">
                         <option value="#">January</option>
                         <option value="#">February</option>
@@ -153,6 +197,7 @@
                         <option value="#">November</option>
                         <option value="#">December</option>
                     </select>
+
                     <select name="selectYear" id="selectYear">
                         <option value="#">2015</option>
                         <option value="#">2016</option>
@@ -162,8 +207,12 @@
                         <option value="#">2020</option>
                         <option value="#">2021</option>
                     </select>
+
+
                 </fieldset>
+            </div>
             </form>
+            -->
         <a href="#" data-role="button" data-theme="a" data-inline="true" data-rel="back" data-theme="c" data-type="horizontal">
             Confirm
         </a>

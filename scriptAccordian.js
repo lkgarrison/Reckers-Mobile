@@ -225,6 +225,7 @@ var submitClicked = function() {
 
 // open pop-up to enter payment method information upon method selection
 var paymentMethodSelected = function(paymentMethod) {
+    $("#enterPaymentDetails").show();               // display payment method details form upon radio selection
     qq("paymentMethodPopupContent").innerHTML = ""; // clears the span so that the content can be appended
 
     div = document.createElement("div");
@@ -263,7 +264,7 @@ var paymentMethodSelected = function(paymentMethod) {
     }
 
     qq("paymentMethodPopupContent").appendChild(div);       // add form contents to popup
-    $("#paymentMethodInfo").popup("open");                  // display the pop-up
+   // $("#paymentMethodInfo").popup("open");                  // display the pop-up
 }
 
 // detect radio button selection change
@@ -300,5 +301,6 @@ var goToMenu = function() {          // button click will change to menu page
 
 window.onload = function () {
     loadMenu();
+    $("#enterPaymentDetails").hide();   // keep payment method details form hidden until a method is selected
 };
 
