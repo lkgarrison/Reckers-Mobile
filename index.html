@@ -134,20 +134,42 @@
   </div>
 
     <div data-role="popup" id="paymentMethodInfo" data-theme="a" class="ui-corner-bottom ui-content" data-overlay-theme="b">
-        <h3 class="ui-title">Select Payment Method</h3>
+        <h3 class="ui-title">Enter Payment Information</h3>
         <!--<p>Payment options coming soon</p>-->
         <span id="paymentMethodPopupContent"></span>
+            <form id = "creditCardExpDate">
+                <fieldset data-role="controlgroup" data-type="horizontal">
+                    <select name="selectMonth" id="selectMonth">
+                        <option value="#">January</option>
+                        <option value="#">February</option>
+                        <option value="#">March</option>
+                        <option value="#">April</option>
+                        <option value="#">May</option>
+                        <option value="#">June</option>
+                        <option value="#">July</option>
+                        <option value="#">August</option>
+                        <option value="#">September</option>
+                        <option value="#">October</option>
+                        <option value="#">November</option>
+                        <option value="#">December</option>
+                    </select>
+                    <select name="selectYear" id="selectYear">
+                        <option value="#">2015</option>
+                        <option value="#">2016</option>
+                        <option value="#">2017</option>
+                        <option value="#">2018</option>
+                        <option value="#">2019</option>
+                        <option value="#">2020</option>
+                        <option value="#">2021</option>
+                    </select>
+                </fieldset>
+            </form>
         <a href="#" data-role="button" data-theme="a" data-inline="true" data-rel="back" data-theme="c" data-type="horizontal">
             Confirm
         </a>
         <a href="#" data-role="button" data-theme="a" data-inline="true" data-rel="back" data-theme="c" data-type="horizontal">
             Cancel
         </a>
-    </div>
-
-    <div class="ui-field-contain">
-        <label for="textinput-1">Text Input:</label>
-        <input type="text" name="textinput-1" id="textinput-1" placeholder="Text input" value="">
     </div>
 
     <div data-role="popup" id="submitClicked" data-theme="a" class="ui-corner-bottom ui-content" data-overlay-theme="b">

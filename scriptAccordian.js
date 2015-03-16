@@ -231,6 +231,8 @@ var paymentMethodSelected = function(paymentMethod) {
     div.setAttribute("class", "ui-field-contain");
 
     if(paymentMethod === "creditCard") {
+        $("#creditCardExpDate").show();
+
         cardholderName = document.createElement("input");
         cardholderName.setAttribute("type", "text");
         cardholderName.setAttribute("name", "cardholderName");
@@ -246,9 +248,11 @@ var paymentMethodSelected = function(paymentMethod) {
         creditCardNumber.setAttribute("placeholder", "Credit Card Number");
         creditCardNumber.setAttribute("value", "");
         div.appendChild(creditCardNumber);
-    }
+        }
 
     else if(paymentMethod === "flexPoints" || paymentMethod === "domerDollars") {
+        $("#creditCardExpDate").hide();
+
         netID = document.createElement("input");
         netID.setAttribute("type", "text");
         netID.setAttribute("name", "netID");
