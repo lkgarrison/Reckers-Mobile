@@ -219,7 +219,7 @@ var submitClicked = function() {
         qq("submitMessage").textContent = "Would you like to confirm your order of $" + total.toFixed(2) + "?"; // set confirmation message
         //$("#submitClicked").popup("open");
         document.activeElement.blur();
-        setTimeout(function(){$("#submitClicked").popup("open")}, 375);
+        setTimeout(function(){$("#submitClicked").popup("open")}, 500);
     } else {
         confirm("You have not ordered any items."); // should never occur with automatic transition to menu page when removing last item in cart
     }
