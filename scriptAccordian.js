@@ -23,31 +23,27 @@ var loadMenu = function() {
 
     Parse.initialize("CZtjkZAV9gQzln2C3KKi7vsXRl4ppAMenjXiPGrx", "LVzkRhUfya9rMXDxGlda88o9d8XkPvd19YJdgWC6");
 
-    var objectList = ["l9rLO3nPf0", "hresiQxxlF", "2t3GrBRdiG", "tFNyAP2fOT", "q9477XAzUD", "vyJZP5H2Vi", "BVYlXO9qjg", "pUbgLmgnyP", "2oQ7yyxAOS",
-        "TXZ1APupHd", "g37vOigY4g", "1Fl2fBoiXl", "ZK2oTSoeeK", "UxrzA2diXz", "gCkx6hySJS", "eOjb4WYOvY", "6LR30ogzIk", "aTRZ8cKGjG", "476U9iXMs5",
-        "AstLT4lJlL", "gnvzwexvPl", "T56V9m79kF", "dzePZdnu2y", "r09HVcttxT", "dOrj722tWq", "bz34KdpF3b", "yUrNjvOLJn", "XzgDMEUAXm", "LSuViquDZK",
-        "cFg03X6h4t", "9TmHpqYK8W", "e9NnAobQxa", "qOw8jCt23v", "uKM7J3KwRN", "ZmfYbTwYV0", "QvbJgumsQg", "MaQS6Z3GUC", "FNPD54LbYw", "R3Kd0YdfXt",
-        "zMCl4nGd7c", "nOoOFchUwP", "nAiFYkBVRD", "A90gGy7plQ", "F3vihyvCOO", "3qW8w5dhqq", "R0U4GSQpgk", "7OVw8vsC0I", "fDepMPUgmw", "FBt1bIuHMx",
-        "bD1j3oOdxN", "3AqGSdLPh6", "5a3fselslN", "I2d3K4RLgD", "PzAqbZEUA9", "RjQS8sigg2"];
-
     var counter = 0; // used to check if on last object
 
     var query = new Parse.Query("Menu");
 
-    for(var i = 0; i < objectList.length; i++) {
-        query.get(objectList[i], {
-            success: function (object) {
-                menu.push({item:object.get("item"), type:object.get("type"),
-                    price:object.get("price"), qty:0, description:object.get("description")});
-
-                if (++counter == objectList.length) displayMenu();     // this forces displayMenu to wait on the query to load
-            },
-            error: function (error) {
-                console.log("An error occured :(");
+    query.find({
+        success: function (results) {
+            // Store all data stored on Parse
+            for (var i = 0; i < results.length; i++) {
+                var object = results[i];
+                menu.push({
+                    item: object.get("item"), type: object.get("type"),
+                    price: object.get("price"), qty: 0, description: object.get("description")
+                });
+                if (++counter == results.length) displayMenu();     // this forces displayMenu to wait on the query to load
             }
-        });
-    }
-};
+        },
+        error: function (error) {
+            console.log("Error: " + error.code + " " + error.message);
+        }
+    });
+}
 
 var displayMenu = function() {
     for(var i = 0; i < menu.length; i++) {
