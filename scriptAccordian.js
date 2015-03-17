@@ -127,8 +127,11 @@ var add = function(clicked_id) {
     setTimeout(function(){qq(parseInt(clicked_id)).setAttribute("style","background-image:url('img/addButton.png')")},500)
 
     if(totalQuantity == 0) {   // just added first item
-        document.getElementById("items_in_cart").style.visibility="visible";  // show counter label
+        qq("items_in_cart").style.paddingRight = "8px";
+        qq("items_in_cart").style.visibility="visible";  // show counter label
         qq("cart_logo").src="img/cartWithItems.png"; // use this cart image so that the qty can be overlayed
+    } else if(totalQuantity >= 9) { // needs to be shifted for double digits
+        qq("items_in_cart").style.paddingRight = "3px";
     }
 
     // if 1st time item is being added to cart
@@ -192,10 +195,13 @@ var remove1 = function(id) {
     total -= menu[id].price;  // update total
 
     // if there are no items in the cart now, change cart icon and go back to main page
-    if(--totalQuantity == 0) {
+    totalQuantity--;
+    if(totalQuantity == 0) {
         document.getElementById("items_in_cart").style.visibility="hidden";  // hide label
         qq("cart_logo").src="img/cartEmpty.png"; // change back to the regular cart image
         goToMenu(); // go back to menu page automatically
+    } else if(totalQuantity < 10) {     // if qty is not in double digits
+        qq("items_in_cart").style.paddingRight = "8px";
     }
 
     // if there is still at least 1 of these items in the cart
@@ -272,6 +278,7 @@ $(document).on('change', '[type="radio"]', function(){
 
 // function to clear all items from cart and go back to the menu page with the menu collapsed
 var cancelOrder = function() {
+    $.mobile.changePage("#menu");
     orderedCopy = ordered.slice();      // copy of ordered, since ordered is going to be changed by remove1 function
 
     for(i = 0; i < orderedCopy.length; i++) {   // for every index in the array: ordered
@@ -280,6 +287,7 @@ var cancelOrder = function() {
             remove1("rm" + orderedCopy[i]); // remove all items in cart (deletes rows, updates totalQuantity and total cost, ect
         }
     }
+    $( "#accordion" ).children().collapsible( "collapse" );     // collapse the collapsible set
 }
 
 // function to see if there are any items in the cart or not and decide whether or not to change pages or display a msg
