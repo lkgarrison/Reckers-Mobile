@@ -299,6 +299,38 @@ var goToMenu = function() {          // button click will change to menu page
     $.mobile.changePage("#menu");
 }
 
+// function to change to the pickup screen
+var goToPickup = function() {
+    displayDate();
+    $.mobile.changePage("#pickup");
+}
+
+// display date & time on pick-up page
+var displayDate = function () {
+    var currentDate = new Date();
+
+    // get date
+    var days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+    var day = days[currentDate.getDay()];       // each day is found at the index of its day number -1
+    var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    var month = months[currentDate.getMonth()];     // each month in array is found at the index of its month number - 1
+    var year = currentDate.getFullYear();
+
+
+    // get time
+    var timeClassification = "AM";             // default, A.M. vs P.M.
+    var hour = currentDate.getHours();
+    if(hour > 12) {
+        hour -= 12;
+        timeClassification = "PM";
+    }
+    var minutes = currentDate.getMinutes();
+    if(minutes < 10) minutes = "0" + minutes;
+
+    qq("pickupTime").textContent = hour + ":" + minutes + " " + timeClassification;
+    qq("pickupDate").textContent = day + ", " + month + " " + currentDate.getDate();
+}
+
 window.onload = function () {
     loadMenu();
     $("#enterPaymentDetails").hide();   // keep payment method details form hidden until a method is selected

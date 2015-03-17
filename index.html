@@ -87,7 +87,7 @@
   <div data-role="header" data-id="mainHeader" data-transition="none" data-position="fixed" data-tap-toggle="false" data-theme="a" id="orderHeader" style="position: fixed !important;">
     <a href="#" data-role="button" data-icon="arrow-l" data-rel="back" class="ui-btn-left">Back</a>
     <h1></h1>
-    <img src="img/reckers_header.png" class="ui-btn-right" id="checkoutReckersLogo">
+    <img src="img/reckers_header.png" class="ui-btn-right reckersLogoRight" id="checkoutReckersLogo">
   </div>
 
 
@@ -173,58 +173,10 @@
       </div>
   </div>
 
-    <div data-role="popup" id="paymentMethodInfo" data-theme="a" class="ui-corner-bottom ui-content" data-overlay-theme="b">
-        <!--<h3 class="ui-title">Enter Payment Information</h3>
-        <p>Payment options coming soon</p>
-        <span id="paymentMethodPopupContent"></span>
-        <form id = "creditCardExpDate">
-            <div class="ui-field-contain">
-                <label for="selectMonth">Expiration Date</label>
-                <fieldset data-role="controlgroup" data-type="horizontal">
-
-                    <label for="selectMonth">Expiration Date</label>
-                    <select name="selectMonth" id="selectMonth">
-                        <option value="#">January</option>
-                        <option value="#">February</option>
-                        <option value="#">March</option>
-                        <option value="#">April</option>
-                        <option value="#">May</option>
-                        <option value="#">June</option>
-                        <option value="#">July</option>
-                        <option value="#">August</option>
-                        <option value="#">September</option>
-                        <option value="#">October</option>
-                        <option value="#">November</option>
-                        <option value="#">December</option>
-                    </select>
-
-                    <select name="selectYear" id="selectYear">
-                        <option value="#">2015</option>
-                        <option value="#">2016</option>
-                        <option value="#">2017</option>
-                        <option value="#">2018</option>
-                        <option value="#">2019</option>
-                        <option value="#">2020</option>
-                        <option value="#">2021</option>
-                    </select>
-
-
-                </fieldset>
-            </div>
-            </form>
-            -->
-        <a href="#" data-role="button" data-theme="a" data-inline="true" data-rel="back" data-theme="c" data-type="horizontal">
-            Confirm
-        </a>
-        <a href="#" data-role="button" data-theme="a" data-inline="true" data-rel="back" data-theme="c" data-type="horizontal">
-            Cancel
-        </a>
-    </div>
-
     <div data-role="popup" id="submitClicked" data-theme="a" class="ui-corner-bottom ui-content" data-overlay-theme="b">
       <h3 class="ui-title">Confirm Payment</h3>
       <p id="submitMessage"></p>
-      <a href="#" data-role="button" data-theme="a" data-inline="true" data-rel="back" data-theme="c" data-type="horizontal">
+      <a href="#pickup" data-role="button" data-theme="a" data-inline="true" data-theme="c" data-type="horizontal" onclick="goToPickup()" rel="external">
         Yes
       </a>
       <a href="#" data-role="button" data-theme="a" data-inline="true" data-rel="back" data-theme="c" data-type="horizontal">
@@ -244,6 +196,29 @@
 
 </div>
 
- 
+<div data-role="page" id="pickup" class = "pickup">
+    <div data-role="header" data-id="mainHeader" data-transition="none" data-position="fixed" data-tap-toggle="false" data-theme="a" id="pickupHeader" style="position: fixed !important;">
+        <a href="#" data-role="button" data-icon="arrow-l" data-rel="back" class="ui-btn-left">Back</a>
+        <h1></h1>
+        <img src="img/reckers_header.png" class="ui-btn-right reckersLogoRight">
+    </div>
+    
+    <div data-role="content" id="pickupContent">
+        <p id="pickupCode">5679A</p>
+        <span id="pickupDate" class="date"></span>
+        <span id="pickupTime" class="date"></span>
+    </div>
+
+    <div data-role="footer" data-transition="none" data-id="mainFooter" data-theme="a" data-position="fixed" data-tap-toggle="false" class="orderFooter" style="position: fixed !important;">
+        <div class="ui-grid-d">
+            <div class="ui-block-a" style="width:20%"><img src="img/padding.png"></div> <!-- vital to allow for top padding in footer. taller than images -->
+            <div class="ui-block-b footerOrder" style="width:20%"><img src="img/footer_order.png" onclick="goToMenu()" rel="external"></div>
+            <div class="ui-block-c footerCheckout" style="width:20%"><img src="img/footer_checkout.png" onclick="checkQuantity()" rel="external"></div>
+            <div class="ui-block-d footerPickup" style="width:20%"><img src="img/footer_pickup_filled.png"></div>
+            <div class="ui-block-e" style="width:20%"></div>
+        </div>
+    </div>
+</div>
+
 </body>
 </html>

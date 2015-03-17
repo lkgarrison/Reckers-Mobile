@@ -16,7 +16,7 @@
     top:3%;
 }
 
-#checkoutReckersLogo {
+.reckersLogoRight {
     height:92%;
     width:auto;
     top:3%;
@@ -263,10 +263,6 @@
     text-align:center;      /* centers the "okay" button */
 }
 
-#paymentMethodInfo {
-    text-align:center;      /* centers the "okay" button */
-}
-
 #emptyCartMessage {
     text-align:center;      /* centers the "okay" button */
 }
@@ -321,4 +317,28 @@
 
 #enterPaymentDetails h3 {
     margin-bottom:5px;
+}
+
+#pickup {
+    background-image: url('img/reckersBackground.PNG') !important;
+}
+
+#pickupContent {
+    height:100%;
+    text-align:center;
+    color:black;
+}
+
+#pickupCode {
+    top-padding:20px;
+    font-size:80px;
+    font-family: Tahoma, Arial, Century Gothic, Verdana, sans-serif;
+    text-align:center;
+    font-weight:bold;
+}
+
+.date {
+    font-size:30px;
+    color:black;
+    font-weight:bold;
 }
