@@ -217,7 +217,9 @@ var remove1 = function(id) {
 var submitClicked = function() {
     if(totalQuantity > 0) {
         qq("submitMessage").textContent = "Would you like to confirm your order of $" + total.toFixed(2) + "?"; // set confirmation message
-        $("#submitClicked").popup("open");
+        //$("#submitClicked").popup("open");
+        document.activeElement.blur();
+        setTimeout(function(){$("#submitClicked").popup("open")}, 375);
     } else {
         confirm("You have not ordered any items."); // should never occur with automatic transition to menu page when removing last item in cart
     }
@@ -315,7 +317,6 @@ var displayDate = function () {
     var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     var month = months[currentDate.getMonth()];     // each month in array is found at the index of its month number - 1
     var year = currentDate.getFullYear();
-
 
     // get time
     var timeClassification = "AM";             // default, A.M. vs P.M.
