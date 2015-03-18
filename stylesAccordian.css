@@ -252,12 +252,36 @@
     font-family: Helvetica, Arial, sans-serif;
 }
 
-#submitClicked {
-    text-align:center;      /* centers the "okay" button */
+.centered {
+    text-align:center;      /* centers the buttons */
 }
 
-#emptyCartMessage {
-    text-align:center;      /* centers the "okay" button */
+#customizeItem-popup {
+    left:0 !important;
+}
+
+#customizeItem {
+    text-align:center;
+    padding-left:0;
+    padding-right:0;
+    margin-left:0;
+    margin-right:0;
+    left:0;
+}
+
+#customizeItemPopupWrapper {
+    padding-left:12px;
+    padding-right:12px;
+}
+
+#popupButtonWrapper {
+    clear:both;
+}
+
+.popupTop {
+    font-weight:bold;
+    font-family: Verdana, Helvetica, Arial, Tahoma, Century Gothic, sans-serif;
+    font-size:20px;
 }
 
 #wrapper {
@@ -334,4 +358,18 @@
     font-size:30px;
     color:black;
     font-weight:bold;
+}
+
+#customizeItemName {
+    float:left;
+}
+
+#customizeItemPrice{
+    float:right;
+}
+
+#ingredientsList {
+    float:left;
+    clear:both;
+    padding-left:30px;
 }

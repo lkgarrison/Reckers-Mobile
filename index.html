@@ -63,10 +63,32 @@
     </div>
   </div>
 
-  <div data-role="popup" id="emptyCartMessage" data-theme="a" class="ui-corner-bottom ui-content" data-overlay-theme="b">
+  <div data-role="popup" id="customizeItem" data-theme="a" class="ui-content" data-overlay-theme="b">
+        <!--<h3 class="ui-title">Customize Item</h3> -->
+      <div id="customizeItemPopupWrapper">
+        <div>
+            <span id="customizeItemName" class="popupTop"></span>
+            <span id="customizeItemPrice" class="popupTop"></span>
+            <div id="ingredientsList" class="ingredientsList">
+
+            </div>
+        </div>
+
+        <div id="popupButtonWrapper">
+            <a href="#" id="addButton" data-role="button" data-theme="a" data-inline="true" data-rel="back" data-theme="c" data-type="horizontal">
+                Add
+            </a>
+            <a href="#" data-role="button" data-theme="a" data-inline="true" data-rel="back" data-theme="c" data-type="horizontal">
+                Cancel
+            </a>
+        </div>
+      </div>
+  </div>
+
+  <div data-role="popup" id="emptyCartMessage" data-theme="a" class="centered ui-corner-bottom ui-content" data-overlay-theme="b">
     <h3 class="ui-title">Checkout Unavailable</h3>
     <p>Add items to your cart first!</p>
-    <a href="#" data-role="button" data-theme="a" data-inline="true" data-rel="back" data-theme="c" data-type="horizontal" id="test">
+    <a href="#" data-role="button" data-theme="a" data-inline="true" data-rel="back" data-theme="c" data-type="horizontal">
       Okay
     </a>
   </div>
@@ -173,7 +195,7 @@
       </div>
   </div>
 
-    <div data-role="popup" id="submitClicked" data-theme="a" class="ui-corner-bottom ui-content" data-overlay-theme="b">
+    <div data-role="popup" id="submitClicked" data-theme="a" class="centered ui-corner-top ui-content" data-overlay-theme="b">
       <h3 class="ui-title">Confirm Payment</h3>
       <p id="submitMessage"></p>
       <a href="#pickup" data-role="button" data-theme="a" data-inline="true" data-theme="c" data-type="horizontal" onclick="goToPickup()" rel="external">

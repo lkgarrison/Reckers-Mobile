@@ -54,7 +54,7 @@ var displayMenu = function() {
         var button = document.createElement("td");
         var addButton = document.createElement("input");
         addButton.setAttribute("id", parseInt(i));       // assign a unique id to the button that is the item name. this id it the menu index of the item
-        addButton.setAttribute("onClick", "add(this.id)"); // set onClick property to call the add function, passing the id of the item
+        addButton.setAttribute("onClick", "customizeItem(this.id)"); // set onClick property to call the add function, passing the id of the item
         addButton.setAttribute("type", "button");
         addButton.setAttribute("class", "addButton");
         addButton.setAttribute("value", "");
@@ -116,8 +116,37 @@ var chooseSection = function(tr, i) {
     }
 };
 
+// opens a popup to customize the item that was clicked
+var customizeItem = function(clicked_id) {
+    qq("addButton").setAttribute("onclick", "add(" + clicked_id + ")");   // set pop-up's "Add" button to send clicked_id to add function
+    $("#customizeItem").width($(window).width());
+    qq("customizeItemName").textContent = menu[clicked_id].item;
+    qq("customizeItemPrice").textContent = "$ " + menu[clicked_id].price.toFixed(2);
+    $("#ingredientsList").css("min-width", .4 * $(window).width());     // set min-width of checkboxes
+
+    // store an array with all ingredients
+    var ingredientsList = menu[clicked_id].description.split(",");
+
+    qq("ingredientsList").innerHTML = "";
+    var newSet = '<fieldset data-role="controlgroup" class="cbGroup' + '"></fieldset>';
+    $('.ingredientsList').append(newSet);
+
+    for(i = 0; i < ingredientsList.length; i++) {
+        var newBox = '<input type="checkbox" name="ingredientCB-' + i + '" id="ingredientCB-' + i
+            + '" class="custom" /> <label for="ingredientCB-'+ i + '">' + capitalizeFirstLetter(ingredientsList[i]) + '</label>';
+        $(".cbGroup").append(newBox).trigger('create');
+        $('#ingredientCB-' + i).prop('checked', true).checkboxradio('refresh');
+    }
+
+    $("#customizeItem").popup("open");
+
+   // add(clicked_id);    // adds item to order page in table
+}
+
 // this function takes in the id (menu index) of the item that was specified to be added
 var add = function(clicked_id) {
+    console.log(clicked_id);
+    clicked_id = parseInt(clicked_id);
     if(qq("noOrders") != null) qq("noOrders").remove();
     menu[clicked_id].qty++; // adds 1 to the quantity of this item
     total += menu[clicked_id].price;
@@ -334,6 +363,11 @@ var displayDate = function () {
 
     qq("pickupTime").textContent = hour + ":" + minutes + " " + timeClassification;
     qq("pickupDate").textContent = day + ", " + month + " " + currentDate.getDate();
+}
+
+// used to display ingredients list in item customizer pop-up
+function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
 window.onload = function () {
