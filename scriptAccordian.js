@@ -7,8 +7,8 @@ var qq = function (id) {
 
 menu = []; // this will be an array of the food objects. makes menu a global variable
 ordered = []; // array keeps track of menu index of ordered items
-total = 0;
-totalQuantity = 0;
+total = 0;  // track total cost of items in cart
+totalQuantity = 0;  // total number of items in cart (displayed in cart image)
 
 // create a table for each of the food types
 pizzaTable = document.createElement("table");
@@ -150,32 +150,31 @@ var customizeItem = function(clicked_id) {
     var imgPath;    // string to store the image path
     switch(menu[clicked_id].type) {
         case "pizza":
-            imgPath = "img/header_pizza.png";
-            break;
+            imgPath = "img/header_pizza.png"; break;
         case "piadina":
-            imgPath = "img/header_piadina.png";
-            break;
+            imgPath = "img/header_piadina.png"; break;
         case "americanFare":
-            imgPath = "img/header_sandwiches.png";
-            break;
+            imgPath = "img/header_sandwiches.png"; break;
         case "salad":
-            imgPath = "img/header_salads.png";
-            break;
+            imgPath = "img/header_salads.png"; break;
         case "breakfast":
-            imgPath = "img/header_breakfast.png";
-            break;
+            imgPath = "img/header_breakfast.png"; break;
         case "side":
-            imgPath = "img/header_sides.png";
-            break;
+            imgPath = "img/header_sides.png"; break;
         default:
             imgPath = "img/header_reckers.png";
     }
     $("#customizeItemColoredLine").css("background-image", "url('" + imgPath + "')");
 
+    // allow accordian to scroll again after popup closes (in case popup needed scrolling)
+    $( "#customizeItem" ).on( "popupafterclose", function( event, ui ) {
+        $("body.ui-mobile-viewport").css("overflow", "auto");
+    } );
 
     // manually set height on popup so that scrolling will work within the popup
     $("#customizeItem").css("visibility", "hidden");
     $("#customizeItem").css("height", "");          // reset to default
+    $("body.ui-mobile-viewport").css("overflow", "hidden"); // prevent accordian from scrolling while popup is open (in case popup needs to scroll)
     $("#customizeItem").popup("open");
     var newHeight =  $("#customizeItem").height();
     $("#customizeItem").css("height", newHeight);           // set height to itself - allows popup to be positioned correctly and scroll
@@ -185,17 +184,10 @@ var customizeItem = function(clicked_id) {
 
 // this function takes in the id (menu index) of the item that was specified to be added
 var add = function(clicked_id) {
-    console.log(clicked_id);
     clicked_id = parseInt(clicked_id);
     if(qq("noOrders") != null) qq("noOrders").remove();
     menu[clicked_id].qty++; // adds 1 to the quantity of this item
     total += menu[clicked_id].price;
-
-    /* NO LONGER USEFUL WITH INGREDIENTS POPUP
-    immediately set "+" icon to another color. change back after a few milliseconds
-    qq(parseInt(clicked_id)).setAttribute("style","background-image:url('img/addButtonPressed.png')")
-    setTimeout(function(){qq(parseInt(clicked_id)).setAttribute("style","background-image:url('img/addButton.png')")},500)
-    */
 
     if(totalQuantity == 0) {   // just added first item
         qq("items_in_cart").style.paddingRight = "8px";
@@ -255,11 +247,10 @@ var add = function(clicked_id) {
 
     qq("items_in_cart").textContent = ++totalQuantity;
     qq("total").innerHTML = "Total: $" + parseFloat(Math.abs(total)).toFixed(2);  // update total
-
 };
 
+// trigger when remove button is clicked on checkout page to remove one instance of an item
 var remove1 = function(id) {
-    var copy = id;
     id = id.substring(2, id.length);   // get number from id
     id = parseInt(id);
     menu[id].qty--;
@@ -313,6 +304,8 @@ var paymentMethodSelected = function(paymentMethod) {
         cardholderName.setAttribute("type", "text");
         cardholderName.setAttribute("name", "cardholderName");
         cardholderName.setAttribute("id", "cardHolderName");
+        cardholderName.setAttribute("onblur", "showFooter()");
+        cardholderName.setAttribute("onfocus", "hideFooter()");
         cardholderName.setAttribute("placeholder", "Cardholder Name");
         cardholderName.setAttribute("value", "");
         div.appendChild(cardholderName);
@@ -321,10 +314,12 @@ var paymentMethodSelected = function(paymentMethod) {
         creditCardNumber.setAttribute("type", "text");
         creditCardNumber.setAttribute("name", "creditCardNumber");
         creditCardNumber.setAttribute("id", "creditCardNumber");
+        creditCardNumber.setAttribute("onblur", "showFooter()");
+        creditCardNumber.setAttribute("onfocus", "hideFooter()");
         creditCardNumber.setAttribute("placeholder", "Credit Card Number");
         creditCardNumber.setAttribute("value", "");
         div.appendChild(creditCardNumber);
-        }
+    }
 
     else if(paymentMethod === "flexPoints" || paymentMethod === "domerDollars") {
         $("#creditCardExpDate").hide();
@@ -333,13 +328,14 @@ var paymentMethodSelected = function(paymentMethod) {
         netID.setAttribute("type", "text");
         netID.setAttribute("name", "netID");
         netID.setAttribute("id", "netID");
+        netID.setAttribute("onblur", "showFooter()");
+        netID.setAttribute("onfocus", "hideFooter()");
         netID.setAttribute("placeholder", "netID");
         netID.setAttribute("value", "");
         div.appendChild(netID);
     }
 
     qq("paymentMethodPopupContent").appendChild(div);       // add form contents to popup
-   // $("#paymentMethodInfo").popup("open");                  // display the pop-up
 }
 
 // detect radio button selection change
@@ -349,7 +345,8 @@ $(document).on('change', '[type="radio"]', function(){
 
 // function to clear all items from cart and go back to the menu page with the menu collapsed
 var cancelOrder = function() {
-    $.mobile.changePage("#menu");
+    location.reload();
+    /*
     orderedCopy = ordered.slice();      // copy of ordered, since ordered is going to be changed by remove1 function
 
     for(i = 0; i < orderedCopy.length; i++) {   // for every index in the array: ordered
@@ -358,14 +355,16 @@ var cancelOrder = function() {
             remove1("rm" + orderedCopy[i]); // remove all items in cart (deletes rows, updates totalQuantity and total cost, ect
         }
     }
-    $( "#accordion" ).children().collapsible( "collapse" );     // collapse the collapsible set
+    */
 }
 
 // function to see if there are any items in the cart or not and decide whether or not to change pages or display a msg
 var checkQuantity = function() {     // will determine whether to go to checkout page or not based on # items in cart
+    console.log(totalQuantity);
     if(totalQuantity == 0) {
         $("#emptyCartMessage").popup("open");
     } else {
+        console.log("attempting page change to checkout page");
         $.mobile.changePage("#order");
     }
 }
@@ -407,9 +406,14 @@ var displayDate = function () {
     qq("pickupDate").textContent = day + ", " + month + " " + currentDate.getDate();
 }
 
-// used to display ingredients list in item customizer pop-up
-function capitalizeFirstLetter(string) {
-    return string.charAt(0).toUpperCase() + string.slice(1);
+// hides order page's footer (when there is keyboard input)
+var hideFooter = function() {
+   $("#orderFooter").css("display", "none");
+}
+
+// shows the order page's footer (after text field is no longer in focus)
+var showFooter = function() {
+    $("#orderFooter").show();
 }
 
 window.onload = function () {

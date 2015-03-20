@@ -301,7 +301,6 @@
 #customizeItemName {
     width:100%;
     text-align:center;
-
 }
 
 #customizeItemPrice {
@@ -416,4 +415,8 @@
     float:left;
     clear:both;
     padding-left:30px;
+}
+
+body.ui-mobile-viewport {
+
 }
