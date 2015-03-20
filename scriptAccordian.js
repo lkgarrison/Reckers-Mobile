@@ -35,7 +35,8 @@ var loadMenu = function() {
                 menu.push({
                     item: object.get("item"), type: object.get("type"),
                     price: object.get("price"), qty: 0, description: object.get("description"),
-                    ingredients: object.get("ingredients")
+                    ingredients: object.get("ingredients"),
+                    prices: object.get("prices")
                 });
                 if (++counter == results.length) displayMenu();     // this forces displayMenu to wait on the query to load
             }
@@ -48,7 +49,7 @@ var loadMenu = function() {
 
 var displayMenu = function() {
     for(var i = 0; i < menu.length; i++) {
-        var tr = document.createElement("tr");  // first row will contain add button, item name, price
+       var tr = document.createElement("tr");  // first row will contain add button, item name, price
 
         // add the add buttons
         var item = document.createElement("td");
@@ -124,12 +125,13 @@ var customizeItem = function(clicked_id) {
     qq("customizeItemName").textContent = menu[clicked_id].item;
     qq("customizeItemPrice").textContent = "$" + menu[clicked_id].price.toFixed(2);
     $("#ingredientsList").css("min-width", .4 * $(window).width());     // set min-width of checkboxes
-    qq("includedIngredients").setAttribute("display", "inherited");     // display by default (unless no ingredients listed)
     qq("ingredientsPopupMessage").textContent = "";     // make sure no message is being displayed
     qq("ingredientsList").innerHTML = "";               // remove previous item's checkboxes, start over fresh
 
     // store an array with all ingredients
+    var noContentFlag = true;   // assume no content
     if(menu[clicked_id].ingredients != null) {
+        noContentFlag = false;
         ingredientsList = menu[clicked_id].ingredients.split(",");
 
         var newSet = '<fieldset data-role="controlgroup" class="cbGroup' + '"></fieldset>';
@@ -141,10 +143,12 @@ var customizeItem = function(clicked_id) {
             $(".cbGroup").append(newBox).trigger('create');
             $('#ingredientCB-' + i).prop('checked', true).checkboxradio('refresh');
         }
-    } else {
-        qq("includedIngredients").setAttribute("display", "none");
-        qq("ingredientsPopupMessage").textContent = "There are no ingredients listed for this item";
     }
+    if(menu[clicked_id].prices != null) {
+        noContentFlag = false;
+        console.log(menu[clicked_id].prices.Regular);
+    }
+
 
     // set image for divider line at the top of popup based on food type
     var imgPath;    // string to store the image path
@@ -345,7 +349,7 @@ $(document).on('change', '[type="radio"]', function(){
 
 // function to clear all items from cart and go back to the menu page with the menu collapsed
 var cancelOrder = function() {
-    location.reload();
+    location.reload();      // reloads index.html, reloading entire site
     /*
     orderedCopy = ordered.slice();      // copy of ordered, since ordered is going to be changed by remove1 function
 
@@ -360,7 +364,6 @@ var cancelOrder = function() {
 
 // function to see if there are any items in the cart or not and decide whether or not to change pages or display a msg
 var checkQuantity = function() {     // will determine whether to go to checkout page or not based on # items in cart
-    console.log(totalQuantity);
     if(totalQuantity == 0) {
         $("#emptyCartMessage").popup("open");
     } else {
