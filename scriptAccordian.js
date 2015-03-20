@@ -34,7 +34,8 @@ var loadMenu = function() {
                 var object = results[i];
                 menu.push({
                     item: object.get("item"), type: object.get("type"),
-                    price: object.get("price"), qty: 0, description: object.get("description")
+                    price: object.get("price"), qty: 0, description: object.get("description"),
+                    ingredients: object.get("ingredients")
                 });
                 if (++counter == results.length) displayMenu();     // this forces displayMenu to wait on the query to load
             }
@@ -121,26 +122,65 @@ var customizeItem = function(clicked_id) {
     qq("addButton").setAttribute("onclick", "add(" + clicked_id + ")");   // set pop-up's "Add" button to send clicked_id to add function
     $("#customizeItem").width($(window).width());
     qq("customizeItemName").textContent = menu[clicked_id].item;
-    qq("customizeItemPrice").textContent = "$ " + menu[clicked_id].price.toFixed(2);
+    qq("customizeItemPrice").textContent = "$" + menu[clicked_id].price.toFixed(2);
     $("#ingredientsList").css("min-width", .4 * $(window).width());     // set min-width of checkboxes
+    qq("includedIngredients").setAttribute("display", "inherited");     // display by default (unless no ingredients listed)
+    qq("ingredientsPopupMessage").textContent = "";     // make sure no message is being displayed
+    qq("ingredientsList").innerHTML = "";               // remove previous item's checkboxes, start over fresh
 
     // store an array with all ingredients
-    var ingredientsList = menu[clicked_id].description.split(",");
+    if(menu[clicked_id].ingredients != null) {
+        ingredientsList = menu[clicked_id].ingredients.split(",");
 
-    qq("ingredientsList").innerHTML = "";
-    var newSet = '<fieldset data-role="controlgroup" class="cbGroup' + '"></fieldset>';
-    $('.ingredientsList').append(newSet);
+        var newSet = '<fieldset data-role="controlgroup" class="cbGroup' + '"></fieldset>';
+        $('.ingredientsList').append(newSet);
 
-    for(i = 0; i < ingredientsList.length; i++) {
-        var newBox = '<input type="checkbox" name="ingredientCB-' + i + '" id="ingredientCB-' + i
-            + '" class="custom" /> <label for="ingredientCB-'+ i + '">' + capitalizeFirstLetter(ingredientsList[i]) + '</label>';
-        $(".cbGroup").append(newBox).trigger('create');
-        $('#ingredientCB-' + i).prop('checked', true).checkboxradio('refresh');
+        for(i = 0; i < ingredientsList.length; i++) {
+            var newBox = '<input type="checkbox" name="ingredientCB-' + i + '" id="ingredientCB-' + i
+                + '" class="custom" /> <label for="ingredientCB-'+ i + '">' + ingredientsList[i] + '</label>';
+            $(".cbGroup").append(newBox).trigger('create');
+            $('#ingredientCB-' + i).prop('checked', true).checkboxradio('refresh');
+        }
+    } else {
+        qq("includedIngredients").setAttribute("display", "none");
+        qq("ingredientsPopupMessage").textContent = "There are no ingredients listed for this item";
     }
 
-    $("#customizeItem").popup("open");
+    // set image for divider line at the top of popup based on food type
+    var imgPath;    // string to store the image path
+    switch(menu[clicked_id].type) {
+        case "pizza":
+            imgPath = "img/header_pizza.png";
+            break;
+        case "piadina":
+            imgPath = "img/header_piadina.png";
+            break;
+        case "americanFare":
+            imgPath = "img/header_sandwiches.png";
+            break;
+        case "salad":
+            imgPath = "img/header_salads.png";
+            break;
+        case "breakfast":
+            imgPath = "img/header_breakfast.png";
+            break;
+        case "side":
+            imgPath = "img/header_sides.png";
+            break;
+        default:
+            imgPath = "img/header_reckers.png";
+    }
+    $("#customizeItemColoredLine").css("background-image", "url('" + imgPath + "')");
 
-   // add(clicked_id);    // adds item to order page in table
+
+    // manually set height on popup so that scrolling will work within the popup
+    $("#customizeItem").css("visibility", "hidden");
+    $("#customizeItem").css("height", "");          // reset to default
+    $("#customizeItem").popup("open");
+    var newHeight =  $("#customizeItem").height();
+    $("#customizeItem").css("height", newHeight);           // set height to itself - allows popup to be positioned correctly and scroll
+    $("#customizeItem").css("max-height", .7 * $(window).height());
+    $("#customizeItem").css("visibility", "visible");
 }
 
 // this function takes in the id (menu index) of the item that was specified to be added
@@ -151,9 +191,11 @@ var add = function(clicked_id) {
     menu[clicked_id].qty++; // adds 1 to the quantity of this item
     total += menu[clicked_id].price;
 
-    // immediately set "+" icon to another color. change back after a few milliseconds
+    /* NO LONGER USEFUL WITH INGREDIENTS POPUP
+    immediately set "+" icon to another color. change back after a few milliseconds
     qq(parseInt(clicked_id)).setAttribute("style","background-image:url('img/addButtonPressed.png')")
     setTimeout(function(){qq(parseInt(clicked_id)).setAttribute("style","background-image:url('img/addButton.png')")},500)
+    */
 
     if(totalQuantity == 0) {   // just added first item
         qq("items_in_cart").style.paddingRight = "8px";

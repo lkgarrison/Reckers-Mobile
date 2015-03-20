@@ -63,16 +63,17 @@
     </div>
   </div>
 
+
   <div data-role="popup" id="customizeItem" data-theme="a" class="ui-content" data-overlay-theme="b">
         <!--<h3 class="ui-title">Customize Item</h3> -->
       <div id="customizeItemPopupWrapper">
-        <div>
-            <span id="customizeItemName" class="popupTop"></span>
-            <span id="customizeItemPrice" class="popupTop"></span>
-            <div id="ingredientsList" class="ingredientsList">
 
-            </div>
-        </div>
+            <div id="customizeItemName" class="popupTop"></div>
+            <div id="customizeItemPrice" class="popupTop"></div>
+            <div id="customizeItemColoredLine"></div>
+            <h3 id="includedIngredients" class="floatLeft">Included Ingredients:</h3>
+            <div id="ingredientsList" class="ingredientsList" style="overflow:auto"></div>
+            <span id="ingredientsPopupMessage"></span>
 
         <div id="popupButtonWrapper">
             <a href="#" id="addButton" data-role="button" data-theme="a" data-inline="true" data-rel="back" data-theme="c" data-type="horizontal">
@@ -82,7 +83,7 @@
                 Cancel
             </a>
         </div>
-      </div>
+  </div>
   </div>
 
   <div data-role="popup" id="emptyCartMessage" data-theme="a" class="centered ui-corner-bottom ui-content" data-overlay-theme="b">
