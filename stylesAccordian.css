@@ -262,6 +262,7 @@
 
 #customizeItem {
     text-align:center;
+    padding-top:10px;
     padding-left:0;
     padding-right:0;
     margin-left:0;
@@ -328,6 +329,8 @@
 
 #includedIngredientsLabel {
     margin-left:12px;
+    margin-top:12px;
+    margin-bottom:12px;
 }
 
 #wrapper {
@@ -417,6 +420,16 @@
     padding-left:30px;
 }
 
+#itemOptions {
+    margin-top:20px;
+    margin-left:20px;
+    max-width:60%
+}
+
+.ui-radio {
+    margin-top:0;
+    margin-bottom:0;
+}
 body.ui-mobile-viewport {
 
 }

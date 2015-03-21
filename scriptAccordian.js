@@ -67,6 +67,8 @@ var displayMenu = function() {
         // add item names
         item.textContent = menu[i].item;
         item.setAttribute("class", "menuItem");
+        item.setAttribute("id", i + "item");
+        item.setAttribute("onClick", "customizeItem(" + parseInt(item.id) + ")");
         tr.appendChild(item);
 
         // add price
@@ -124,12 +126,15 @@ var customizeItem = function(clicked_id) {
     $("#customizeItem").width($(window).width());
     qq("customizeItemName").textContent = menu[clicked_id].item;
     qq("customizeItemPrice").textContent = "$" + menu[clicked_id].price.toFixed(2);
+    $("#includedIngredientsLabel").css("display", "inherit");   // display label by default
     $("#ingredientsList").css("min-width", .4 * $(window).width());     // set min-width of checkboxes
     qq("ingredientsPopupMessage").textContent = "";     // make sure no message is being displayed
     qq("ingredientsList").innerHTML = "";               // remove previous item's checkboxes, start over fresh
+    qq("itemOptions").innerHTML = "";         // remove previous item's possible radio group
 
     // store an array with all ingredients
     var noContentFlag = true;   // assume no content
+    // generate checkboxes of ingredients list
     if(menu[clicked_id].ingredients != null) {
         noContentFlag = false;
         ingredientsList = menu[clicked_id].ingredients.split(",");
@@ -144,9 +149,22 @@ var customizeItem = function(clicked_id) {
             $('#ingredientCB-' + i).prop('checked', true).checkboxradio('refresh');
         }
     }
+    // generate radio buttons to select options
     if(menu[clicked_id].prices != null) {
         noContentFlag = false;
-        console.log(menu[clicked_id].prices.Regular);
+        var itemOptions = menu[clicked_id].prices;
+        var radioGroup = '<fieldset data-role="controlgroup" id="itemOptionsRadioGroup"></fieldset>';
+        $("#itemOptions").append(radioGroup);
+        for(option in itemOptions) {
+            if (itemOptions.hasOwnProperty(option)) {
+                var radioOption = '<input type="radio" name="radio-itemOption" id="radioItemOption-' + option + '" value="off">' +
+                    '<label for="radioItemOption-' + option + '">' + option + ": $" + itemOptions[option] + '</label>';
+                $("#itemOptionsRadioGroup").append(radioOption).trigger('create');
+                var newPrice = itemOptions[option];
+                qq("radioItemOption-" + option).setAttribute("onclick", "setPopupPrice(" + newPrice + ")"); // set property to adjust price displayed at the top of the popup upon radio selection
+            }
+        }
+        $("#includedIngredientsLabel").css("display", "none");      // hide "ingredients" label
     }
 
 
@@ -184,6 +202,12 @@ var customizeItem = function(clicked_id) {
     $("#customizeItem").css("height", newHeight);           // set height to itself - allows popup to be positioned correctly and scroll
     $("#customizeItem").css("max-height", .7 * $(window).height());
     $("#customizeItem").css("visibility", "visible");
+}
+
+// function to change the price displayed in the add item /  ingredients popup
+var setPopupPrice = function(newPrice) {
+    newPrice = "$" + newPrice;
+    qq("customizeItemPrice").textContent = newPrice;
 }
 
 // this function takes in the id (menu index) of the item that was specified to be added
@@ -367,7 +391,6 @@ var checkQuantity = function() {     // will determine whether to go to checkout
     if(totalQuantity == 0) {
         $("#emptyCartMessage").popup("open");
     } else {
-        console.log("attempting page change to checkout page");
         $.mobile.changePage("#order");
     }
 }
