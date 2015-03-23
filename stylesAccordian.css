@@ -271,7 +271,7 @@
     left:0;
     bottom:65px;        /* must match footer height! */
     position:fixed;
-    overflow:auto;
+    overflow:hidden;
 }
 
 #customizeItemPopupWrapper {
@@ -331,7 +331,7 @@
 #includedIngredientsLabel {
     margin-left:12px;
     margin-top:12px;
-    margin-bottom:0px;
+    margin-bottom:12px;
 }
 
 #wrapper {

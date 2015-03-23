@@ -132,6 +132,7 @@ var customizeItem = function(clicked_id) {
     qq("ingredientsPopupMessage").textContent = "";     // make sure no message is being displayed
     qq("ingredientsList").innerHTML = "";               // remove previous item's checkboxes, start over fresh
     qq("itemOptions").innerHTML = "";         // remove previous item's possible radio group
+    $("#itemOptions").css("display", "none");   // default, unless there are options
 
     // store an array with all ingredients
     var noContentFlag = true;   // assume no content
@@ -153,6 +154,7 @@ var customizeItem = function(clicked_id) {
     // generate radio buttons to select options
     if(menu[clicked_id].prices != null) {
         noContentFlag = false;
+        $("#itemOptions").css("display", "inherit");
         $("#customizeItemOptionsHeader").css("display", "inherit");
         var itemOptions = menu[clicked_id].prices;
         var radioGroup = '<fieldset data-role="controlgroup" id="itemOptionsRadioGroup"></fieldset>';
@@ -198,12 +200,24 @@ var customizeItem = function(clicked_id) {
     // manually set height on popup so that scrolling will work within the popup
     $("#customizeItem").css("visibility", "hidden");
     $("#customizeItem").css("height", "");          // reset to default
+    $("#ingredientsList").css("height", "");          // reset to default
+    console.log($("#customizeItem").css("padding-bottom", "")); // reset (needs to be increased for scroll-div
     $("body.ui-mobile-viewport").css("overflow", "hidden"); // prevent accordian from scrolling while popup is open (in case popup needs to scroll)
-    $("#customizeItem").popup("open");
+    $("#customizeItem").popup("open");                  // open but do not show. open in order to extract properties
     var newHeight =  $("#customizeItem").height();
     $("#customizeItem").css("height", newHeight);           // set height to itself - allows popup to be positioned correctly and scroll
     $("#customizeItem").css("max-height", .7 * $(window).height());
+
+    // must manually set height of scroll-div for scrolling to work. If ingredients div is too large for popup space, then set the checkboxes' div to its max allowed height to enable scrolling
+    var divHeight = $("#customizeItem").outerHeight() - $("#ingredientsList").position().top - $("#popupButtonWrapper").outerHeight();
+    if($("#ingredientsList").height() > divHeight) {    // if height of container of ingredients > max height of area to display, add scrolling
+        $("#ingredientsList").css("height", divHeight); // specifically set height to enable scrolling
+        $("#customizeItem").css("padding-bottom", parseFloat($("#customizeItem").css("padding-bottom")) * 2 + "px");    // must be multplied by 2 to have same padding as non-scroll popup
+    } else {
+        $("#ingredientsList").css("height", $("#ingredientsList").height());
+    }
     $("#customizeItem").css("visibility", "visible");
+
 }
 
 // function to change the price displayed in the add item /  ingredients popup
@@ -437,14 +451,14 @@ var displayDate = function () {
     qq("pickupDate").textContent = day + ", " + month + " " + currentDate.getDate();
 }
 
-// hides order page's footer (when there is keyboard input)
+// hides checkout page's footer (when there is keyboard input)
 var hideFooter = function() {
-   $("#orderFooter").css("display", "none");
+   $("#checkoutFooter").css("display", "none");
 }
 
 // shows the order page's footer (after text field is no longer in focus)
 var showFooter = function() {
-    $("#orderFooter").show();
+    $("#checkoutFooter").show();
 }
 
 window.onload = function () {

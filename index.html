@@ -72,9 +72,10 @@
             <div id="customizeItemPrice" class="popupTop"></div>
             <div id="customizeItemColoredLine"></div>
             <h3 id="includedIngredientsLabel" class="floatLeft">Included Ingredients:</h3>
+            <div id="ingredientsList" class="ingredientsList" style="overflow-y:auto"></div>
             <h3 id="customizeItemOptionsHeader" class="floatLeft">Options:</h3>
             <form id="itemOptions"></form>
-            <div id="ingredientsList" class="ingredientsList" style="overflow:auto"></div>
+
             <span id="ingredientsPopupMessage"></span>
 
         <div id="popupButtonWrapper">
@@ -96,7 +97,7 @@
     </a>
   </div>
 
-  <div data-role="footer" data-transition="none" data-id="mainFooter" data-theme="a" data-position="fixed" data-tap-toggle="false" class="orderFooter" style="position: fixed !important;">
+  <div data-role="footer" id="orderFooter" data-transition="none" data-id="mainFooter" data-theme="a" data-position="fixed" data-tap-toggle="false" class="orderFooter" style="position: fixed !important;">
     <div class="ui-grid-d">
       <div class="ui-block-a" style="width:20%"><img src="img/padding.png"></div>
       <div class="ui-block-b footerOrder" style="width:20%"><img src="img/footer_order_filled.png"></div>
@@ -208,7 +209,7 @@
       </a>
     </div>
 
-  <div data-role="footer" id="orderFooter" data-transition="none" data-id="mainFooter" data-theme="a" data-position="fixed" data-tap-toggle="false" class="orderFooter" style="position: fixed !important;">
+  <div data-role="footer" id="checkoutFooter" data-transition="none" data-id="mainFooter" data-theme="a" data-position="fixed" data-tap-toggle="false" class="orderFooter" style="position: fixed !important;">
     <div class="ui-grid-d">
       <div class="ui-block-a" style="width:20%"><img src="img/padding.png"></div> <!-- vital to allow for top padding in footer. taller than images -->
       <div class="ui-block-b footerOrder" style="width:20%"><img src="img/footer_order.png" onclick="goToMenu()" rel="external"></div>
