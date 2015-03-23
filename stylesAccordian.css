@@ -263,6 +263,7 @@
 #customizeItem {
     text-align:center;
     padding-top:10px;
+    padding-bottom:12px;
     padding-left:0;
     padding-right:0;
     margin-left:0;
@@ -330,7 +331,7 @@
 #includedIngredientsLabel {
     margin-left:12px;
     margin-top:12px;
-    margin-bottom:12px;
+    margin-bottom:0px;
 }
 
 #wrapper {
@@ -388,6 +389,7 @@
 
 #pickupContent {
     height:100%;
+    margin-top:30%;
     text-align:center;
     color:black;
 }
@@ -423,7 +425,8 @@
 #itemOptions {
     margin-top:20px;
     margin-left:20px;
-    max-width:60%
+    max-width:60%;
+    clear:both;
 }
 
 .ui-radio {
@@ -432,4 +435,10 @@
 }
 body.ui-mobile-viewport {
 
+}
+
+#customizeItemOptionsHeader {
+    margin-left:12px;
+    margin-top:12px;
+    margin-bottom:12px;
 }

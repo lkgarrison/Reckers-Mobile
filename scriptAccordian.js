@@ -68,7 +68,7 @@ var displayMenu = function() {
         item.textContent = menu[i].item;
         item.setAttribute("class", "menuItem");
         item.setAttribute("id", i + "item");
-        item.setAttribute("onClick", "customizeItem(" + parseInt(item.id) + ")");
+        item.setAttribute("onClick", "customizeItem(" + parseInt(item.id) + ")"); // call add method same as "+" button onclick. parseInt deletes the string part
         tr.appendChild(item);
 
         // add price
@@ -127,6 +127,7 @@ var customizeItem = function(clicked_id) {
     qq("customizeItemName").textContent = menu[clicked_id].item;
     qq("customizeItemPrice").textContent = "$" + menu[clicked_id].price.toFixed(2);
     $("#includedIngredientsLabel").css("display", "inherit");   // display label by default
+    $("#customizeItemOptionsHeader").css("display", "none");    // don't display "Options" label by default
     $("#ingredientsList").css("min-width", .4 * $(window).width());     // set min-width of checkboxes
     qq("ingredientsPopupMessage").textContent = "";     // make sure no message is being displayed
     qq("ingredientsList").innerHTML = "";               // remove previous item's checkboxes, start over fresh
@@ -152,6 +153,7 @@ var customizeItem = function(clicked_id) {
     // generate radio buttons to select options
     if(menu[clicked_id].prices != null) {
         noContentFlag = false;
+        $("#customizeItemOptionsHeader").css("display", "inherit");
         var itemOptions = menu[clicked_id].prices;
         var radioGroup = '<fieldset data-role="controlgroup" id="itemOptionsRadioGroup"></fieldset>';
         $("#itemOptions").append(radioGroup);
@@ -368,11 +370,14 @@ var paymentMethodSelected = function(paymentMethod) {
 
 // detect radio button selection change
 $(document).on('change', '[type="radio"]', function(){
-    paymentMethodSelected($(this).attr('id'));  // pass id of selected radio button
+    if($(this).closest("fieldset").attr("id") === "paymentRadioGroup") {
+        paymentMethodSelected($(this).attr('id'));  // pass id of selected radio button
+    }
 });
 
 // function to clear all items from cart and go back to the menu page with the menu collapsed
 var cancelOrder = function() {
+    $( "#accordion" ).children().collapsible( "collapse" );     // collapse the collapsible set
     location.reload();      // reloads index.html, reloading entire site
     /*
     orderedCopy = ordered.slice();      // copy of ordered, since ordered is going to be changed by remove1 function
