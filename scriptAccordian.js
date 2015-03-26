@@ -155,8 +155,10 @@ var customizeItem = function(clicked_id) {
         $('.ingredientsList').append(newSet);
 
         for(i = 0; i < ingredientsList.length; i++) {
-            var newBox = '<input type="checkbox" name="ingredientCB-' + i + '" id="ingredientCB-' + i
-                + '" class="custom" /> <label for="ingredientCB-'+ i + '">' + ingredientsList[i] + '</label>';
+            // label element must have a class and ID in order to grab all checkbox labels later and get their text content
+            var newBox = '<input type="checkbox" name="ingredientCB" id="ingredientCB-' + i
+                + '" class="custom" /> <label for="ingredientCB-'+ i + '" class="ingredientCBlabel" id="ingredientCBlabel-' + i + '">'
+                + ingredientsList[i] + '</label>';
             $(".cbGroup").append(newBox).trigger('create');
             $('#ingredientCB-' + i).prop('checked', true).checkboxradio('refresh');
         }
@@ -254,22 +256,51 @@ var add = function(clicked_id) {
     /* will return cartCounter if it is the first unique item will all selected ingredients, otherwise retrurns
      * the cart index of the item that is exactly the same
      */
-    // var cartIndex = isUnique(cartCounter);
-    var cartIndex = cartCounter;
 
-    // if unique:
-    cart.push({});              // push a blank object onto the array
-    cart[cartIndex]["item"] = menu[clicked_id].item;
-    cart[cartIndex]["price"] = menu[clicked_id].price;
-    cart[cartIndex]["qty"] = 1;
-    cartCounter++;
-    // save ingredients, options
+    // capture all useful item information and store in new cart index. discard later if item is not unique (already in cart)
+        cart.push({});              // push a blank object onto the array
+        cart[cartCounter]["item"] = menu[clicked_id].item;
+        cart[cartCounter]["price"] = menu[clicked_id].price;
+        cart[cartCounter]["qty"] = 1;
+        cart[cartCounter]["ingredients"] = [];    // store an array of all ingredients
+        // add all selected ingredients from pop-up
+        if(menu[clicked_id].ingredients != null) {
+            // collect all checkboxes and labels
+            var ingredientCheckboxLabels = document.getElementsByClassName("ingredientCBlabel");
+            var ingredientCheckboxes = document.getElementsByName("ingredientCB");
+            // for each CB that is checked, add that label's text content (the ingredient) to the cart object
+            for(var i = 0; i < ingredientCheckboxes.length; i++) {
+                var checkboxID = ingredientCheckboxes[i].id;
+                if ($("#" + checkboxID).is(':checked')) {
+                    cart[cartCounter]["ingredients"].push(qq(ingredientCheckboxLabels[i].id).textContent);
+                }
+            }
+
+            // save options
+
+        }
+
+        console.log(cart);
+
+
+    var cartIndex = getCartIndex(cartCounter);
+    //var cartIndex = cartCounter;
+
+
+    if(cartIndex != cartCounter) {      // the exact item is already in the cart once. just update the quantity
+        cart[cartIndex].qty++;
+        cart.pop();                     // remove the most recently added item, since it's info is already capture
+    } else {                            // the item is new/unique
+        cartCounter++;
+    }
+
+
 
     // if 1st time item is being added to cart
 //    if(menu[clicked_id].qty == 1) {
-      if(cart[cartIndex].qty == 1) {
+    if(cart[cartIndex].qty == 1) {
         var tr = document.createElement("tr"); // create a new row
-        tr.setAttribute("id", "row" + parseInt(cartIndex));
+        tr.setAttribute("class", "row" + parseInt(cartIndex));
 
         // create div for remove button
         var wrapper = document.createElement("div");
@@ -277,37 +308,56 @@ var add = function(clicked_id) {
 
         // every time an item is added, give it a remove button
         var button = document.createElement("td");
-        var removeButton = document.createElement("input");
-        removeButton.setAttribute("id", "rm" + parseInt(cartIndex));       // assign a unique id to the button that is the item name. this id it the menu index of the item
-        removeButton.setAttribute("onClick", "remove1(this.id)"); // set onClick property to call the remove function, passing the id of the item
-        removeButton.setAttribute("type", "button");
-        removeButton.setAttribute("class", "removeButton");
-        removeButton.setAttribute("value", "");
-        removeButton.setAttribute("data-role", "none");
-        button.appendChild(removeButton);
+       // var removeButton = document.createElement("input");
+        button.setAttribute("id", "rm" + parseInt(cartIndex));       // assign a unique id to the button that is the item name. this id it the menu index of the item
+        button.setAttribute("onClick", "remove1(this.id)"); // set onClick property to call the remove function, passing the id of the item
+        button.setAttribute("type", "button");
+        button.setAttribute("class", "removeButton");
+        button.setAttribute("value", "");
+        button.setAttribute("data-role", "none");
+   //     button.appendChild(removeButton);
         wrapper.appendChild(button);
-        tr.appendChild(wrapper);
+        tr.appendChild(button);
 
         // add quantity to order space
         var qty = document.createElement("td");
         qty.textContent = parseInt(cart[cartIndex].qty);
         qty.setAttribute("id", "qty" + parseInt(cartIndex));        // give a unique id to each quantity so that it can be updated later
-        qty.setAttribute("class", "quantity");
+        qty.setAttribute("class", "quantity checkoutPage");
         tr.appendChild(qty);
 
         // add item name next to quantity
         var item = document.createElement("td");
         item.textContent = cart[cartIndex].item;
-        item.setAttribute("class", "itemName");
+        item.setAttribute("class", "itemName checkoutPage");
         tr.appendChild(item);
 
         // add price
         var price = document.createElement("td");
         price.textContent = " $" + cart[cartIndex].price.toFixed(2);
-        price.setAttribute("class", "price");
+        price.setAttribute("class", "price checkoutPage");
         tr.appendChild(price);
 
         qq("orderTable").appendChild(tr);
+
+        // add a paragraph listing of selected ingredients below the line item
+        var tr = document.createElement("tr");
+        tr.setAttribute("class", "row" + parseInt(cartIndex));
+        tr.appendChild(document.createElement("td"));   // must skip over 2 cells to place ingredients listing
+        tr.appendChild(document.createElement("td"));
+        // add each ingredient selected to the checkout page below the line item
+        var ingredientsCell = document.createElement("td");
+        var ingredientsList = "";
+        for(var i = 0; i < cart[cartIndex].ingredients.length; i++) {
+            ingredientsList+= cart[cartIndex].ingredients[i];
+            if(i != cart[cartIndex].ingredients.length - 1) ingredientsList += ", ";
+        }
+        ingredientsCell.textContent = ingredientsList;
+        ingredientsCell.setAttribute("class", "description");   // the same as the description in the accordian on the order page
+        tr.appendChild(ingredientsCell);
+
+        qq("orderTable").appendChild(tr);
+
         ordered.push(cartIndex);   // adds this item's menu index to the ordered array, to make sure it can't be added again (only adjust quantity)
 
     } else {   // menu item has already been added. just adjust the quantity
@@ -319,13 +369,13 @@ var add = function(clicked_id) {
 };
 
 // trigger when remove button is clicked on checkout page to remove one instance of an item
-// argument will be the itemIndex
-var remove1 = function(itemIndex) {
+// argument will be the cartIndex
+var remove1 = function(cartIndex) {
     console.log(cart);
-    itemIndex = itemIndex.substring(2, itemIndex.length);   // get number from id
-    itemIndex = parseInt(itemIndex);
-    cart[itemIndex].qty--;
-    total -= cart[itemIndex].price;  // update total
+    cartIndex = cartIndex.substring(2, cartIndex.length);   // get number from id
+    cartIndex = parseInt(cartIndex);
+    cart[cartIndex].qty--;
+    total -= cart[cartIndex].price;  // update total
 
     // if there are no items in the cart now, change cart icon and go back to main page
     totalQuantity--;
@@ -338,17 +388,48 @@ var remove1 = function(itemIndex) {
     }
 
     // if there is still at least 1 of these items in the cart
-    if(cart[itemIndex].qty > 0) {
-        qq("qty" + parseInt(itemIndex)).textContent = parseInt(cart[itemIndex].qty);   // redisplay qty
+    if(cart[cartIndex].qty > 0) {
+        qq("qty" + parseInt(cartIndex)).textContent = parseInt(cart[cartIndex].qty);   // redisplay qty
     } else { // qty == 0
-        qq("row" + parseInt(itemIndex)).remove();
-        ordered.splice(ordered.indexOf(itemIndex), 1);     // remove this item from the ordered array list, since 0 are ordered now
-        cart[itemIndex]={};     // set the item index to an empty object. if this item gets added again it will get a new index
+        $(".row" + cartIndex).remove();
+        ordered.splice(ordered.indexOf(cartIndex), 1);     // remove this item from the ordered array list, since 0 are ordered now
+        cart[cartIndex]={};     // set the item index to an empty object. if this item gets added again it will get a new index
     }
     qq("total").innerHTML = "Total: $" + parseFloat(Math.abs(total)).toFixed(2);    // redisplay total
     qq("items_in_cart").textContent = totalQuantity;
     console.log(cart);
 };
+
+/* function will return the cartID of the item
+ * if the EXACT item already exists in the cart (same ingredients, same options, ect),
+ * return the cart index of the previously added matching item instead (so qty is accurate)
+ */
+var getCartIndex = function(cartIndex) {
+    for(var cartNum = 0; cartNum < cart.length; cartNum++) {  // iterate through all previous items in the cart
+        if(cart[cartNum] == null) continue;   //if item was removed, continue
+
+        // If name, price, ALL ingredients, and all options do not match, no match
+        if(cart[cartIndex].item !== cart[cartNum].item) continue;
+        if(cart[cartIndex].price != cart[cartNum].price) continue;
+
+        if(cart[cartIndex].ingredients.length != cart[cartNum].ingredients.length) continue;    // ingredients list should be the same length
+        var differentIngredients = false;   // boolean flag. If any ingredients do not match, set flag to true
+        for(var ingredientNum = 0; ingredientNum < cart[cartIndex].ingredients; ingredientNum++) {
+            if (cart[cartIndex].ingredients[ingredientNum] !== cart[cartNum].ingredients[ingredientNum]) {
+                differentIngredients = true;
+                break;
+            }
+        }
+        if(differentIngredients == true) continue;  // no match if any of the ingredients were different
+
+        // check options if applicable
+
+
+        return cartNum; // the newly added item has an exact match in the cart
+    }
+
+    return cartIndex;   // the item does not already exist in the cart
+}
 
 // open pop-up to confirm payment and order
 var submitClicked = function() {

@@ -201,6 +201,7 @@
     vertical-align: top;
     padding-top:0;
     margin-top:0;
+    height:100%;
 }
 
 .removeButton {
@@ -442,3 +443,4 @@ body.ui-mobile-viewport {
     margin-top:12px;
     margin-bottom:12px;
 }
+
