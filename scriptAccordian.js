@@ -9,6 +9,8 @@ menu = []; // this will be an array of the food objects. makes menu a global var
 ordered = []; // array keeps track of menu index of ordered items
 total = 0;  // track total cost of items in cart
 totalQuantity = 0;  // total number of items in cart (displayed in cart image)
+cart = [];          // array to hold all objects that are in cart (item, qty, price, ingredients, options
+cartCounter = 0;    // count every time an item is added to the cart. Only counts up
 
 // create a table for each of the food types
 pizzaTable = document.createElement("table");
@@ -24,7 +26,6 @@ var loadMenu = function() {
     Parse.initialize("CZtjkZAV9gQzln2C3KKi7vsXRl4ppAMenjXiPGrx", "LVzkRhUfya9rMXDxGlda88o9d8XkPvd19YJdgWC6");
 
     var counter = 0; // used to check if on last object
-
     var query = new Parse.Query("Menu");
 
     query.find({
@@ -48,6 +49,7 @@ var loadMenu = function() {
 }
 
 var displayMenu = function() {
+
     for(var i = 0; i < menu.length; i++) {
        var tr = document.createElement("tr");  // first row will contain add button, item name, price
 
@@ -100,23 +102,31 @@ var displayMenu = function() {
 
 // adds row to correct section in the accordion
 var chooseSection = function(tr, i) {
-
-    if(menu[i].type == "pizza") {
-        pizzaTable.appendChild(tr);
-    } else if(menu[i].type == "piadina") {
-        piadinaTable.appendChild(tr);
-    } else if(menu[i].type == "americanFare") {
-        americanFareTable.appendChild(tr);
-    } else if(menu[i].type == "salad") {
-        saladTable.appendChild(tr);
-    } else if(menu[i].type == "breakfast") {
-        breakfastTable.appendChild(tr);
-    } else if(menu[i].type == "side") {
-        sideTable.appendChild(tr);
-    } else if(menu[i].type == "smoothie") {
-        smoothieTable.appendChild(tr);
-    } else {
-        console.log("item type mismatch");
+    switch (menu[i].type) {
+        case "pizza":
+            pizzaTable.appendChild(tr);
+            break;
+        case "piadina":
+            piadinaTable.appendChild(tr);
+            break;
+        case "americanFare":
+            americanFareTable.appendChild(tr);
+            break;
+        case "salad":
+            saladTable.appendChild(tr);
+            break;
+        case "breakfast":
+            breakfastTable.appendChild(tr);
+            break;
+        case "side":
+            sideTable.appendChild(tr);
+            break;
+        case "smoothie":
+            smoothieTable.appendChild(tr);
+            break;
+        default:
+            console.log("Item type mismatch");
+            break;
     }
 };
 
@@ -201,7 +211,7 @@ var customizeItem = function(clicked_id) {
     $("#customizeItem").css("visibility", "hidden");
     $("#customizeItem").css("height", "");          // reset to default
     $("#ingredientsList").css("height", "");          // reset to default
-    console.log($("#customizeItem").css("padding-bottom", "")); // reset (needs to be increased for scroll-div
+    $("#customizeItem").css("padding-bottom", ""); // reset (needs to be increased for scroll-div
     $("body.ui-mobile-viewport").css("overflow", "hidden"); // prevent accordian from scrolling while popup is open (in case popup needs to scroll)
     $("#customizeItem").popup("open");                  // open but do not show. open in order to extract properties
     var newHeight =  $("#customizeItem").height();
@@ -217,7 +227,6 @@ var customizeItem = function(clicked_id) {
         $("#ingredientsList").css("height", $("#ingredientsList").height());
     }
     $("#customizeItem").css("visibility", "visible");
-
 }
 
 // function to change the price displayed in the add item /  ingredients popup
@@ -233,6 +242,7 @@ var add = function(clicked_id) {
     menu[clicked_id].qty++; // adds 1 to the quantity of this item
     total += menu[clicked_id].price;
 
+    // set formatting for cart logo with item count
     if(totalQuantity == 0) {   // just added first item
         qq("items_in_cart").style.paddingRight = "8px";
         qq("items_in_cart").style.visibility="visible";  // show counter label
@@ -241,10 +251,25 @@ var add = function(clicked_id) {
         qq("items_in_cart").style.paddingRight = "3px";
     }
 
+    /* will return cartCounter if it is the first unique item will all selected ingredients, otherwise retrurns
+     * the cart index of the item that is exactly the same
+     */
+    // var cartIndex = isUnique(cartCounter);
+    var cartIndex = cartCounter;
+
+    // if unique:
+    cart.push({});              // push a blank object onto the array
+    cart[cartIndex]["item"] = menu[clicked_id].item;
+    cart[cartIndex]["price"] = menu[clicked_id].price;
+    cart[cartIndex]["qty"] = 1;
+    cartCounter++;
+    // save ingredients, options
+
     // if 1st time item is being added to cart
-    if(menu[clicked_id].qty == 1) {
+//    if(menu[clicked_id].qty == 1) {
+      if(cart[cartIndex].qty == 1) {
         var tr = document.createElement("tr"); // create a new row
-        tr.setAttribute("id", "row" + parseInt(clicked_id));
+        tr.setAttribute("id", "row" + parseInt(cartIndex));
 
         // create div for remove button
         var wrapper = document.createElement("div");
@@ -253,7 +278,7 @@ var add = function(clicked_id) {
         // every time an item is added, give it a remove button
         var button = document.createElement("td");
         var removeButton = document.createElement("input");
-        removeButton.setAttribute("id", "rm" + parseInt(clicked_id));       // assign a unique id to the button that is the item name. this id it the menu index of the item
+        removeButton.setAttribute("id", "rm" + parseInt(cartIndex));       // assign a unique id to the button that is the item name. this id it the menu index of the item
         removeButton.setAttribute("onClick", "remove1(this.id)"); // set onClick property to call the remove function, passing the id of the item
         removeButton.setAttribute("type", "button");
         removeButton.setAttribute("class", "removeButton");
@@ -265,28 +290,28 @@ var add = function(clicked_id) {
 
         // add quantity to order space
         var qty = document.createElement("td");
-        qty.textContent = parseInt(menu[clicked_id].qty);
-        qty.setAttribute("id", "qty" + parseInt(clicked_id));        // give a unique id to each quantity so that it can be updated later
+        qty.textContent = parseInt(cart[cartIndex].qty);
+        qty.setAttribute("id", "qty" + parseInt(cartIndex));        // give a unique id to each quantity so that it can be updated later
         qty.setAttribute("class", "quantity");
         tr.appendChild(qty);
 
         // add item name next to quantity
         var item = document.createElement("td");
-        item.textContent = menu[clicked_id].item;
+        item.textContent = cart[cartIndex].item;
         item.setAttribute("class", "itemName");
         tr.appendChild(item);
 
         // add price
         var price = document.createElement("td");
-        price.textContent = " $" + menu[clicked_id].price.toFixed(2);
+        price.textContent = " $" + cart[cartIndex].price.toFixed(2);
         price.setAttribute("class", "price");
         tr.appendChild(price);
 
         qq("orderTable").appendChild(tr);
-        ordered.push(clicked_id);   // adds this item's menu index to the ordered array, to make sure it can't be added again (only adjust quantity)
+        ordered.push(cartIndex);   // adds this item's menu index to the ordered array, to make sure it can't be added again (only adjust quantity)
 
     } else {   // menu item has already been added. just adjust the quantity
-        qq("qty" + parseInt(clicked_id)).textContent = parseInt(menu[clicked_id].qty);
+        qq("qty" + parseInt(cartIndex)).textContent = parseInt(cart[cartIndex].qty);
     }
 
     qq("items_in_cart").textContent = ++totalQuantity;
@@ -294,11 +319,13 @@ var add = function(clicked_id) {
 };
 
 // trigger when remove button is clicked on checkout page to remove one instance of an item
-var remove1 = function(id) {
-    id = id.substring(2, id.length);   // get number from id
-    id = parseInt(id);
-    menu[id].qty--;
-    total -= menu[id].price;  // update total
+// argument will be the itemIndex
+var remove1 = function(itemIndex) {
+    console.log(cart);
+    itemIndex = itemIndex.substring(2, itemIndex.length);   // get number from id
+    itemIndex = parseInt(itemIndex);
+    cart[itemIndex].qty--;
+    total -= cart[itemIndex].price;  // update total
 
     // if there are no items in the cart now, change cart icon and go back to main page
     totalQuantity--;
@@ -311,14 +338,16 @@ var remove1 = function(id) {
     }
 
     // if there is still at least 1 of these items in the cart
-    if(menu[id].qty > 0) {
-        qq("qty" + parseInt(id)).textContent = parseInt(menu[id].qty);   // redisplay qty
+    if(cart[itemIndex].qty > 0) {
+        qq("qty" + parseInt(itemIndex)).textContent = parseInt(cart[itemIndex].qty);   // redisplay qty
     } else { // qty == 0
-        qq("row" + parseInt(id)).remove();
-        ordered.splice(ordered.indexOf(id), 1);     // remove this item from the ordered array list, since 0 are ordered now
+        qq("row" + parseInt(itemIndex)).remove();
+        ordered.splice(ordered.indexOf(itemIndex), 1);     // remove this item from the ordered array list, since 0 are ordered now
+        cart[itemIndex]={};     // set the item index to an empty object. if this item gets added again it will get a new index
     }
     qq("total").innerHTML = "Total: $" + parseFloat(Math.abs(total)).toFixed(2);    // redisplay total
     qq("items_in_cart").textContent = totalQuantity;
+    console.log(cart);
 };
 
 // open pop-up to confirm payment and order
