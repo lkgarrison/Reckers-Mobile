@@ -292,12 +292,10 @@ var add = function(clicked_id) {
                     var option = optionLabel.match(/^[^:]*/g);
                     cart[cartCounter]["option"] = option[0];                        // update selected option (ie "Regular")
                     cart[cartCounter].price = menu[clicked_id].prices[option[0]];   // update item's price in cart based on option
-                    total+= cart[cartCounter].price;
                     break;
                 }
             }
         }
-    
 
     var cartIndex = getCartIndex(cartCounter);
     //var cartIndex = cartCounter;
@@ -367,7 +365,7 @@ var add = function(clicked_id) {
         if(cart[cartIndex].option != null) {
             ingredientsList += cart[cartIndex].option;
         }
-        if(cart[cartIndex].ingredients.length > 0) ingredientsList+= ": "; // if there are options and ingredients, display: option: ingredients listing
+        if(cart[cartIndex].ingredients.length > 0 && cart[cartIndex].option != null) ingredientsList+= ": "; // if there are options and ingredients, display: option: ingredients listing
         for(var i = 0; i < cart[cartIndex].ingredients.length; i++) {
             ingredientsList+= cart[cartIndex].ingredients[i];
             if(i != cart[cartIndex].ingredients.length - 1) ingredientsList += ", ";
@@ -384,6 +382,7 @@ var add = function(clicked_id) {
         qq("qty" + parseInt(cartIndex)).textContent = parseInt(cart[cartIndex].qty);
     }
 
+    total+= cart[cartCounter].price;        // update the total price of the current cart. can't be at the top of method because price (in case of options) is currently unknown
     qq("items_in_cart").textContent = ++totalQuantity;
     qq("total").innerHTML = "Total: $" + parseFloat(Math.abs(total)).toFixed(2);  // update total
 };
