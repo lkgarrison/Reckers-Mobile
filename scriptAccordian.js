@@ -174,7 +174,8 @@ var customizeItem = function(clicked_id) {
         for(option in itemOptions) {
             if (itemOptions.hasOwnProperty(option)) {
                 var radioOption = '<input type="radio" name="radio-itemOption" id="radioItemOption-' + option + '" value="off">' +
-                    '<label for="radioItemOption-' + option + '">' + option + ": $" + itemOptions[option] + '</label>';
+                    '<label for="radioItemOption-' + option + '" class="itemOptionRadios" id="itemOptionRadios-' + option + '">'
+                    + option + ": $" + itemOptions[option] + '</label>';
                 $("#itemOptionsRadioGroup").append(radioOption).trigger('create');
                 var newPrice = itemOptions[option];
                 qq("radioItemOption-" + option).setAttribute("onclick", "setPopupPrice(" + newPrice + ")"); // set property to adjust price displayed at the top of the popup upon radio selection
@@ -242,7 +243,6 @@ var add = function(clicked_id) {
     clicked_id = parseInt(clicked_id);
     if(qq("noOrders") != null) qq("noOrders").remove();
     menu[clicked_id].qty++; // adds 1 to the quantity of this item
-    total += menu[clicked_id].price;
 
     // set formatting for cart logo with item count
     if(totalQuantity == 0) {   // just added first item
@@ -263,6 +263,7 @@ var add = function(clicked_id) {
         cart[cartCounter]["price"] = menu[clicked_id].price;
         cart[cartCounter]["qty"] = 1;
         cart[cartCounter]["ingredients"] = [];    // store an array of all ingredients
+        cart[cartCounter]["options"] = null;
         // add all selected ingredients from pop-up
         if(menu[clicked_id].ingredients != null) {
             // collect all checkboxes and labels
@@ -275,13 +276,28 @@ var add = function(clicked_id) {
                     cart[cartCounter]["ingredients"].push(qq(ingredientCheckboxLabels[i].id).textContent);
                 }
             }
-
-            // save options
-
         }
 
-        console.log(cart);
+        // save options
+        if(menu[clicked_id].prices != null) {
+           // cart[cartCounter].price =
+            var optionsLabels = document.getElementsByClassName("itemOptionRadios");
+            var optionRadios = document.getElementsByName("radio-itemOption");
 
+            // Find the option that is selected. Update price if an option is selected
+            for(var i = 0; i < optionRadios.length; i++) {
+                var radioID = optionRadios[i].id;
+                if($("#" + radioID).is(':checked')) {
+                    var optionLabel = qq(optionsLabels[i].id).textContent;
+                    var option = optionLabel.match(/^[^:]*/g);
+                    cart[cartCounter]["option"] = option[0];                        // update selected option (ie "Regular")
+                    cart[cartCounter].price = menu[clicked_id].prices[option[0]];   // update item's price in cart based on option
+                    total+= cart[cartCounter].price;
+                    break;
+                }
+            }
+        }
+    
 
     var cartIndex = getCartIndex(cartCounter);
     //var cartIndex = cartCounter;
@@ -348,6 +364,10 @@ var add = function(clicked_id) {
         // add each ingredient selected to the checkout page below the line item
         var ingredientsCell = document.createElement("td");
         var ingredientsList = "";
+        if(cart[cartIndex].option != null) {
+            ingredientsList += cart[cartIndex].option;
+        }
+        if(cart[cartIndex].ingredients.length > 0) ingredientsList+= ": "; // if there are options and ingredients, display: option: ingredients listing
         for(var i = 0; i < cart[cartIndex].ingredients.length; i++) {
             ingredientsList+= cart[cartIndex].ingredients[i];
             if(i != cart[cartIndex].ingredients.length - 1) ingredientsList += ", ";
@@ -411,6 +431,7 @@ var getCartIndex = function(cartIndex) {
         // If name, price, ALL ingredients, and all options do not match, no match
         if(cart[cartIndex].item !== cart[cartNum].item) continue;
         if(cart[cartIndex].price != cart[cartNum].price) continue;
+        if(cart[cartIndex].option != cart[cartNum].option) continue;
 
         if(cart[cartIndex].ingredients.length != cart[cartNum].ingredients.length) continue;    // ingredients list should be the same length
         var differentIngredients = false;   // boolean flag. If any ingredients do not match, set flag to true
