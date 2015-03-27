@@ -296,7 +296,7 @@ var add = function(clicked_id) {
                 }
             }
         }
-
+    total+= cart[cartCounter].price;        // update the total price of the current cart.
     var cartIndex = getCartIndex(cartCounter);
     //var cartIndex = cartCounter;
 
@@ -382,7 +382,6 @@ var add = function(clicked_id) {
         qq("qty" + parseInt(cartIndex)).textContent = parseInt(cart[cartIndex].qty);
     }
 
-    total+= cart[cartCounter].price;        // update the total price of the current cart. can't be at the top of method because price (in case of options) is currently unknown
     qq("items_in_cart").textContent = ++totalQuantity;
     qq("total").innerHTML = "Total: $" + parseFloat(Math.abs(total)).toFixed(2);  // update total
 };
