@@ -200,6 +200,8 @@ var customizeItem = function(clicked_id) {
             imgPath = "img/header_breakfast.png"; break;
         case "side":
             imgPath = "img/header_sides.png"; break;
+        case "smoothie":
+            imgPath = "img/header_smoothies.png"; break;
         default:
             imgPath = "img/header_reckers.png";
     }

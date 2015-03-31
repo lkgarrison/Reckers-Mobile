@@ -133,6 +133,13 @@
     font-weight:500;
 }
 
+#header_smoothies .ui-collapsible-heading-toggle {
+    background-image: url('img/header_smoothies.png');
+    color:white;
+    font-family: Helvetica, Arial, sans-serif;
+    font-weight:500;
+}
+
 .ui-collapsible-heading-toggle {
     font-size:20px;
     color:white;
