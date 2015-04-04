@@ -93,6 +93,7 @@
 
 #header_pizzas .ui-collapsible-heading-toggle {
     background-image: url('img/header_pizza.png');
+    background-repeat:round;
     color:white;
     font-family: Helvetica, Arial, sans-serif;
     font-weight:500;
@@ -100,6 +101,7 @@
 
 #header_piadinas .ui-collapsible-heading-toggle {
     background-image: url('img/header_piadina.png');
+    background-repeat:round;
     color:white;
     font-family: Helvetica, Arial, sans-serif;
     font-weight:500;
@@ -107,6 +109,7 @@
 
 #header_americanFare .ui-collapsible-heading-toggle {
     background-image: url('img/header_sandwiches.png');
+    background-repeat:round;
     color:white;
     font-family: Helvetica, Arial, sans-serif;
     font-weight:500;
@@ -340,6 +343,12 @@
     margin-left:12px;
     margin-top:12px;
     margin-bottom:12px;
+}
+
+.scrollForMore {
+    margin-top:13px;
+    font-size:15px;
+    color:red;
 }
 
 #wrapper {

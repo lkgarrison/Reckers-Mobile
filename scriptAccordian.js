@@ -228,8 +228,10 @@ var customizeItem = function(clicked_id) {
     if($("#ingredientsList").height() > divHeight) {    // if height of container of ingredients > max height of area to display, add scrolling
         $("#ingredientsList").css("height", divHeight); // specifically set height to enable scrolling
         $("#customizeItem").css("padding-bottom", parseFloat($("#customizeItem").css("padding-bottom")) * 2 + "px");    // must be multplied by 2 to have same padding as non-scroll popup
-    } else {
+        $(".scrollForMore").css("display", "block");    // make sure "scroll for more" message is displayed
+    } else {                                            // if no scrollable ingredients list (list is short)
         $("#ingredientsList").css("height", $("#ingredientsList").height());
+        $(".scrollForMore").css("display", "none");
     }
     $("#customizeItem").css("visibility", "visible");
 }
