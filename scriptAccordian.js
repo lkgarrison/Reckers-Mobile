@@ -145,27 +145,25 @@ var customizeItem = function(clicked_id) {
     $("#itemOptions").css("display", "none");   // default, unless there are options
 
     // store an array with all ingredients
-    var noContentFlag = true;   // assume no content
     // generate checkboxes of ingredients list
     if(menu[clicked_id].ingredients != null) {
-        noContentFlag = false;
-        ingredientsList = menu[clicked_id].ingredients.split(",");
+        if(menu[clicked_id].ingredients != "") {
+            ingredientsList = menu[clicked_id].ingredients.split(",");
+            var newSet = '<fieldset data-role="controlgroup" class="cbGroup' + '"></fieldset>';
+            $('.ingredientsList').append(newSet);
 
-        var newSet = '<fieldset data-role="controlgroup" class="cbGroup' + '"></fieldset>';
-        $('.ingredientsList').append(newSet);
-
-        for(i = 0; i < ingredientsList.length; i++) {
-            // label element must have a class and ID in order to grab all checkbox labels later and get their text content
-            var newBox = '<input type="checkbox" name="ingredientCB" id="ingredientCB-' + i
-                + '" class="custom" /> <label for="ingredientCB-'+ i + '" class="ingredientCBlabel" id="ingredientCBlabel-' + i + '">'
-                + ingredientsList[i] + '</label>';
-            $(".cbGroup").append(newBox).trigger('create');
-            $('#ingredientCB-' + i).prop('checked', true).checkboxradio('refresh');
+            for (i = 0; i < ingredientsList.length; i++) {
+                // label element must have a class and ID in order to grab all checkbox labels later and get their text content
+                var newBox = '<input type="checkbox" name="ingredientCB" id="ingredientCB-' + i
+                    + '" class="custom" /> <label for="ingredientCB-' + i + '" class="ingredientCBlabel" id="ingredientCBlabel-' + i + '">'
+                    + ingredientsList[i] + '</label>';
+                $(".cbGroup").append(newBox).trigger('create');
+                $('#ingredientCB-' + i).prop('checked', true).checkboxradio('refresh');
+            }
         }
     }
     // generate radio buttons to select options
     if(menu[clicked_id].prices != null) {
-        noContentFlag = false;
         $("#itemOptions").css("display", "inherit");
         $("#customizeItemOptionsHeader").css("display", "inherit");
         var itemOptions = menu[clicked_id].prices;
@@ -183,7 +181,6 @@ var customizeItem = function(clicked_id) {
         }
         $("#includedIngredientsLabel").css("display", "none");      // hide "ingredients" label
     }
-
 
     // set image for divider line at the top of popup based on food type
     var imgPath;    // string to store the image path
@@ -311,8 +308,6 @@ var add = function(clicked_id) {
     } else {                            // the item is new/unique
         cartCounter++;
     }
-
-
 
     // if 1st time item is being added to cart
 //    if(menu[clicked_id].qty == 1) {
@@ -445,8 +440,6 @@ var getCartIndex = function(cartIndex) {
         }
         if(differentIngredients == true) continue;  // no match if any of the ingredients were different
 
-        // check options if applicable
-
 
         return cartNum; // the newly added item has an exact match in the cart
     }
@@ -521,6 +514,12 @@ $(document).on('change', '[type="radio"]', function(){
         paymentMethodSelected($(this).attr('id'));  // pass id of selected radio button
     }
 });
+
+
+// function to open cancel order confirmation popup
+var cancelPopup = function() {
+    $("#confirmCancelOrder").popup("open");
+}
 
 // function to clear all items from cart and go back to the menu page with the menu collapsed
 var cancelOrder = function() {
