@@ -117,6 +117,7 @@
 
 #header_salads .ui-collapsible-heading-toggle {
     background-image: url('img/header_salads.png');
+    background-repeat:round;
     color:white;
     font-family: Helvetica, Arial, sans-serif;
     font-weight:500;
@@ -124,6 +125,7 @@
 
 #header_breakfast .ui-collapsible-heading-toggle {
     background-image: url('img/header_breakfast.png');
+    background-repeat:round;
     color:white;
     font-family: Helvetica, Arial, sans-serif;
     font-weight:500;
@@ -131,6 +133,7 @@
 
 #header_sides .ui-collapsible-heading-toggle {
     background-image: url('img/header_sides.png');
+    background-repeat:round;
     color:white;
     font-family: Helvetica, Arial, sans-serif;
     font-weight:500;
@@ -138,6 +141,7 @@
 
 #header_smoothies .ui-collapsible-heading-toggle {
     background-image: url('img/header_smoothies.png');
+    background-repeat:round;
     color:white;
     font-family: Helvetica, Arial, sans-serif;
     font-weight:500;
