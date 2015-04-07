@@ -92,7 +92,7 @@
 }
 
 #header_pizzas .ui-collapsible-heading-toggle {
-    background-image: url('img/header_pizza.png');
+    background-image: url('img/header_pizzaND.png');
     background-repeat:round;
     color:white;
     font-family: Helvetica, Arial, sans-serif;
@@ -100,7 +100,7 @@
 }
 
 #header_piadinas .ui-collapsible-heading-toggle {
-    background-image: url('img/header_piadina.png');
+    background-image: url('img/header_piadinaND.png');
     background-repeat:round;
     color:white;
     font-family: Helvetica, Arial, sans-serif;
@@ -108,7 +108,7 @@
 }
 
 #header_americanFare .ui-collapsible-heading-toggle {
-    background-image: url('img/header_sandwiches.png');
+    background-image: url('img/header_sandwichesND.png');
     background-repeat:round;
     color:white;
     font-family: Helvetica, Arial, sans-serif;
@@ -116,7 +116,7 @@
 }
 
 #header_salads .ui-collapsible-heading-toggle {
-    background-image: url('img/header_salads.png');
+    background-image: url('img/header_saladsND.png');
     background-repeat:round;
     color:white;
     font-family: Helvetica, Arial, sans-serif;
@@ -124,7 +124,7 @@
 }
 
 #header_breakfast .ui-collapsible-heading-toggle {
-    background-image: url('img/header_breakfast.png');
+    background-image: url('img/header_breakfastND.png');
     background-repeat:round;
     color:white;
     font-family: Helvetica, Arial, sans-serif;
@@ -132,7 +132,7 @@
 }
 
 #header_sides .ui-collapsible-heading-toggle {
-    background-image: url('img/header_sides.png');
+    background-image: url('img/header_sidesND.png');
     background-repeat:round;
     color:white;
     font-family: Helvetica, Arial, sans-serif;
@@ -140,7 +140,7 @@
 }
 
 #header_smoothies .ui-collapsible-heading-toggle {
-    background-image: url('img/header_smoothies.png');
+    background-image: url('img/header_smoothiesND.png');
     background-repeat:round;
     color:white;
     font-family: Helvetica, Arial, sans-serif;
