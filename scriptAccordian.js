@@ -132,17 +132,17 @@ var chooseSection = function(tr, i) {
 
 // opens a popup to customize the item that was clicked
 var customizeItem = function(clicked_id) {
-    qq("addButton").setAttribute("onclick", "add(" + clicked_id + ")");   // set pop-up's "Add" button to send clicked_id to add function
-    $("#customizeItem").width($(window).width());
-    qq("customizeItemName").textContent = menu[clicked_id].item;
-    qq("customizeItemPrice").textContent = "$" + menu[clicked_id].price.toFixed(2);
-    $("#includedIngredientsLabel").css("display", "inherit");   // display label by default
-    $("#customizeItemOptionsHeader").css("display", "none");    // don't display "Options" label by default
-    $("#ingredientsList").css("min-width", .4 * $(window).width());     // set min-width of checkboxes
-    qq("ingredientsPopupMessage").textContent = "";     // make sure no message is being displayed
-    qq("ingredientsList").innerHTML = "";               // remove previous item's checkboxes, start over fresh
-    qq("itemOptions").innerHTML = "";         // remove previous item's possible radio group
-    $("#itemOptions").css("display", "none");   // default, unless there are options
+    $(".addToCartButton").attr("onclick", "add(" + clicked_id + ")");   // set pop-up's "Add" button to send clicked_id to add function
+    $(".customizeItem").width($(window).width());
+    $(".customizeItemName").text(menu[clicked_id].item);
+    $(".customizeItemPrice").text("$" + menu[clicked_id].price.toFixed(2));
+    $(".includedIngredientsLabel").css("display", "inherit");   // display label by default
+    $(".customizeItemOptionsHeader").css("display", "none");    // don't display "Options" label by default
+    $(".ingredientsList").css("min-width", .4 * $(window).width());     // set min-width of checkboxes
+    $(".ingredientsPopupMessage").text("");     // make sure no message is being displayed
+    $(".ingredientsList").html("");             // remove previous item's checkboxes, start over fresh
+    $(".itemOptions").html("");                 // remove previous item's possible radio group
+    $(".itemOptions").css("display", "none");   // default, unless there are options
 
     // store an array with all ingredients
     // generate checkboxes of ingredients list
@@ -164,11 +164,11 @@ var customizeItem = function(clicked_id) {
     }
     // generate radio buttons to select options
     if(menu[clicked_id].prices != null) {
-        $("#itemOptions").css("display", "inherit");
-        $("#customizeItemOptionsHeader").css("display", "inherit");
+        $(".itemOptions").css("display", "inherit");
+        $(".customizeItemOptionsHeader").css("display", "inherit");
         var itemOptions = menu[clicked_id].prices;
         var radioGroup = '<fieldset data-role="controlgroup" id="itemOptionsRadioGroup"></fieldset>';
-        $("#itemOptions").append(radioGroup);
+        $(".itemOptions").append(radioGroup);
         for(option in itemOptions) {
             if (itemOptions.hasOwnProperty(option)) {
                 var radioOption = '<input type="radio" name="radio-itemOption" id="radioItemOption-' + option + '" value="off">' +
@@ -179,7 +179,7 @@ var customizeItem = function(clicked_id) {
                 qq("radioItemOption-" + option).setAttribute("onclick", "setPopupPrice(" + newPrice + ")"); // set property to adjust price displayed at the top of the popup upon radio selection
             }
         }
-        $("#includedIngredientsLabel").css("display", "none");      // hide "ingredients" label
+        $(".includedIngredientsLabel").css("display", "none");      // hide "ingredients" label
     }
 
     // set image for divider line at the top of popup based on food type
@@ -202,35 +202,35 @@ var customizeItem = function(clicked_id) {
         default:
             imgPath = "img/header_reckers.png";
     }
-    $("#customizeItemColoredLine").css("background-image", "url('" + imgPath + "')");
+    $(".customizeItemColoredLine").css("background-image", "url('" + imgPath + "')");
 
     // allow accordian to scroll again after popup closes (in case popup needed scrolling)
-    $( "#customizeItem" ).on( "popupafterclose", function( event, ui ) {
+    $( ".customizeItem" ).on( "popupafterclose", function( event, ui ) {
         $("body.ui-mobile-viewport").css("overflow", "auto");
     } );
 
     // manually set height on popup so that scrolling will work within the popup
-    $("#customizeItem").css("visibility", "hidden");
-    $("#customizeItem").css("height", "");          // reset to default
-    $("#ingredientsList").css("height", "");          // reset to default
-    $("#customizeItem").css("padding-bottom", ""); // reset (needs to be increased for scroll-div
+    $(".customizeItem").css("visibility", "hidden");
+    $(".customizeItem").css("height", "");          // reset to default
+    $(".ingredientsList").css("height", "");          // reset to default
+    $(".customizeItem").css("padding-bottom", ""); // reset (needs to be increased for scroll-div
     $("body.ui-mobile-viewport").css("overflow", "hidden"); // prevent accordian from scrolling while popup is open (in case popup needs to scroll)
-    $("#customizeItem").popup("open");                  // open but do not show. open in order to extract properties
-    var newHeight =  $("#customizeItem").height();
-    $("#customizeItem").css("height", newHeight);           // set height to itself - allows popup to be positioned correctly and scroll
-    $("#customizeItem").css("max-height", .7 * $(window).height());
+    $(".customizeItem").popup("open");                  // open but do not show. open in order to extract properties
+    var newHeight =  $(".customizeItem").height();
+    $(".customizeItem").css("height", newHeight);           // set height to itself - allows popup to be positioned correctly and scroll
+    $(".customizeItem").css("max-height", .7 * $(window).height());
 
     // must manually set height of scroll-div for scrolling to work. If ingredients div is too large for popup space, then set the checkboxes' div to its max allowed height to enable scrolling
-    var divHeight = $("#customizeItem").outerHeight() - $("#ingredientsList").position().top - $("#popupButtonWrapper").outerHeight();
-    if($("#ingredientsList").height() > divHeight) {    // if height of container of ingredients > max height of area to display, add scrolling
-        $("#ingredientsList").css("height", divHeight); // specifically set height to enable scrolling
-        $("#customizeItem").css("padding-bottom", parseFloat($("#customizeItem").css("padding-bottom")) * 2 + "px");    // must be multplied by 2 to have same padding as non-scroll popup
+    var divHeight = $(".customizeItem").outerHeight() - $(".ingredientsList").position().top - $(".popupButtonWrapper").outerHeight();
+    if($(".ingredientsList").height() > divHeight) {    // if height of container of ingredients > max height of area to display, add scrolling
+        $(".ingredientsList").css("height", divHeight); // specifically set height to enable scrolling
+        $(".customizeItem").css("padding-bottom", parseFloat($(".customizeItem").css("padding-bottom")) * 2 + "px");    // must be multplied by 2 to have same padding as non-scroll popup
         $(".scrollForMore").css("display", "block");    // make sure "scroll for more" message is displayed
     } else {                                            // if no scrollable ingredients list (list is short)
-        $("#ingredientsList").css("height", $("#ingredientsList").height());
+        $(".ingredientsList").css("height", $(".ingredientsList").height());
         $(".scrollForMore").css("display", "none");
     }
-    $("#customizeItem").css("visibility", "visible");
+    $(".customizeItem").css("visibility", "visible");
 }
 
 // function to change the price displayed in the add item /  ingredients popup
@@ -388,7 +388,6 @@ var add = function(clicked_id) {
 // trigger when remove button is clicked on checkout page to remove one instance of an item
 // argument will be the cartIndex
 var remove1 = function(cartIndex) {
-    console.log(cart);
     cartIndex = cartIndex.substring(2, cartIndex.length);   // get number from id
     cartIndex = parseInt(cartIndex);
     cart[cartIndex].qty--;
@@ -414,7 +413,6 @@ var remove1 = function(cartIndex) {
     }
     qq("total").innerHTML = "Total: $" + parseFloat(Math.abs(total)).toFixed(2);    // redisplay total
     qq("items_in_cart").textContent = totalQuantity;
-    console.log(cart);
 };
 
 /* function will return the cartID of the item

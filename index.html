@@ -11,7 +11,7 @@
   <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
   <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
   <script src="scriptAccordian.js" type="text/javascript"></script>
-  <link rel="shortcut icon" href="img/favicon.ico">
+  <link rel="shortcut icon" href="img/favicon.ico"> <!-- Tab icon -->
 
 </head>
 <body>
@@ -64,23 +64,23 @@
   </div>
 
 
-  <div data-role="popup" id="customizeItem" data-theme="a" class="ui-content" data-overlay-theme="b">
+  <div data-role="popup" class="customizeItem" data-theme="a" class="ui-content" data-overlay-theme="b">
         <!--<h3 class="ui-title">Customize Item</h3> -->
-      <div id="customizeItemPopupWrapper">
+      <div class="customizeItemPopupWrapper">
 
-            <div id="customizeItemName" class="popupTop"></div>
-            <div id="customizeItemPrice" class="popupTop"></div>
-            <div id="customizeItemColoredLine"></div>
-            <h3 id="includedIngredientsLabel" class="floatLeft">Included Ingredients:</h3>
+            <div class="customizeItemName popupTop"></div>                 <!-- needs id -->
+            <div class="customizeItemPrice popupTop"></div>                 <!-- needs id, used twice in JS -->
+            <div class="customizeItemColoredLine"></div>
+            <h3 class="includedIngredientsLabel floatLeft">Included Ingredients:</h3>
             <div class="scrollForMore">Scroll For More</div>    <!-- Used to indicate scroll to see more ingredients in pop-up -->
-            <div id="ingredientsList" class="ingredientsList" style="overflow-y:auto"></div>
-            <h3 id="customizeItemOptionsHeader" class="floatLeft">Options:</h3>
-            <form id="itemOptions"></form>
+            <div class="ingredientsList" style="overflow-y:auto"></div>
+            <h3 class="customizeItemOptionsHeader floatLeft">Options:</h3>
+            <form class="itemOptions"></form>
 
-            <span id="ingredientsPopupMessage"></span>
+            <span class="ingredientsPopupMessage"></span>
 
-        <div id="popupButtonWrapper">
-            <a href="#" id="addButton" data-role="button" data-theme="a" data-inline="true" data-rel="back" data-theme="c" data-type="horizontal">
+        <div class="popupButtonWrapper">
+            <a href="#" class="addToCartButton" data-role="button" data-theme="a" data-inline="true" data-rel="back" data-theme="c" data-type="horizontal">
                 Add
             </a>
             <a href="#" data-role="button" data-theme="a" data-inline="true" data-rel="back" data-theme="c" data-type="horizontal">

@@ -275,7 +275,7 @@
     left:0 !important;
 }
 
-#customizeItem {
+.customizeItem {
     text-align:center;
     padding-top:10px;
     padding-bottom:12px;
@@ -289,13 +289,13 @@
     overflow:hidden;
 }
 
-#customizeItemPopupWrapper {
+.customizeItemPopupWrapper {
     padding-left:0px;
     padding-right:0px;
     clear:both;
 }
 
-#popupButtonWrapper {
+.popupButtonWrapper {
     padding-top:8px;
     clear:both;
 }
@@ -315,18 +315,18 @@
     font-size:20px;
 }
 
-#customizeItemName {
+.customizeItemName {
     width:100%;
     text-align:center;
 }
 
-#customizeItemPrice {
+.customizeItemPrice {
     clear:both;
     width:100%;
     text-align:center;
 }
 
-#customizeItemColoredLine {
+.customizeItemColoredLine {
     clear:both;
     width:100%;
     height:7px;
@@ -335,7 +335,7 @@
     margin-top:8px;
 }
 
-#ingredientsPopupMessage {
+.ingredientsPopupMessage {
     float:left;
     clear:both;
     margin-left:20px;
@@ -343,7 +343,7 @@
     font-size:17px;
 }
 
-#includedIngredientsLabel {
+.includedIngredientsLabel {
     margin-left:12px;
     margin-top:12px;
     margin-bottom:12px;
@@ -437,13 +437,13 @@
     float:right;
 }
 
-#ingredientsList {
+.ingredientsList {
     float:left;
     clear:both;
     padding-left:30px;
 }
 
-#itemOptions {
+.itemOptions {
     margin-top:20px;
     margin-left:20px;
     max-width:60%;
@@ -458,7 +458,7 @@ body.ui-mobile-viewport {
 
 }
 
-#customizeItemOptionsHeader {
+.customizeItemOptionsHeader {
     margin-left:12px;
     margin-top:12px;
     margin-bottom:12px;
