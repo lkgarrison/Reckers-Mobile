@@ -137,7 +137,7 @@ var customizeItem = function(clicked_id) {
     var popupClassName = "customizeItemOrder"; // use this variable to change only the checkout page's item popup
 
     $(".addToCartButton").attr("onclick", "add(" + clicked_id + ")");   // set pop-up's "Add" button to send clicked_id to add function
-    $(".customizeItem").width($(window).width());
+    $("." + popupClassName).width($(window).width());
     $(".customizeItemName").text(menu[clicked_id].item);
     $(".customizeItemPrice").text("$" + menu[clicked_id].price.toFixed(2));
     $(".includedIngredientsLabel").css("display", "inherit");   // display label by default
@@ -153,15 +153,15 @@ var customizeItem = function(clicked_id) {
     if (menu[clicked_id].ingredients != null) {
         if (menu[clicked_id].ingredients != "") {
             ingredientsList = menu[clicked_id].ingredients.split(",");
-            var newSet = '<fieldset data-role="controlgroup" class="cbGroup' + '"></fieldset>';
-            $('.ingredientsList').append(newSet);
+            //var newSet = '<fieldset data-role="controlgroup" class="cbGroup' + '"></fieldset>';
+            //$('.ingredientsList').append(newSet);
 
             for (i = 0; i < ingredientsList.length; i++) {
                 // label element must have a class and ID in order to grab all checkbox labels later and get their text content
                 var newBox = '<label name="ingredientCBlabel" class="ingredientCBLabel-' + ingredientsList[i]
                     + '"><input type="checkbox" name="ingredientCB" checked="true" class="ingredientCB-' + i + '"/>'
                     + ingredientsList[i] + '</label>';
-                $(".cbGroup").append(newBox).trigger('create');
+                $(".ingredientsList").append(newBox).trigger('create');
             }
         }
     }
@@ -193,19 +193,22 @@ var customizeItem = function(clicked_id) {
 var customizeCartItem = function(cartID) {
     var popupClassName = "customizeItemCheckout";   // use this variable to change only the checkout page's item popup
 
+    $(".customizeItemOrder").popup("close");        // close the
     // addToCart button attr?
 
-    $(".addToCartButton").attr("onclick", "add(" + cartID + ")");   // set pop-up's "Add" button to send cartID to add function
+    //$(".addToCartButton").attr("onclick", "add(" + cartID + ")");   // set pop-up's "Add" button to send cartID to add function
     $("." + popupClassName).width($(window).width());
     $(".customizeItemName").text(cart[cartID].item);
     $(".customizeItemPrice").text("$" + cart[cartID].price.toFixed(2));
     $(".includedIngredientsLabel").css("display", "inherit");   // display label by default
     $(".customizeItemOptionsHeader").css("display", "none");    // don't display "Options" label by default
-    $(".ingredientsList").css("min-width", .4 * $(window).width());     // set min-width of checkboxes
+    $(".ingredientsListCheckout").css("min-width", .4 * $(window).width());     // set min-width of checkboxes
     $(".ingredientsPopupMessage").text("");     // make sure no message is being displayed
     $(".ingredientsList").html("");             // remove previous item's checkboxes, start over fresh
     $(".itemOptions").html("");                 // remove previous item's possible radio group
     $(".itemOptions").css("display", "none");   // default, unless there are options
+    //$(".cbGroup").html("");
+
 
     // store an array with all ingredients
     // generate checkboxes of ingredients list - only check the boxes for those that are already checked
@@ -213,17 +216,25 @@ var customizeCartItem = function(cartID) {
         if (cart[cartID].ingredients != "") {
             var menu_id = cart[cartID].menuID;  // get menu ID of item, so a full list of ingredients can be pulled
             var ingredientsList = menu[menu_id].ingredients.split(",");
-            console.log(ingredientsList);
-            var newSet = '<fieldset data-role="controlgroup" class="cbGroup' + '"></fieldset>';
-            $('.ingredientsList').append(newSet);
 
             for (i = 0; i < ingredientsList.length; i++) {
-                console.log(ingredientsList[i]);
                 // label element must have a class and ID in order to grab all checkbox labels later and get their text content
-                var newBox = '<label name="ingredientCBLabel" class="ingredientCBLabel-' + i
-                    + '"><input type="checkbox" name="ingredientCB" checked="true" class="ingredientCB-' + i + '"/>'
-                    + ingredientsList[i] + '</label>';
-                $(".cbGroup").append(newBox).trigger('create');
+                if(cart[cartID].ingredients.indexOf(ingredientsList[i]) == -1) {    // if possible ingredient was not checked by the user, keep it unchecked
+                    var newBox = '<label name="ingredientCBLabel" class="ingredientCBLabel-' + i
+                        + '"><input type="checkbox" name="ingredientCB" checked="false" class="ingredientCB-' + i + '"/>'
+                        + ingredientsList[i] + '</label>';
+                    $(".ingredientsListCheckout").append(newBox).trigger('create');
+                    $(".ingredientCB-" + i).prop('checked', false).checkboxradio('refresh');
+                } else {        // if ingredient was checked by the user
+                    var newBox = '<label name="ingredientCBLabel" class="ingredientCBLabel-' + i
+                        + '"><input type="checkbox" name="ingredientCB" checked="true" class="ingredientCB-' + i + '"/>'
+                        + ingredientsList[i] + '</label>';
+                    $(".ingredientsListCheckout").append(newBox).trigger('create');
+                    $(".ingredientCB-" + i).prop('checked', true).checkboxradio('refresh');
+                }
+
+                //$(".ingredientsListCheckout").controlgroup("container").append(newBox);
+                //$(".ingredientsListCheckout").enhanceWithin().controlgroup("refresh");
             }
         }
     }
@@ -283,6 +294,13 @@ var customizeItem2 = function(clicked_id, popupClassName) {
     // allow accordian to scroll again after popup closes (in case popup needed scrolling)
     $("." + popupClassName).on("popupafterclose", function (event, ui) {
         $("body.ui-mobile-viewport").css("overflow", "auto");
+        if(popupClassName === "customizeItemOrder") {
+            $(".ingredientsList").html("");
+        } else if(popupClassName === "customizeItemCheckout") {
+            $(".ingredientsListCheckout").html("");
+        } else {
+            console.log("invalid popupClassName");
+        }
     });
 
     // manually set height on popup so that scrolling will work within the popup
@@ -343,46 +361,48 @@ var add = function(clicked_id) {
      */
 
     // capture all useful item information and store in new cart index. discard later if item is not unique (already in cart)
-        cart.push({});              // push a blank object onto the array
-        cart[cartCounter]["item"] = menu[clicked_id].item;
-        cart[cartCounter]["price"] = menu[clicked_id].price;
-        cart[cartCounter]["qty"] = 1;
-        cart[cartCounter]["ingredients"] = [];    // store an array of all ingredients
-        cart[cartCounter]["options"] = null;
-        cart[cartCounter]["menuID"] = clicked_id;
+    cart.push({});              // push a blank object onto the array
+    cart[cartCounter]["item"] = menu[clicked_id].item;
+    cart[cartCounter]["price"] = menu[clicked_id].price;
+    cart[cartCounter]["qty"] = 1;
+    cart[cartCounter]["ingredients"] = [];    // store an array of all ingredients
+    cart[cartCounter]["options"] = null;
+    cart[cartCounter]["menuID"] = clicked_id;
 
-        // add all selected ingredients from pop-up
-        if(menu[clicked_id].ingredients != null) {
-            // collect all checkboxes and labels
-            var ingredientCheckboxLabels = document.getElementsByName("ingredientCBlabel");
-            var ingredientCheckboxes = document.getElementsByName("ingredientCB");
-            // for each CB that is checked, add that label's text content (the ingredient) to the cart object
-            for(var i = 0; i < ingredientCheckboxes.length; i++) {
-                var checkboxID = ingredientCheckboxes[i].className;
-                if ($("." + checkboxID).is(':checked')) {
-                    cart[cartCounter]["ingredients"].push(ingredientCheckboxLabels[i].textContent);
-                }
+    // add all selected ingredients from pop-up
+    if(menu[clicked_id].ingredients != null) {
+        // collect all checkboxes and labels
+        var ingredientCheckboxLabels = document.getElementsByName("ingredientCBlabel");
+        var ingredientCheckboxes = document.getElementsByName("ingredientCB");
+
+        // for each CB that is checked, add that label's text content (the ingredient) to the cart object
+        for(var i = 0; i < ingredientCheckboxes.length; i++) {
+            var checkboxID = ingredientCheckboxes[i].className;
+            if ($("." + checkboxID).is(':checked')) {
+                cart[cartCounter]["ingredients"].push(ingredientCheckboxLabels[i].textContent);
+
             }
         }
+    }
 
-        // save options
-        if(menu[clicked_id].prices != null) {
-           // cart[cartCounter].price =
-            var optionsLabels = document.getElementsByClassName("itemOptionRadios");
-            var optionRadios = document.getElementsByName("radio-itemOption");
+    // save options
+    if(menu[clicked_id].prices != null) {
+       // cart[cartCounter].price =
+        var optionsLabels = document.getElementsByClassName("itemOptionRadios");
+        var optionRadios = document.getElementsByName("radio-itemOption");
 
-            // Find the option that is selected. Update price if an option is selected
-            for(var i = 0; i < optionRadios.length; i++) {
-                var radioID = optionRadios[i].id;
-                if($("#" + radioID).is(':checked')) {
-                    var optionLabel = qq(optionsLabels[i].id).textContent;
-                    var option = optionLabel.match(/^[^:]*/g);
-                    cart[cartCounter]["option"] = option[0];                        // update selected option (ie "Regular")
-                    cart[cartCounter].price = menu[clicked_id].prices[option[0]];   // update item's price in cart based on option
-                    break;
-                }
+        // Find the option that is selected. Update price if an option is selected
+        for(var i = 0; i < optionRadios.length; i++) {
+            var radioID = optionRadios[i].id;
+            if($("#" + radioID).is(':checked')) {
+                var optionLabel = qq(optionsLabels[i].id).textContent;
+                var option = optionLabel.match(/^[^:]*/g);      // grab text from beginning of line up to ":"
+                cart[cartCounter]["option"] = option[0];                        // update selected option (ie "Regular")
+                cart[cartCounter].price = menu[clicked_id].prices[option[0]];   // update item's price in cart based on option
+                break;
             }
         }
+    }
     total+= cart[cartCounter].price;        // update the total price of the current cart.
     var cartIndex = getCartIndex(cartCounter);
     //var cartIndex = cartCounter;
@@ -409,7 +429,7 @@ var add = function(clicked_id) {
         var button = document.createElement("td");
        // var removeButton = document.createElement("input");
         button.setAttribute("id", "rm" + parseInt(cartIndex));       // assign a unique id to the button that is the item name. this id it the menu index of the item
-        button.setAttribute("onClick", "remove1(this.id)"); // set onClick property to call the remove function, passing the id of the item
+        button.setAttribute("onClick", "remove1(" + cartIndex + ")"); // set onClick property to call the remove function, passing the id of the item
         button.setAttribute("type", "button");
         button.setAttribute("class", "removeButton");
         button.setAttribute("value", "");

@@ -451,7 +451,13 @@
     float:right;
 }
 
-.ingredientsList {
+.ingredientsList {          /* for order page's ingredient popup */
+    float:left;
+    clear:both;
+    padding-left:30px;
+}
+
+.ingredientsListCheckout { /* for checkout page's popup */
     float:left;
     clear:both;
     padding-left:30px;

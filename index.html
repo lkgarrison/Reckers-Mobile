@@ -73,7 +73,9 @@
             <div class="customizeItemColoredLine"></div>
             <h3 class="includedIngredientsLabel floatLeft">Included Ingredients:</h3>
             <div class="scrollForMore">Scroll For More</div>    <!-- Used to indicate scroll to see more ingredients in pop-up -->
-            <div class="ingredientsList" style="overflow-y:auto"></div>
+            <form>
+                <div class="ingredientsList" style="overflow-y:auto"></div>
+            </form>
             <h3 class="customizeItemOptionsHeader floatLeft">Options:</h3>
             <form class="itemOptions"></form>
 
@@ -118,7 +120,7 @@
     <img src="img/reckers_header.png" class="ui-btn-right reckersLogoRight" id="checkoutReckersLogo">
   </div>
 
-   <!-- Same popup as on order page -->
+   <!-- Same popup as on order page, but ingredientsList class in form element has to be unique from order page's ingredientsList -->
     <div data-role="popup" class="customizeItemCheckout" data-theme="a" class="ui-content" data-overlay-theme="b">
         <div class="customizeItemPopupWrapper">
 
@@ -127,15 +129,20 @@
             <div class="customizeItemColoredLine"></div>
             <h3 class="includedIngredientsLabel floatLeft">Included Ingredients:</h3>
             <div class="scrollForMore">Scroll For More</div>    <!-- Used to indicate scroll to see more ingredients in pop-up -->
-            <div class="ingredientsList" style="overflow-y:auto"></div>
+            <form>
+                <div class="ingredientsListCheckout" data-role="controlgroup" style="overflow-y:auto"></div>
+            </form>
             <h3 class="customizeItemOptionsHeader floatLeft">Options:</h3>
             <form class="itemOptions"></form>
 
             <span class="ingredientsPopupMessage"></span>
 
             <div class="popupButtonWrapper">
-                <a href="#" class="addToCartButton" data-role="button" data-theme="a" data-inline="true" data-rel="back" data-theme="c" data-type="horizontal">
-                    Add
+                <a href="#" class="saveItemButton" data-role="button" data-theme="a" data-inline="true" data-rel="back" data-theme="c" data-type="horizontal">
+                    Save
+                </a>
+                <a href="#" class="removeFromCart" data-role="button" data-theme="a" data-inline="true" data-rel="back" data-theme="c" data-type="horizontal">
+                    Remove
                 </a>
                 <a href="#" data-role="button" data-theme="a" data-inline="true" data-rel="back" data-theme="c" data-type="horizontal">
                     Cancel
