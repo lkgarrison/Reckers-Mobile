@@ -257,6 +257,9 @@ var customizeCartItem = function(cartID) {
         }
         $(".includedIngredientsLabel").css("display", "none");      // hide "ingredients" label
     }
+
+    $(".removeFromCart").attr("onclick", "remove1(" + cartID + "); $('." + popupClassName + "').popup('close')"); // set onClick property to call the remove function, passing the id of the item
+
     customizeItem2(cart[cartID].menuID, popupClassName);     // completes popup setup, convert to
 }
 
@@ -356,7 +359,7 @@ var add = function(clicked_id) {
         qq("items_in_cart").style.paddingRight = "3px";
     }
 
-    /* will return cartCounter if it is the first unique item will all selected ingredients, otherwise retrurns
+    /* will return cartCounter if it is the first unique item will all selected ingredients, otherwise returns
      * the cart index of the item that is exactly the same
      */
 
