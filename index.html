@@ -64,16 +64,18 @@
   </div>
 
 
-  <div data-role="popup" class="customizeItem" data-theme="a" class="ui-content" data-overlay-theme="b">
+  <div data-role="popup" class="customizeItemOrder" data-theme="a" class="ui-content" data-overlay-theme="b">
         <!--<h3 class="ui-title">Customize Item</h3> -->
       <div class="customizeItemPopupWrapper">
 
-            <div class="customizeItemName popupTop"></div>                 <!-- needs id -->
-            <div class="customizeItemPrice popupTop"></div>                 <!-- needs id, used twice in JS -->
+            <div class="customizeItemName popupTop"></div>
+            <div class="customizeItemPrice popupTop"></div>
             <div class="customizeItemColoredLine"></div>
             <h3 class="includedIngredientsLabel floatLeft">Included Ingredients:</h3>
             <div class="scrollForMore">Scroll For More</div>    <!-- Used to indicate scroll to see more ingredients in pop-up -->
-            <div class="ingredientsList" style="overflow-y:auto"></div>
+            <form>
+                <div class="ingredientsList" style="overflow-y:auto"></div>
+            </form>
             <h3 class="customizeItemOptionsHeader floatLeft">Options:</h3>
             <form class="itemOptions"></form>
 
@@ -87,8 +89,9 @@
                 Cancel
             </a>
         </div>
+    </div>
   </div>
-  </div>
+
 
   <div data-role="popup" id="emptyCartMessage" data-theme="a" class="centered ui-corner-bottom ui-content" data-overlay-theme="b">
     <h3 class="ui-title">Checkout Unavailable</h3>
@@ -116,6 +119,37 @@
     <h1></h1>
     <img src="img/reckers_header.png" class="ui-btn-right reckersLogoRight" id="checkoutReckersLogo">
   </div>
+
+   <!-- Same popup as on order page, but ingredientsList class in form element has to be unique from order page's ingredientsList -->
+    <div data-role="popup" class="customizeItemCheckout" data-theme="a" class="ui-content" data-overlay-theme="b">
+        <div class="customizeItemPopupWrapper">
+
+            <div class="customizeItemName popupTop"></div>
+            <div class="customizeItemPrice popupTop"></div>
+            <div class="customizeItemColoredLine"></div>
+            <h3 class="includedIngredientsLabel floatLeft">Included Ingredients:</h3>
+            <div class="scrollForMore">Scroll For More</div>    <!-- Used to indicate scroll to see more ingredients in pop-up -->
+            <form>
+                <div class="ingredientsListCheckout" data-role="controlgroup" style="overflow-y:auto"></div>
+            </form>
+            <h3 class="customizeItemOptionsHeader floatLeft">Options:</h3>
+            <form class="itemOptions"></form>
+
+            <span class="ingredientsPopupMessage"></span>
+
+            <div class="popupButtonWrapper">
+                <a href="#" class="saveItemButton" data-role="button" data-theme="a" data-inline="true" data-rel="back" data-theme="c" data-type="horizontal">
+                    Save
+                </a>
+                <a href="#" class="removeFromCart" data-role="button" data-theme="a" data-inline="true" data-theme="c" rel="external" data-type="horizontal">
+                    Remove
+                </a>
+                <a href="#" data-role="button" data-theme="a" data-inline="true" data-rel="back" data-theme="c" data-type="horizontal">
+                    Cancel
+                </a>
+            </div>
+        </div>
+    </div>
 
 
   <div data-role="content" id="wrapper">

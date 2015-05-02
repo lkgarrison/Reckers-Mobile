@@ -275,7 +275,21 @@
     left:0 !important;
 }
 
-.customizeItem {
+.customizeItemOrder {
+    text-align:center;
+    padding-top:10px;
+    padding-bottom:12px;
+    padding-left:0;
+    padding-right:0;
+    margin-left:0;
+    margin-right:0;
+    left:0;
+    bottom:65px;        /* must match footer height! */
+    position:fixed;
+    overflow:hidden;
+}
+
+.customizeItemCheckout {
     text-align:center;
     padding-top:10px;
     padding-bottom:12px;
@@ -437,7 +451,13 @@
     float:right;
 }
 
-.ingredientsList {
+.ingredientsList {          /* for order page's ingredient popup */
+    float:left;
+    clear:both;
+    padding-left:30px;
+}
+
+.ingredientsListCheckout { /* for checkout page's popup */
     float:left;
     clear:both;
     padding-left:30px;
@@ -463,4 +483,3 @@ body.ui-mobile-viewport {
     margin-top:12px;
     margin-bottom:12px;
 }
-
