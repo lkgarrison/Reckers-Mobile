@@ -11,6 +11,7 @@ total = 0;  // track total cost of items in cart
 totalQuantity = 0;  // total number of items in cart (displayed in cart image)
 cart = [];          // array to hold all objects that are in cart (item, qty, price, ingredients, options
 cartCounter = 0;    // count every time an item is added to the cart. Only counts up
+ingredientsScrollTolerance = 21;    // tolerance in ingredients popup when scrolling will be activated before the "scroll for more" message is displayed
 
 // create a table for each of the food types
 pizzaTable = document.createElement("table");
@@ -327,20 +328,23 @@ var customizeItem2 = function(clicked_id, popupClassName) {
     // calculate available height to display content (divHeight)
     var divHeight = $("." + popupClassName).outerHeight() - $("." + scrollDivClassName).position().top - $("." + buttonWrapper).outerHeight();
 
-    if($("." + scrollDivClassName).height() > divHeight) {    // if height of container of ingredients > max height of area to display, add scrolling
-        $("." + scrollDivClassName).css("height", divHeight); // specifically set height to enable scrolling
-        $("." + popupClassName).css("padding-bottom", parseFloat($("." + popupClassName).css("padding-bottom")) * 2 + "px"); // must be multplied by 2 to have same padding as non-scroll popup
-        $(".scrollForMore").css("display", "block");    // make sure "scroll for more" message is displayed
-
-   // for when "scroll for more appears" but only one ingredient is only half way cut off or less
-   /* } else if($("." + scrollDivClassName).height() - 90 > divHeight) {
+  /* set popup height and scrolling based on how much space the ingredients list takes up: */
+    // for when "scroll for more appears" but only one ingredient is only half way cut off or less: don't show "scroll for more" message
+    if(($("." + scrollDivClassName).height() - ingredientsScrollTolerance) < divHeight) {
         $(".ingredientsList").css("height", divHeight); // specifically set height to enable scrolling
         $("." + popupClassName).css("padding-bottom", parseFloat($("." + popupClassName).css("padding-bottom")) * 2 + "px"); // must be multplied by 2 to have same padding as non-scroll popup
         $(".scrollForMore").css("display", "none");     // don't display "scroll for more message" b/c only short by a few pixels
-    */
-    } else {                                            // if no scrollable ingredients list (list is short)
+    }
+    // if ingredients list needs to be scrollable because there are more ingredients than can fit inside the popup
+    else if($("." + scrollDivClassName).height() > divHeight) {    // if height of container of ingredients > max height of area to display, add scrolling
+        $("." + scrollDivClassName).css("height", divHeight); // specifically set height to enable scrolling
+        $("." + popupClassName).css("padding-bottom", parseFloat($("." + popupClassName).css("padding-bottom")) * 2 + "px"); // must be multplied by 2 to have same padding as non-scroll popup
+        $(".scrollForMore").css("display", "block");    // make sure "scroll for more" message is displayed
+    }
+    // if there are only a few ingredients - there is extra room in the popup: only make popup as tall as it needs to be
+    else {
         $("." + scrollDivClassName).css("height", $("." + scrollDivClassName).height());
-        $(".scrollForMore").css("display", "none");
+        $(".scrollForMore").css("display", "none"); // don't display "scroll for more message, not applicable"
     }
     $("." + popupClassName).css("visibility", "visible");   // make popup visible now that all properties are correctly set
 }
