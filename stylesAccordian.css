@@ -374,7 +374,7 @@
     padding-top:0;
     height:100%;
     width:100%;
-    overflow:hidden;
+    overflow:scroll;
 }
 
 #addCancelWrapper {
@@ -455,12 +455,16 @@
     float:left;
     clear:both;
     padding-left:30px;
+    margin-top:0;
+    margin-bottom:0;
 }
 
 .ingredientsListCheckout { /* for checkout page's popup */
     float:left;
     clear:both;
     padding-left:30px;
+    margin-top:0;
+    margin-bottom:0;
 }
 
 .itemOptions {
