@@ -193,9 +193,6 @@ var customizeItem = function(clicked_id) {
 var customizeCartItem = function(cartID) {
     var popupClassName = "customizeItemCheckout";   // use this variable to change only the checkout page's item popup
 
-    $(".customizeItemOrder").popup("close");        // close the
-    // addToCart button attr?
-
     //$(".addToCartButton").attr("onclick", "add(" + cartID + ")");   // set pop-up's "Add" button to send cartID to add function
     $("." + popupClassName).width($(window).width());
     $(".customizeItemName").text(cart[cartID].item);
@@ -207,8 +204,6 @@ var customizeCartItem = function(cartID) {
     $(".ingredientsList").html("");             // remove previous item's checkboxes, start over fresh
     $(".itemOptions").html("");                 // remove previous item's possible radio group
     $(".itemOptions").css("display", "none");   // default, unless there are options
-    //$(".cbGroup").html("");
-
 
     // store an array with all ingredients
     // generate checkboxes of ingredients list - only check the boxes for those that are already checked
@@ -258,6 +253,7 @@ var customizeCartItem = function(cartID) {
         $(".includedIngredientsLabel").css("display", "none");      // hide "ingredients" label
     }
 
+    // add an onclick event to remove 1 of the i    tem when the "Remove" button is clicked. Also closes the popup
     $(".removeFromCart").attr("onclick", "remove1(" + cartID + "); $('." + popupClassName + "').popup('close')"); // set onClick property to call the remove function, passing the id of the item
 
     customizeItem2(cart[cartID].menuID, popupClassName);     // completes popup setup, convert to
@@ -265,6 +261,20 @@ var customizeCartItem = function(cartID) {
 
 // this portion of the ingredients popup will be the same whether on the order or checkout page
 var customizeItem2 = function(clicked_id, popupClassName) {
+    // use correct class name for scrolling div based on whether the menu page's popup is called or the checkout page's popup is called
+    var scrollDivClassName;
+    var buttonWrapper;          // order and checkout pages have separate names because if not, cannot correctly grab height of button wraper div
+    // correctly set html references based on which popup is being opened (order vs checkout page)
+    if(popupClassName === "customizeItemOrder") {
+        scrollDivClassName = "ingredientsList";
+        buttonWrapper = "popupButtonWrapper";
+    } else if(popupClassName === "customizeItemCheckout") {
+        scrollDivClassName = "ingredientsListCheckout";
+        buttonWrapper = "popupButtonWrapperCheckout";
+    } else {
+        console.log("Invalid class name for scrolling div in customize item popup");
+    }
+
     // set image for divider line at the top of popup based on food type
     var imgPath;    // string to store the image path
     switch (menu[clicked_id].type) {
@@ -294,49 +304,46 @@ var customizeItem2 = function(clicked_id, popupClassName) {
     }
     $(".customizeItemColoredLine").css("background-image", "url('" + imgPath + "')");
 
-    // allow accordian to scroll again after popup closes (in case popup needed scrolling)
+    // allow background to scroll again after popup closes (in case popup needed scrolling)
     $("." + popupClassName).on("popupafterclose", function (event, ui) {
-        $("body.ui-mobile-viewport").css("overflow", "auto");
-        if(popupClassName === "customizeItemOrder") {
-            $(".ingredientsList").html("");
-        } else if(popupClassName === "customizeItemCheckout") {
-            $(".ingredientsListCheckout").html("");
-        } else {
-            console.log("invalid popupClassName");
-        }
+        $("body.ui-mobile-viewport").css("overflow", "auto");           // re-enables scrolling if required
+        $("." + scrollDivClassName).html("");                           // needs to be cleared
     });
 
     // manually set height on popup so that scrolling will work within the popup
     $("." + popupClassName).css("visibility", "hidden");
     $("." + popupClassName).css("height", "");          // reset to default
-    $(".ingredientsList").css("height", "");          // reset to default
+    $("." + scrollDivClassName).css("height", "");          // reset to default
     $("." + popupClassName).css("padding-bottom", ""); // reset (needs to be increased for scroll-div
-    if (popupClassName === "customizeItemOrder") {
-        $("body.ui-mobile-viewport").css("overflow", "hidden"); // prevent accordian from scrolling while popup is open (in case popup needs to scroll)
-    } else if (popupClassName === "customizeItemCheckout") {
 
-    } else {
-        console.log("Invalid ingredients popup classname specified: " + popupClassName);
-    }
-    $("." + popupClassName).popup();
-    $("." + popupClassName).popup("open");                  // open but do not show. open in order to extract properties
+    $("body.ui-mobile-viewport").css("overflow", "hidden"); // prevent background from scrolling while popup is open (in case popup needs to scroll)
+
+    $("." + popupClassName).css("max-height", .7 * $(window).height()); // set max-height of popup, asthetic purposes
+    $("." + popupClassName).popup("open");                      // open but do not show. open in order to extract properties
     var newHeight =  $("." + popupClassName).height();
     $("." + popupClassName).css("height", newHeight);           // set height to itself - allows popup to be positioned correctly and scroll
-    $("." + popupClassName).css("max-height", .7 * $(window).height());
 
     // must manually set height of scroll-div for scrolling to work. If ingredients div is too large for popup space, then set the checkboxes' div to its max allowed height to enable scrolling
-    var divHeight = $("." + popupClassName).outerHeight() - $(".ingredientsList").position().top - $(".popupButtonWrapper").outerHeight();
-    if($(".ingredientsList").height() > divHeight) {    // if height of container of ingredients > max height of area to display, add scrolling
-        $(".ingredientsList").css("height", divHeight); // specifically set height to enable scrolling
-        $("." + popupClassName).css("padding-bottom", parseFloat($("." + popupClassName).css("padding-bottom")) * 2 + "px");    // must be multplied by 2 to have same padding as non-scroll popup
+    // calculate available height to display content (divHeight)
+    var divHeight = $("." + popupClassName).outerHeight() - $("." + scrollDivClassName).position().top - $("." + buttonWrapper).outerHeight();
+
+    if($("." + scrollDivClassName).height() > divHeight) {    // if height of container of ingredients > max height of area to display, add scrolling
+        $("." + scrollDivClassName).css("height", divHeight); // specifically set height to enable scrolling
+        $("." + popupClassName).css("padding-bottom", parseFloat($("." + popupClassName).css("padding-bottom")) * 2 + "px"); // must be multplied by 2 to have same padding as non-scroll popup
         $(".scrollForMore").css("display", "block");    // make sure "scroll for more" message is displayed
+
+   // for when "scroll for more appears" but only one ingredient is only half way cut off or less
+   /* } else if($("." + scrollDivClassName).height() - 90 > divHeight) {
+        $(".ingredientsList").css("height", divHeight); // specifically set height to enable scrolling
+        $("." + popupClassName).css("padding-bottom", parseFloat($("." + popupClassName).css("padding-bottom")) * 2 + "px"); // must be multplied by 2 to have same padding as non-scroll popup
+        $(".scrollForMore").css("display", "none");     // don't display "scroll for more message" b/c only short by a few pixels
+    */
     } else {                                            // if no scrollable ingredients list (list is short)
-        $(".ingredientsList").css("height", $(".ingredientsList").height());
+        $("." + scrollDivClassName).css("height", $("." + scrollDivClassName).height());
         $(".scrollForMore").css("display", "none");
     }
-    $("." + popupClassName).css("visibility", "visible");
+    $("." + popupClassName).css("visibility", "visible");   // make popup visible now that all properties are correctly set
 }
-
 
 // function to change the price displayed in the add item /  ingredients popup
 var setPopupPrice = function(newPrice) {
@@ -419,7 +426,6 @@ var add = function(clicked_id) {
     }
 
     // if 1st time item is being added to cart
-//    if(menu[clicked_id].qty == 1) {
     if(cart[cartIndex].qty == 1) {
         var tr = document.createElement("tr"); // create a new row
         tr.setAttribute("class", "row" + parseInt(cartIndex));
@@ -487,16 +493,18 @@ var add = function(clicked_id) {
 
         ordered.push(cartIndex);   // adds this item's menu index to the ordered array, to make sure it can't be added again (only adjust quantity)
 
-    } else {   // menu item has already been added. just adjust the quantity
+    // menu item has already been added. just adjust the quantity
+    } else {
         qq("qty" + parseInt(cartIndex)).textContent = parseInt(cart[cartIndex].qty);
     }
 
+    // update total quantity and total cost displayed
     qq("items_in_cart").textContent = ++totalQuantity;
     qq("total").innerHTML = "Total: $" + parseFloat(Math.abs(total)).toFixed(2);  // update total
 };
 
 // trigger when remove button is clicked on checkout page to remove one instance of an item
-// argument will be the cartIndex
+// argument will be the cartIndex - the index the item to be removed is in the cart array
 var remove1 = function(cartIndex) {
     cartIndex = parseInt(cartIndex);
     cart[cartIndex].qty--;
