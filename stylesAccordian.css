@@ -277,8 +277,8 @@
 
 .customizeItemOrder {
     text-align:center;
-    padding-top:10px;
-    padding-bottom:12px;
+    padding-top:0px;
+    padding-bottom:0px;
     padding-left:0;
     padding-right:0;
     margin-left:0;
@@ -310,8 +310,12 @@
 }
 
 .popupButtonWrapper {
-    padding-top:8px;
     clear:both;
+    bottom: 0;
+    width: 100%;            /* for center alignment */
+    text-align: center;
+    padding-bottom: 7px;
+    padding-top: 12px;
 }
 
 #popupScrollWrapper {
@@ -332,6 +336,7 @@
 .customizeItemName {
     width:100%;
     text-align:center;
+    padding-top: 7px;   /* provides padding against top of popup */
 }
 
 .customizeItemPrice {
@@ -346,7 +351,7 @@
     height:7px;
     margin-left:0;
     margin-right:0;
-    margin-top:8px;
+    margin-top:6px;
 }
 
 .ingredientsPopupMessage {
@@ -359,8 +364,8 @@
 
 .includedIngredientsLabel {
     margin-left:12px;
-    margin-top:12px;
-    margin-bottom:12px;
+    margin-top:8px;
+    margin-bottom:8px;
 }
 
 .scrollForMore {
@@ -486,4 +491,16 @@ body.ui-mobile-viewport {
     margin-left:12px;
     margin-top:12px;
     margin-bottom:12px;
+}
+
+/* effectively sets height of checkboxes */
+.ui-checkbox label {
+    padding-bottom: 9px;
+    padding-top: 9px;
+}
+
+/* sets margins around buttons at the bottom of the ingredients popup */
+.popupButtonWrapper a {
+    margin-top: 0px;
+    margin-bottom: 6px;
 }
