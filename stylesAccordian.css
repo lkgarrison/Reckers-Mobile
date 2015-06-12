@@ -277,10 +277,7 @@
 
 .customizeItemOrder {
     text-align:center;
-    padding-top:0px;
-    padding-bottom:0px;
-    padding-left:0;
-    padding-right:0;
+    padding:0;
     margin-left:0;
     margin-right:0;
     left:0;
@@ -291,10 +288,7 @@
 
 .customizeItemCheckout {
     text-align:center;
-    padding-top:10px;
-    padding-bottom:12px;
-    padding-left:0;
-    padding-right:0;
+    padding:0px;
     margin-left:0;
     margin-right:0;
     left:0;
@@ -314,8 +308,8 @@
     bottom: 0;
     width: 100%;            /* for center alignment */
     text-align: center;
-    padding-bottom: 7px;
-    padding-top: 12px;
+    padding-bottom: 9px;
+    padding-top: 11px;
 }
 
 #popupScrollWrapper {

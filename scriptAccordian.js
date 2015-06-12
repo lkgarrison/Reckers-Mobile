@@ -320,7 +320,7 @@ var customizeItem2 = function(clicked_id, popupClassName) {
     $("body.ui-mobile-viewport").css("overflow", "hidden"); // prevent background from scrolling while popup is open (in case popup needs to scroll)
 
     var maxHeight = .65 * $(window).height();
-    $("." + popupClassName).css("max-height", maxHeight);       // set max-height of popup, asthetic purposes
+    $("." + popupClassName).css("max-height", maxHeight);       // set max-height of popup, aesthetic purposes
     $("." + popupClassName).popup("open");                      // open but do not show. open in order to extract properties
     var newHeight =  $("." + popupClassName).outerHeight();
     $("." + popupClassName).css("height", newHeight);           // set height to itself - allows popup to be positioned correctly and scroll
@@ -337,7 +337,7 @@ var customizeItem2 = function(clicked_id, popupClassName) {
   /* set popup height and scrolling based on how much space the ingredients list takes up: */
     // for when "scroll for more appears" but only one ingredient is only half way cut off or less: don't show "scroll for more" message
     if(requiresScrolling && (scrollDivHeight - ingredientsScrollTolerance) < ingredientsHeight) {
-        $(".ingredientsList").css("height", ingredientsHeight); // specifically set height to enable scrolling
+        $("." + scrollDivClassName).css("height", ingredientsHeight); // specifically set height to enable scrolling
         $(".scrollForMore").css("display", "none");     // don't display "scroll for more message" b/c only short by a few pixels
     }
     // if ingredients list needs to be scrollable because there are more ingredients than can fit inside the popup
