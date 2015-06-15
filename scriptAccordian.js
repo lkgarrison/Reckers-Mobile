@@ -262,6 +262,35 @@ var customizeCartItem = function(cartID) {
 
 // this portion of the ingredients popup will be the same whether on the order or checkout page
 var customizeItem2 = function(clicked_id, popupClassName) {
+    var getHeaderImage = function(item) {
+        switch (item.type) {
+            case "pizza":
+                imgPath = "img/header_pizza.png";
+                break;
+            case "piadina":
+                imgPath = "img/header_piadina.png";
+                break;
+            case "americanFare":
+                imgPath = "img/header_sandwiches.png";
+                break;
+            case "salad":
+                imgPath = "img/header_salads.png";
+                break;
+            case "breakfast":
+                imgPath = "img/header_breakfast.png";
+                break;
+            case "side":
+                imgPath = "img/header_sides.png";
+                break;
+            case "smoothie":
+                imgPath = "img/header_smoothies.png";
+                break;
+            default:
+                imgPath = "img/header_reckers.png";
+        }
+        return imgPath;
+    }
+
     // use correct class name for scrolling div based on whether the menu page's popup is called or the checkout page's popup is called
     var scrollDivClassName;
     var buttonWrapper;          // order and checkout pages have separate names because if not, cannot correctly grab height of button wraper div
@@ -278,31 +307,8 @@ var customizeItem2 = function(clicked_id, popupClassName) {
 
     // set image for divider line at the top of popup based on food type
     var imgPath;    // string to store the image path
-    switch (menu[clicked_id].type) {
-        case "pizza":
-            imgPath = "img/header_pizza.png";
-            break;
-        case "piadina":
-            imgPath = "img/header_piadina.png";
-            break;
-        case "americanFare":
-            imgPath = "img/header_sandwiches.png";
-            break;
-        case "salad":
-            imgPath = "img/header_salads.png";
-            break;
-        case "breakfast":
-            imgPath = "img/header_breakfast.png";
-            break;
-        case "side":
-            imgPath = "img/header_sides.png";
-            break;
-        case "smoothie":
-            imgPath = "img/header_smoothies.png";
-            break;
-        default:
-            imgPath = "img/header_reckers.png";
-    }
+    imgPath = getHeaderImage(menu[clicked_id]);
+
     $(".customizeItemColoredLine").css("background-image", "url('" + imgPath + "')");
 
     // allow background to scroll again after popup closes (in case popup needed scrolling)

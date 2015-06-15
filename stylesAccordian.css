@@ -4,13 +4,7 @@
     top:0px;
 }
 
-#reckers_header {
-    height:92%;
-    width:auto;
-    top:3%;
-}
-
-.reckersLogoRight {
+#reckers_header, .reckersLogoRight {
     height:92%;
     width:auto;
     top:3%;
@@ -28,7 +22,7 @@
     margin-top:0;
 }
 
-.orderFooter {
+.fixedFooter {              /* styling for all fixed persistant footers on each page */
     position:fixed;
     height:65px;
     z-index:999999;
@@ -36,42 +30,26 @@
     display: inline-block;
 }
 
-.footerOrder {
+.footerOrder {              /* for order icon in footer */
     height:55px;
     width:auto;
     text-align:left;
     padding-top:5px;
 }
 
-.footerCheckout {
+.footerCheckout {           /* for checkout icon in footer */
     height:55px;
     width:auto;
     text-align:center;
     padding-top:5px;
 }
 
-.footerPickup {
+.footerPickup {             /* for pickup icon in footer */
     height:55px;
     width:auto;
     text-align:right;
     padding-top:5px;
     padding-left:8px;
-}
-
-.wrap {
-    position:relative;
-    margin:0 auto;
-    float:left;
-}
-
-.order {
-    left:750px;
-    top:100px;
-  /*  background-color:ghostwhite;  */
-}
-
-#orderHeader {
-  /*  background-color:lightgray !important; */
 }
 
 .quantity {
@@ -80,85 +58,61 @@
     vertical-align: top;
 }
 
-.itemName {  /* for item name in checkout screen */
+.itemName {                 /* for item name in checkout screen */
     padding-right:14px;
     vertical-align:top;
 }
 
-.price {
+.price {                    /* for price/item on checkout page */
     vertical-align:top;
     text-align:left;
     padding-left:0;
 }
 
+/* backgrounds for menu headers on order page */
 #header_pizzas .ui-collapsible-heading-toggle {
     background-image: url('img/header_pizzaND.png');
-    background-repeat:round;
-    color:white;
-    font-family: Helvetica, Arial, sans-serif;
-    font-weight:500;
 }
 
 #header_piadinas .ui-collapsible-heading-toggle {
     background-image: url('img/header_piadinaND.png');
-    background-repeat:round;
-    color:white;
-    font-family: Helvetica, Arial, sans-serif;
-    font-weight:500;
 }
 
 #header_americanFare .ui-collapsible-heading-toggle {
     background-image: url('img/header_sandwichesND.png');
-    background-repeat:round;
-    color:white;
-    font-family: Helvetica, Arial, sans-serif;
-    font-weight:500;
 }
 
 #header_salads .ui-collapsible-heading-toggle {
     background-image: url('img/header_saladsND.png');
-    background-repeat:round;
-    color:white;
-    font-family: Helvetica, Arial, sans-serif;
-    font-weight:500;
 }
 
 #header_breakfast .ui-collapsible-heading-toggle {
     background-image: url('img/header_breakfastND.png');
-    background-repeat:round;
-    color:white;
-    font-family: Helvetica, Arial, sans-serif;
-    font-weight:500;
 }
 
 #header_sides .ui-collapsible-heading-toggle {
     background-image: url('img/header_sidesND.png');
-    background-repeat:round;
-    color:white;
-    font-family: Helvetica, Arial, sans-serif;
-    font-weight:500;
 }
 
 #header_smoothies .ui-collapsible-heading-toggle {
     background-image: url('img/header_smoothiesND.png');
-    background-repeat:round;
-    color:white;
-    font-family: Helvetica, Arial, sans-serif;
-    font-weight:500;
 }
 
-.ui-collapsible-heading-toggle {
+/* default styling for menu headers on order page */
+.menuHeader h3 a {
     font-size:20px;
-    color:white;
+    color:white !important;
     font-family: Helvetica, Arial, sans-serif;
     font-weight:500;
+    background-repeat:round;
 }
 
+/* menu item title inside each menu seaction. ie "chicken alfredo pizza" */
 .ui-collapsible {
     font-size:19px;
 }
 
-/* default of 18 is too much. allows addButton to be larger */
+/* inside expanded accordion */
 .ui-collapsible-inset.ui-collapsible-themed-content .ui-collapsible-content {
     padding-left:10px;
     padding-right:10px;
@@ -476,9 +430,6 @@
 .ui-radio {
     margin-top:0;
     margin-bottom:0;
-}
-body.ui-mobile-viewport {
-
 }
 
 .customizeItemOptionsHeader {
