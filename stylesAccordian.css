@@ -22,7 +22,8 @@
     margin-top:0;
 }
 
-.fixedFooter {              /* styling for all fixed persistant footers on each page */
+/* styling for all fixed persistant footers on each page */
+.fixedFooter {
     position:fixed;
     height:65px;
     z-index:999999;
@@ -30,21 +31,24 @@
     display: inline-block;
 }
 
-.footerOrder {              /* for order icon in footer */
+/* for order icon in footer */
+.footerOrder {
     height:55px;
     width:auto;
     text-align:left;
     padding-top:5px;
 }
 
-.footerCheckout {           /* for checkout icon in footer */
+/* for checkout icon in footer */
+.footerCheckout {
     height:55px;
     width:auto;
     text-align:center;
     padding-top:5px;
 }
 
-.footerPickup {             /* for pickup icon in footer */
+/* for pickup icon in footer */
+.footerPickup {
     height:55px;
     width:auto;
     text-align:right;
@@ -52,18 +56,21 @@
     padding-left:8px;
 }
 
+/* quantity next to line item */
 .quantity {
     font-weight:bold;
     padding-right:14px;
     vertical-align: top;
 }
 
-.itemName {                 /* for item name in checkout screen */
+/* for item name in checkout screen */
+.itemName {
     padding-right:14px;
     vertical-align:top;
 }
 
-.price {                    /* for price/item on checkout page */
+/* for price/item on checkout page */
+.price {
     vertical-align:top;
     text-align:left;
     padding-left:0;
@@ -144,16 +151,14 @@
     margin-bottom:0;
 }
 
-#orderTable {
-    padding-right:0;
-}
-
+/* horizontal line above the total cost on the checkout page */
 #totalLine {
     margin-top:0;
     padding-top:0;
     text-align:right;
 }
 
+/* total cost styling */
 #total {
     font-size:26px;
     font-family: Helvetica, Arial, sans-serif;
@@ -161,17 +166,20 @@
     text-align:right;
 }
 
+/* item description */
 .description {
     font-size:13px;
 }
 
-.rmButtonWrapper {         /* must have wrapper to format remove button correctly */
+/* remove button wrapper for each item's remove button. must have wrapper to format remove button correctly */
+.rmButtonWrapper {
     vertical-align: top;
     padding-top:0;
     margin-top:0;
     height:100%;
 }
 
+/* remove button for each item on checkout page */
 .removeButton {
     background:none;
     border:none;
@@ -183,6 +191,7 @@
 
 }
 
+/* add button next to each item on the menu on the order page */
 .addButton {
     background:none;
     border:none;
@@ -194,6 +203,7 @@
     padding-right:15px;
 }
 
+/* div for add and cancel buttons beneath the order table on checkout page */
 #options {
     font-family: Verdana, Tahoma, Century Gothic, Arial, sans-serif;
     color:dimgray;
@@ -201,6 +211,7 @@
     text-align:center;
 }
 
+/* add items button below order table on checkout page */
 #addItems {
     padding-left:0;
     padding-right:0;
@@ -211,6 +222,7 @@
     font-family: Helvetica, Arial, sans-serif;
 }
 
+/* cancel order button below order table on checkout page */
 #cancelOrder {
     padding-left:0;
     padding-right:0;
@@ -225,11 +237,8 @@
     text-align:center;      /* centers the buttons */
 }
 
-#customizeItem-popup {
-    left:0 !important;
-}
-
-.customizeItemOrder {
+/* styling for popup on order and checkout page */
+.customizeItemOrder, .customizeItemCheckout {
     text-align:center;
     padding:0;
     margin-left:0;
@@ -240,23 +249,14 @@
     overflow:hidden;
 }
 
-.customizeItemCheckout {
-    text-align:center;
-    padding:0px;
-    margin-left:0;
-    margin-right:0;
-    left:0;
-    bottom:65px;        /* must match footer height! */
-    position:fixed;
-    overflow:hidden;
-}
-
+/* wrapper for content of ingredients popup on order and checkout pages */
 .customizeItemPopupWrapper {
     padding-left:0px;
     padding-right:0px;
     clear:both;
 }
 
+/* wrapper for buttons at the bottom of the ingredients popup */
 .popupButtonWrapper {
     clear:both;
     bottom: 0;
@@ -266,33 +266,34 @@
     padding-top: 11px;
 }
 
-#popupScrollWrapper {
-    float:left;
-}
-
-.ui-checkbox {      /* make checkboxes touch vertically */
+/* make checkboxes touch vertically */
+.ui-checkbox {
     margin-top:0;
     margin-bottom:0;
 }
 
+/* styling for item name and price at the top of the ingredients popup */
 .popupTop {
     font-weight:bold;
     font-family: Verdana, Helvetica, Arial, Tahoma, Century Gothic, sans-serif;
     font-size:20px;
 }
 
+/* styling for item name at the top of the ingredients popup */
 .customizeItemName {
     width:100%;
     text-align:center;
     padding-top: 7px;   /* provides padding against top of popup */
 }
 
+/* styling for item's price at the top of the ingredients popup */
 .customizeItemPrice {
     clear:both;
     width:100%;
     text-align:center;
 }
 
+/* styling in the ingredients popup for the colored line that separates the name and price of the item from the ingredients list */
 .customizeItemColoredLine {
     clear:both;
     width:100%;
@@ -302,6 +303,7 @@
     margin-top:6px;
 }
 
+/* styling for any type of popup message that needs to be displayed for a specific item */
 .ingredientsPopupMessage {
     float:left;
     clear:both;
@@ -310,12 +312,14 @@
     font-size:17px;
 }
 
+/* styling for "Included Ingredients" label in ingredients popup */
 .includedIngredientsLabel {
     margin-left:12px;
     margin-top:8px;
     margin-bottom:8px;
 }
 
+/* "scroll for more" message in the customize item popup */
 .scrollForMore {
     margin-top:13px;
     font-size:15px;
