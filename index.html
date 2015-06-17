@@ -120,7 +120,8 @@
     <img src="img/reckers_header.png" class="ui-btn-right reckersLogoRight" id="checkoutReckersLogo">
   </div>
 
-   <!-- Same popup as on order page, but ingredientsList class in form element has to be unique from order page's ingredientsList -->
+   <!-- Same popup as on order page, but ingredientsList class in form element has to be unique from order page's ingredientsList
+        popupButtonWrapper class must also be distinct from order page's                                                            -->
     <div data-role="popup" class="customizeItemCheckout" data-theme="a" class="ui-content" data-overlay-theme="b">
         <div class="customizeItemPopupWrapper">
 
@@ -130,7 +131,7 @@
             <h3 class="includedIngredientsLabel floatLeft">Included Ingredients:</h3>
             <div class="scrollForMore">Scroll For More</div>    <!-- Used to indicate scroll to see more ingredients in pop-up -->
             <form>
-                <div class="ingredientsListCheckout" data-role="controlgroup" style="overflow-y:auto"></div>
+                <div class="ingredientsListCheckout ingredientsList" data-role="controlgroup" style="overflow-y:auto"></div>
             </form>
             <h3 class="customizeItemOptionsHeader floatLeft">Options:</h3>
             <form class="itemOptions"></form>

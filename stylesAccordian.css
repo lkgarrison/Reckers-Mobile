@@ -326,23 +326,25 @@
     color:red;
 }
 
+/* wrapper div for all content on checkout page */
 #wrapper {
     padding-left:8px;
     padding-top:0;
-    height:100%;
     width:100%;
-    overflow:auto;
 }
 
+/* wrapper for the add and cancel buttons below the line items and total cost on checkout page */
 #addCancelWrapper {
     clear:both;
 }
 
+/* wrapper for all payment related content on checkout page */
 #paymentWrapper {
     padding-top:15px;
     clear:both;
 }
 
+/* styling for "submit" button on checkout page */
 #submit {
     margin-top:15px;        /* more spacing from payment method selection */
     padding-left:0;
@@ -354,12 +356,14 @@
     font-family: Helvetica, Arial, sans-serif;
 }
 
-#totalWrapper {             /* necessary to keep TOTAL and total line right aligned with orderTable */
+/* necessary to keep TOTAL and total line right aligned with orderTable */
+#totalWrapper {
     display:inline-block;
     margin-right:20px;      /* gives a touch of room along the right margin */
     padding-left:5px;
 }
 
+/* styling for radio group of payment options on checkout page */
 #paymentRadioGroup {
     padding-left:10%;
     width:80%;
@@ -367,18 +371,22 @@
 
 :focus {outline:none;} ::-moz-focus-inner {border:0;}
 
+/* styling for detailed payment information fields that appears after selecting a payment method on checkout page */
 #enterPaymentDetails {
     text-align:center;
 }
 
+/* stying for header "Enter Payment Information" */
 #enterPaymentDetails h3 {
     margin-bottom:5px;
 }
 
+/* styling for pickup page */
 #pickup {
     background-image: url('img/reckersBackground.PNG') !important;
 }
 
+/* wrapper for content on pickup page */
 #pickupContent {
     height:100%;
     margin-top:30%;
@@ -386,6 +394,7 @@
     color:black;
 }
 
+/* styling for pickup code on pickup page */
 #pickupCode {
     top-padding:20px;
     font-size:80px;
@@ -394,6 +403,7 @@
     font-weight:bold;
 }
 
+/* styling for date on pickup page */
 .date {
     font-size:30px;
     color:black;
@@ -408,7 +418,8 @@
     float:right;
 }
 
-.ingredientsList {          /* for order page's ingredient popup */
+/* list of ingredients (checkbox) in item customization popup on order and checkout pages */
+.ingredientsList {
     float:left;
     clear:both;
     padding-left:30px;
@@ -416,14 +427,7 @@
     margin-bottom:0;
 }
 
-.ingredientsListCheckout { /* for checkout page's popup */
-    float:left;
-    clear:both;
-    padding-left:30px;
-    margin-top:0;
-    margin-bottom:0;
-}
-
+/* styling for item options radio group in item customization popup on order and checkout pages */
 .itemOptions {
     margin-top:20px;
     margin-left:20px;
@@ -431,11 +435,13 @@
     clear:both;
 }
 
+/* styling for all JQuery mobile radio buttons */
 .ui-radio {
     margin-top:0;
     margin-bottom:0;
 }
 
+/* styling for "Options" header in item customization popup on order and checkout pages */
 .customizeItemOptionsHeader {
     margin-left:12px;
     margin-top:12px;
