@@ -26,26 +26,32 @@ var loadMenu = function() {
 
     Parse.initialize("CZtjkZAV9gQzln2C3KKi7vsXRl4ppAMenjXiPGrx", "LVzkRhUfya9rMXDxGlda88o9d8XkPvd19YJdgWC6");
 
-    var counter = 0; // used to check if on last object
     var query = new Parse.Query("Menu");
 
-    query.find({
-        success: function (results) {
-            // Store all data stored on Parse
-            for (var i = 0; i < results.length; i++) {
-                var object = results[i];
-                menu.push({
-                    item: object.get("item"), type: object.get("type"),
-                    price: object.get("price"), qty: 0, description: object.get("description"),
-                    ingredients: object.get("ingredients"),
-                    prices: object.get("prices")
-                });
-                if (++counter == results.length) displayMenu();     // this forces displayMenu to wait on the query to load
-            }
-        },
-        error: function (error) {
-            console.log("Error: " + error.code + " " + error.message);
-        }
+    query.find().then(function(results) {
+        // Add one promise for each item into an array (menu)
+        _.each(results, function(result) {
+            // Start adding the result to the menu immediately
+            menu.push({
+                item: result.get("item"),
+                type: result.get("type"),
+                price: result.get("price"),
+                qty: 0,
+                description: result.get("description"),
+                ingredients: result.get("ingredients"),
+                prices: result.get("prices")
+            });
+        });
+        // Return a new promise that is resolved when all items are retrieved and added to the menu array.
+        return Parse.Promise.when(menu);
+
+    }, function(error) {
+        console.log("Failed to initialize Menu from Parse");
+        console.log(error);
+
+    }).then(function() {
+        // when menu is entirely downloaded
+        displayMenu();
     });
 }
 
