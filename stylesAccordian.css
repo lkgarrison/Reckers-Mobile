@@ -1,79 +1,79 @@
 #menu {
-    position:absolute;
-    left:0%;
-    top:0px;
+    position: absolute;
+    left: 0%;
+    top: 0px;
 }
 
 #reckers_header, .reckersLogoRight {
-    height:92%;
-    width:auto;
-    top:3%;
+    height: 92%;
+    width: auto;
+    top: 3%;
 }
 
 #cart_logo {
-    height:30px;
-    width:auto;
+    height: 30px;
+    width: auto;
 }
 
 #items_in_cart {
-    color:red;
-    font-size:14pt;
-    padding-right:8px;
-    margin-top:0;
+    color: red;
+    font-size: 14pt;
+    padding-right: 8px;
+    margin-top: 0;
 }
 
 /* styling for all fixed persistant footers on each page */
 .fixedFooter {
-    position:fixed;
-    height:65px;
-    z-index:999999;
-    line-height:65px;
+    position: fixed;
+    height: 65px;
+    z-index: 999999;
+    line-height: 65px;
     display: inline-block;
 }
 
 /* for order icon in footer */
 .footerOrder {
-    height:55px;
-    width:auto;
-    text-align:left;
-    padding-top:5px;
+    height: 55px;
+    width: auto;
+    text-align: left;
+    padding-top: 5px;
 }
 
 /* for checkout icon in footer */
 .footerCheckout {
-    height:55px;
-    width:auto;
-    text-align:center;
-    padding-top:5px;
+    height: 55px;
+    width: auto;
+    text-align: center;
+    padding-top: 5px;
 }
 
 /* for pickup icon in footer */
 .footerPickup {
-    height:55px;
-    width:auto;
-    text-align:right;
-    padding-top:5px;
-    padding-left:8px;
+    height: 55px;
+    width: auto;
+    text-align: right;
+    padding-top: 5px;
+    padding-left: 8px;
 }
 
 /* quantity next to line item */
 .quantity {
-    font-weight:bold;
-    padding-right:14px;
+    font-weight: bold;
+    padding-right: 14px;
     vertical-align: top;
 }
 
 /* for item name in checkout screen */
 .itemName {
-    padding-right:14px;
-    vertical-align:top;
+    padding-right: 14px;
+    vertical-align: top;
 }
 
 /* for price/item on checkout page */
 .price {
-    vertical-align:top;
-    text-align:left;
-    padding-left:0;
+    vertical-align: top;
+    text-align: left;
+    padding-left: 0;
 }
 
 /* backgrounds for menu headers on order page */
@@ -107,158 +107,158 @@
 
 /* default styling for menu headers on order page */
 .menuHeader h3 a {
-    font-size:20px;
-    color:white !important;
+    font-size: 20px;
+    color: white !important;
     font-family: Helvetica, Arial, sans-serif;
-    font-weight:500;
-    background-repeat:round;
+    font-weight: 500;
+    background-repeat: round;
 }
 
 /* menu item title inside each menu seaction. ie "chicken alfredo pizza" */
 .ui-collapsible {
-    font-size:19px;
+    font-size: 19px;
 }
 
 /* inside expanded accordion */
 .ui-collapsible-inset.ui-collapsible-themed-content .ui-collapsible-content {
-    padding-left:10px;
-    padding-right:10px;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 /* "order summary" title on checkout page */
 .orderTitle {
     font-family: Verdana, Tahoma, Century Gothic, Arial, sans-serif;
-	color: black;
-    font-weight:500;
-    font-size:35px;
-    padding-left:6px;
-    padding-top:0px;
-    padding-bottom:0px;
-    margin:0px;
+    color: black;
+    font-weight: 500;
+    font-size: 35px;
+    padding-left: 6px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    margin: 0px;
 }
 
 /* contains orderTitle, line items with ingredients, and total cost */
 #orderContainer {
-    border:none;
-    height:100%;
-    font-size:18px;
+    border: none;
+    height: 100%;
+    font-size: 18px;
     font-family: Verdana, Tahoma, Century Gothic, Arial, sans-serif;
-    font-weight:500;
-    padding-top:0px;
-    padding-left:0px;
-    overflow:auto;      /* enables scrolling */
-    padding-bottom:0;
-    margin-bottom:0;
+    font-weight: 500;
+    padding-top: 0px;
+    padding-left: 0px;
+    overflow: auto;      /* enables scrolling */
+    padding-bottom: 0;
+    margin-bottom: 0;
 }
 
 /* horizontal line above the total cost on the checkout page */
 #totalLine {
-    margin-top:0;
-    padding-top:0;
-    text-align:right;
+    margin-top: 0;
+    padding-top: 0;
+    text-align: right;
 }
 
 /* total cost styling */
 #total {
-    font-size:26px;
+    font-size: 26px;
     font-family: Helvetica, Arial, sans-serif;
-    position:relative;
-    text-align:right;
+    position: relative;
+    text-align: right;
 }
 
 /* item description */
 .description {
-    font-size:13px;
+    font-size: 13px;
 }
 
 /* remove button wrapper for each item's remove button. must have wrapper to format remove button correctly */
 .rmButtonWrapper {
     vertical-align: top;
-    padding-top:0;
-    margin-top:0;
-    height:100%;
+    padding-top: 0;
+    margin-top: 0;
+    height: 100%;
 }
 
 /* remove button for each item on checkout page */
 .removeButton {
-    background:none;
-    border:none;
-    background-image:url('img/removeButton1.5.png');
-    background-repeat:no-repeat;
-    left:0%;
-    padding-right:15px;
-    align:left;
+    background: none;
+    border: none;
+    background-image: url('img/removeButton1.5.png');
+    background-repeat: no-repeat;
+    left: 0%;
+    padding-right: 15px;
+    align: left;
 
 }
 
 /* add button next to each item on the menu on the order page */
 .addButton {
-    background:none;
-    border:none;
-    background-image:url('img/addButton.png');
-    background-repeat:no-repeat;
-    type:submit;
-    position:relative;
-    left:0%;
-    padding-right:15px;
+    background: none;
+    border: none;
+    background-image: url('img/addButton.png');
+    background-repeat: no-repeat;
+    type: submit;
+    position: relative;
+    left: 0%;
+    padding-right: 15px;
 }
 
 /* div for add and cancel buttons beneath the order table on checkout page */
 #options {
     font-family: Verdana, Tahoma, Century Gothic, Arial, sans-serif;
-    color:dimgray;
-    padding-top:10px;
-    text-align:center;
+    color: dimgray;
+    padding-top: 10px;
+    text-align: center;
 }
 
 /* add items button below order table on checkout page */
 #addItems {
-    padding-left:0;
-    padding-right:0;
-    margin-left:20%;           /* centered */
-    width:60%;
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: 20%;           /* centered */
+    width: 60%;
     background-image: url('img/header_piadina.png') !important;
-    color:white;
+    color: white;
     font-family: Helvetica, Arial, sans-serif;
 }
 
 /* cancel order button below order table on checkout page */
 #cancelOrder {
-    padding-left:0;
-    padding-right:0;
-    margin-left:20%;           /* centered */
-    width:60%;
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: 20%;           /* centered */
+    width: 60%;
     background-image: url('img/header_pizza.png') !important;
-    color:white;
+    color: white;
     font-family: Helvetica, Arial, sans-serif;
 }
 
 .centered {
-    text-align:center;      /* centers the buttons */
+    text-align: center;      /* centers the buttons */
 }
 
 /* styling for popup on order and checkout page */
 .customizeItemOrder, .customizeItemCheckout {
-    text-align:center;
-    padding:0;
-    margin-left:0;
-    margin-right:0;
-    left:0;
-    bottom:65px;        /* must match footer height! */
-    position:fixed;
-    overflow:hidden;
+    text-align: center;
+    padding: 0;
+    margin-left: 0;
+    margin-right: 0;
+    left: 0;
+    bottom: 65px;        /* must match footer height! */
+    position: fixed;
+    overflow: hidden;
 }
 
 /* wrapper for content of ingredients popup on order and checkout pages */
 .customizeItemPopupWrapper {
-    padding-left:0px;
-    padding-right:0px;
-    clear:both;
+    padding-left: 0px;
+    padding-right: 0px;
+    clear: both;
 }
 
 /* wrapper for buttons at the bottom of the ingredients popup */
 .popupButtonWrapper {
-    clear:both;
+    clear: both;
     bottom: 0;
     width: 100%;            /* for center alignment */
     text-align: center;
@@ -268,117 +268,117 @@
 
 /* make checkboxes touch vertically */
 .ui-checkbox {
-    margin-top:0;
-    margin-bottom:0;
+    margin-top: 0;
+    margin-bottom: 0;
 }
 
 /* styling for item name and price at the top of the ingredients popup */
 .popupTop {
-    font-weight:bold;
+    font-weight: bold;
     font-family: Verdana, Helvetica, Arial, Tahoma, Century Gothic, sans-serif;
-    font-size:20px;
+    font-size: 20px;
 }
 
 /* styling for item name at the top of the ingredients popup */
 .customizeItemName {
-    width:100%;
-    text-align:center;
+    width: 100%;
+    text-align: center;
     padding-top: 7px;   /* provides padding against top of popup */
 }
 
 /* styling for item's price at the top of the ingredients popup */
 .customizeItemPrice {
-    clear:both;
-    width:100%;
-    text-align:center;
+    clear: both;
+    width: 100%;
+    text-align: center;
 }
 
 /* styling in the ingredients popup for the colored line that separates the name and price of the item from the ingredients list */
 .customizeItemColoredLine {
-    clear:both;
-    width:100%;
-    height:7px;
-    margin-left:0;
-    margin-right:0;
-    margin-top:6px;
+    clear: both;
+    width: 100%;
+    height: 7px;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 6px;
 }
 
 /* styling for any type of popup message that needs to be displayed for a specific item */
 .ingredientsPopupMessage {
-    float:left;
-    clear:both;
-    margin-left:20px;
+    float: left;
+    clear: both;
+    margin-left: 20px;
     font-family: Verdana, Helvetica, Arial, Tahoma, Century Gothic, sans-serif;
-    font-size:17px;
+    font-size: 17px;
 }
 
 /* styling for "Included Ingredients" label in ingredients popup */
 .includedIngredientsLabel {
-    margin-left:12px;
-    margin-top:8px;
-    margin-bottom:8px;
+    margin-left: 12px;
+    margin-top: 8px;
+    margin-bottom: 8px;
 }
 
 /* "scroll for more" message in the customize item popup */
 .scrollForMore {
-    margin-top:13px;
-    font-size:15px;
-    color:red;
+    margin-top: 13px;
+    font-size: 15px;
+    color: red;
 }
 
 /* wrapper div for all content on checkout page */
 #wrapper {
-    padding-left:8px;
-    padding-top:0;
-    width:100%;
+    padding-left: 8px;
+    padding-top: 0;
+    width: 100%;
 }
 
 /* wrapper for the add and cancel buttons below the line items and total cost on checkout page */
 #addCancelWrapper {
-    clear:both;
+    clear: both;
 }
 
 /* wrapper for all payment related content on checkout page */
 #paymentWrapper {
-    padding-top:15px;
-    clear:both;
+    padding-top: 15px;
+    clear: both;
 }
 
 /* styling for "submit" button on checkout page */
 #submit {
-    margin-top:15px;        /* more spacing from payment method selection */
-    padding-left:0;
-    padding-right:0;
-    margin-left:20%;
-    width:60%;
+    margin-top: 15px;        /* more spacing from payment method selection */
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: 20%;
+    width: 60%;
     background-image: url('img/header_salads.png') !important;
-    color:white;
+    color: white;
     font-family: Helvetica, Arial, sans-serif;
 }
 
 /* necessary to keep TOTAL and total line right aligned with orderTable */
 #totalWrapper {
-    display:inline-block;
-    margin-right:20px;      /* gives a touch of room along the right margin */
-    padding-left:5px;
+    display: inline-block;
+    margin-right: 20px;      /* gives a touch of room along the right margin */
+    padding-left: 5px;
 }
 
 /* styling for radio group of payment options on checkout page */
 #paymentRadioGroup {
-    padding-left:10%;
-    width:80%;
+    padding-left: 10%;
+    width: 80%;
 }
 
-:focus {outline:none;} ::-moz-focus-inner {border:0;}
+: focus {outline: none;} : :-moz-focus-inner {border: 0;}
 
 /* styling for detailed payment information fields that appears after selecting a payment method on checkout page */
 #enterPaymentDetails {
-    text-align:center;
+    text-align: center;
 }
 
 /* stying for header "Enter Payment Information" */
 #enterPaymentDetails h3 {
-    margin-bottom:5px;
+    margin-bottom: 5px;
 }
 
 /* styling for pickup page */
@@ -388,64 +388,64 @@
 
 /* wrapper for content on pickup page */
 #pickupContent {
-    height:100%;
-    margin-top:30%;
-    text-align:center;
-    color:black;
+    height: 100%;
+    margin-top: 30%;
+    text-align: center;
+    color: black;
 }
 
 /* styling for pickup code on pickup page */
 #pickupCode {
-    top-padding:20px;
-    font-size:80px;
+    top-padding: 20px;
+    font-size: 80px;
     font-family: Tahoma, Arial, Century Gothic, Verdana, sans-serif;
-    text-align:center;
-    font-weight:bold;
+    text-align: center;
+    font-weight: bold;
 }
 
 /* styling for date on pickup page */
 .date {
-    font-size:30px;
-    color:black;
-    font-weight:bold;
+    font-size: 30px;
+    color: black;
+    font-weight: bold;
 }
 
 .floatLeft {
-    float:left;
+    float: left;
 }
 
 .floatRight {
-    float:right;
+    float: right;
 }
 
 /* list of ingredients (checkbox) in item customization popup on order and checkout pages */
 .ingredientsList {
-    float:left;
-    clear:both;
-    padding-left:30px;
-    margin-top:0;
-    margin-bottom:0;
+    float: left;
+    clear: both;
+    padding-left: 30px;
+    margin-top: 0;
+    margin-bottom: 0;
 }
 
 /* styling for item options radio group in item customization popup on order and checkout pages */
 .itemOptions {
-    margin-top:20px;
-    margin-left:20px;
-    max-width:60%;
-    clear:both;
+    margin-top: 20px;
+    margin-left: 20px;
+    max-width: 60%;
+    clear: both;
 }
 
 /* styling for all JQuery mobile radio buttons */
 .ui-radio {
-    margin-top:0;
-    margin-bottom:0;
+    margin-top: 0;
+    margin-bottom: 0;
 }
 
 /* styling for "Options" header in item customization popup on order and checkout pages */
 .customizeItemOptionsHeader {
-    margin-left:12px;
-    margin-top:12px;
-    margin-bottom:12px;
+    margin-left: 12px;
+    margin-top: 12px;
+    margin-bottom: 12px;
 }
 
 /* effectively sets height of checkboxes */
