@@ -369,7 +369,7 @@
     width: 80%;
 }
 
-: focus {outline: none;} : :-moz-focus-inner {border: 0;}
+:focus {outline: none;} ::-moz-focus-inner {border: 0;}
 
 /* styling for detailed payment information fields that appears after selecting a payment method on checkout page */
 #enterPaymentDetails {
