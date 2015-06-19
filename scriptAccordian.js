@@ -64,7 +64,7 @@ var displayMenu = function() {
         var button = document.createElement("td");
         var addButton = document.createElement("input");
         addButton.setAttribute("id", parseInt(i));       // assign a unique id to the button that is the item name. this id it the menu index of the item
-        addButton.setAttribute("onClick", "customizeItem(this.id)"); // set onClick property to call the add function, passing the id of the item
+        addButton.setAttribute("onClick", "customizeItemOrder(this.id)"); // set onClick property to call the add function, passing the id of the item
         addButton.setAttribute("type", "button");
         addButton.setAttribute("class", "addButton");
         addButton.setAttribute("value", "");
@@ -76,7 +76,7 @@ var displayMenu = function() {
         item.textContent = menu[i].item;
         item.setAttribute("class", "menuItem");
         item.setAttribute("id", i + "item");
-        item.setAttribute("onClick", "customizeItem(" + parseInt(item.id) + ")"); // call add method same as "+" button onclick. parseInt deletes the string part
+        item.setAttribute("onClick", "customizeItemOrder(" + parseInt(item.id) + ")"); // call add method same as "+" button onclick. parseInt deletes the string part
         tr.appendChild(item);
 
         // add price
@@ -92,7 +92,7 @@ var displayMenu = function() {
         var description = document.createElement("td");
         description.textContent = menu[i].description;
         description.setAttribute("class", "description");
-        description.setAttribute("onclick", "customizeItem(" + parseInt(item.id) + ")"); // call add method same as "+" button onclick. parseInt deletes the string part
+        description.setAttribute("onclick", "customizeItemOrder(" + parseInt(item.id) + ")"); // call add method same as "+" button onclick. parseInt deletes the string part
         tr.appendChild(description);
 
         chooseSection(tr, i);
@@ -140,7 +140,7 @@ var chooseSection = function(tr, i) {
 };
 
 // opens a popup to customize the item that was clicked
-var customizeItem = function(clicked_id) {
+var customizeItemOrder = function(clicked_id) {
     var popupClassName = "customizeItemOrder"; // use this variable to change only the checkout page's item popup
 
     $(".addToCartButton").attr("onclick", "add(" + clicked_id + ")");   // set pop-up's "Add" button to send clicked_id to add function
@@ -160,8 +160,6 @@ var customizeItem = function(clicked_id) {
     if (menu[clicked_id].ingredients != null) {
         if (menu[clicked_id].ingredients != "") {
             ingredientsList = menu[clicked_id].ingredients.split(",");
-            //var newSet = '<fieldset data-role="controlgroup" class="cbGroup' + '"></fieldset>';
-            //$('.ingredientsList').append(newSet);
 
             for (i = 0; i < ingredientsList.length; i++) {
                 // label element must have a class and ID in order to grab all checkbox labels later and get their text content
@@ -175,30 +173,35 @@ var customizeItem = function(clicked_id) {
 
     // generate radio buttons to select options
     if (menu[clicked_id].prices != null) {
+        $(".includedIngredientsLabel").css("display", "none");      // hide "ingredients" label
         $(".itemOptions").css("display", "inherit");
         $(".customizeItemOptionsHeader").css("display", "inherit");
         var itemOptions = menu[clicked_id].prices;
         var radioGroup = '<fieldset data-role="controlgroup" id="itemOptionsRadioGroup"></fieldset>';
         $(".itemOptions").append(radioGroup);
+
         for (option in itemOptions) {
+            // create each radio option, which contains an input and a label
             if (itemOptions.hasOwnProperty(option)) {
-                var radioOption = '<input type="radio" name="radio-itemOption" id="radioItemOption-' + option + '" value="off">' +
+                var radioOption =
+                    '<input type="radio" name="radio-itemOption" id="radioItemOption-' + option + '" value="off">' +
                     '<label for="radioItemOption-' + option + '" class="itemOptionRadios" id="itemOptionRadios-' + option + '">'
-                    + option + ": $" + itemOptions[option] + '</label>';
+                        + option + ": $" + itemOptions[option] + '</label>';
+                // append radio option to radio group
                 $("#itemOptionsRadioGroup").append(radioOption).trigger('create');
+
+                // set onclick property to update popup's displayed price on option switch
                 var newPrice = itemOptions[option];
                 qq("radioItemOption-" + option).setAttribute("onclick", "setPopupPrice(" + newPrice + ")"); // set property to adjust price displayed at the top of the popup upon radio selection
             }
         }
-        $(".includedIngredientsLabel").css("display", "none");      // hide "ingredients" label
-
     }
-    customizeItem2(clicked_id, popupClassName);     // completes popup setup
+    customizeItemPart2(clicked_id, popupClassName);     // completes popup setup
 }
 
 // opens a popup to re-customize the item that is already in the cart
-// This is for the Checkout page popup!
-var customizeCartItem = function(cartID) {
+// This is for the Checkout page popup
+var customizeItemCheckout = function(cartID) {
     var popupClassName = "customizeItemCheckout";   // use this variable to change only the checkout page's item popup
 
     //$(".addToCartButton").attr("onclick", "add(" + cartID + ")");   // set pop-up's "Add" button to send cartID to add function
@@ -236,37 +239,37 @@ var customizeCartItem = function(cartID) {
                     $(".ingredientCB-" + i).prop('checked', true).checkboxradio('refresh');
                 }
 
-                //$(".ingredientsListCheckout").controlgroup("container").append(newBox);
-                //$(".ingredientsListCheckout").enhanceWithin().controlgroup("refresh");
             }
         }
     }
-    console.log(cart[cartID]);
-    // generate radio buttons to select options
+
+    // generate radio buttons to select from listed options for item
     if (cart[cartID].options != null) {
+        $(".includedIngredientsLabel").css("display", "none");      // hide "ingredients" label
         $(".itemOptionsCheckout").css("display", "inherit");
         $(".customizeItemOptionsHeader").css("display", "inherit");
         var itemOptions = cart[cartID].options;
-        var radioGroup = '<fieldset data-role="controlgroup" id="itemOptionsRadioGroupCheckout"></fieldset>';
-        $(".itemOptionsCheckout").append(radioGroup);
+
         for (option in itemOptions) {
-            console.log("option: " + option);
             if (itemOptions.hasOwnProperty(option)) {
+                // create each radio option, which contains an input and a label
                 var radioOption =
                     '<input type="radio" name="radio-itemOption" id="radioItemOptionCheckout-' + option + '" value="off">' +
                     '<label for="radioItemOptionCheckout-' + option + '" class="itemOptionRadios" id="itemOptionRadios-' + option + '">'
                         + option + ": $" + itemOptions[option] + '</label>';
-                $("#itemOptionsRadioGroupCheckout").append(radioOption).trigger('create');
+                // append radio option to radio group
+                $(".itemOptionsCheckout").append(radioOption).trigger('create');
+
                 // select/activate the option the user selected
                 if(cart[cartID].option === option) {
                     $("#radioItemOptionCheckout-" + option).prop("checked", true).checkboxradio("refresh");
-                    console.log("HERE");
                 }
+
+                // set onclick property to update popup's displayed price on option switch
                 var newPrice = itemOptions[option];
                 qq("radioItemOptionCheckout-" + option).setAttribute("onclick", "setPopupPrice(" + newPrice + ")"); // set property to adjust price displayed at the top of the popup upon radio selection
             }
         }
-        $(".includedIngredientsLabel").css("display", "none");      // hide "ingredients" label
     }
 
     // add an onclick event to remove 1 of the item when the "Remove" button is clicked. Also closes the popup
@@ -275,11 +278,11 @@ var customizeCartItem = function(cartID) {
         "$('." + popupClassName + "').popup('close')"
     );
 
-    customizeItem2(cart[cartID].menuID, popupClassName);     // completes popup setup, convert to
+    customizeItemPart2(cart[cartID].menuID, popupClassName);     // completes popup setup, convert to
 }
 
-// this portion of the ingredients popup will be the same whether on the order or checkout page
-var customizeItem2 = function(clicked_id, popupClassName) {
+// this portion of the ingredients popup will be the same whether on the order or checkout page's popup
+var customizeItemPart2 = function(clicked_id, popupClassName) {
     var getHeaderImage = function(item) {
         switch (item.type) {
             case "pizza":
@@ -468,14 +471,12 @@ var add = function(clicked_id) {
 
         // every time an item is added, give it a remove button
         var button = document.createElement("td");
-       // var removeButton = document.createElement("input");
         button.setAttribute("id", "rm" + parseInt(cartIndex));       // assign a unique id to the button that is the item name. this id it the menu index of the item
         button.setAttribute("onClick", "remove1(" + cartIndex + ")"); // set onClick property to call the remove function, passing the id of the item
         button.setAttribute("type", "button");
         button.setAttribute("class", "removeButton");
         button.setAttribute("value", "");
         button.setAttribute("data-role", "none");
-   //     button.appendChild(removeButton);
         wrapper.appendChild(button);
         tr.appendChild(button);
 
@@ -490,7 +491,7 @@ var add = function(clicked_id) {
         var item = document.createElement("td");
         item.textContent = cart[cartIndex].item;
         item.setAttribute("class", "itemName checkoutPage");
-        item.setAttribute("onclick", "customizeCartItem(" + parseInt(cartIndex) + ")"); // call add method same as "+" button onclick. parseInt deletes the string part
+        item.setAttribute("onclick", "customizeItemCheckout(" + parseInt(cartIndex) + ")"); // call add method same as "+" button onclick. parseInt deletes the string part
         tr.appendChild(item);
 
         // add price
@@ -519,6 +520,7 @@ var add = function(clicked_id) {
         }
         ingredientsCell.textContent = ingredientsList;
         ingredientsCell.setAttribute("class", "description");   // the same as the description in the accordian on the order page
+        ingredientsCell.setAttribute("onclick", "customizeItemCheckout(" + parseInt(cartIndex) + ")"); // call add method same as "+" button onclick. parseInt deletes the string part
         tr.appendChild(ingredientsCell);
 
         qq("orderTable").appendChild(tr);

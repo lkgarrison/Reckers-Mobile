@@ -78,8 +78,9 @@
                 <div class="ingredientsList" style="overflow-y:auto"></div>
             </form>
             <h3 class="customizeItemOptionsHeader floatLeft">Options:</h3>
-            <form class="itemOptions"></form>
-
+            <form class="itemOptions">
+                <fieldset data-role="controlgroup" id="itemOptionsRadioGroup"></fieldset>
+            </form>
             <span class="ingredientsPopupMessage"></span>
 
         <div class="popupButtonWrapper">
@@ -135,10 +136,7 @@
                 <div class="ingredientsListCheckout ingredientsList" data-role="controlgroup" style="overflow-y:auto"></div>
             </form>
             <h3 class="customizeItemOptionsHeader floatLeft">Options:</h3>
-            <form class="itemOptionsCheckout itemOptions">
-
-            </form>
-
+            <form class="itemOptionsCheckout itemOptions" data-role="controlgroup"></form>
             <span class="ingredientsPopupMessage"></span>
 
             <!-- Needs a separate name or else cannot grab height correctly, but pulls from CSS in popupButtonWrapper class -->
