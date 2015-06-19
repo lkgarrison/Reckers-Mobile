@@ -427,6 +427,14 @@
     margin-bottom: 0;
 }
 
+.ingredientsListCheckout {
+    float:left;
+    clear:both;
+    padding-left:30px;
+    margin-top:0;
+    margin-bottom:0;
+}
+
 /* styling for item options radio group in item customization popup on order and checkout pages */
 .itemOptions {
     margin-top: 20px;
