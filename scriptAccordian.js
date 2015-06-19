@@ -172,6 +172,7 @@ var customizeItem = function(clicked_id) {
             }
         }
     }
+
     // generate radio buttons to select options
     if (menu[clicked_id].prices != null) {
         $(".itemOptions").css("display", "inherit");
@@ -209,8 +210,8 @@ var customizeCartItem = function(cartID) {
     $(".ingredientsListCheckout").css("min-width", .4 * $(window).width());     // set min-width of checkboxes
     $(".ingredientsPopupMessage").text("");     // make sure no message is being displayed
     $(".ingredientsList").html("");             // remove previous item's checkboxes, start over fresh
-    $(".itemOptions").html("");                 // remove previous item's possible radio group
-    $(".itemOptions").css("display", "none");   // default, unless there are options
+    $(".itemOptionsCheckout").html("");                 // remove previous item's possible radio group
+    $(".itemOptionsCheckout").css("display", "none");   // default, unless there are options
 
     // store an array with all ingredients
     // generate checkboxes of ingredients list - only check the boxes for those that are already checked
@@ -240,28 +241,39 @@ var customizeCartItem = function(cartID) {
             }
         }
     }
+    console.log(cart[cartID]);
     // generate radio buttons to select options
-    if (cart[cartID].prices != null) {
-        $(".itemOptions").css("display", "inherit");
+    if (cart[cartID].options != null) {
+        $(".itemOptionsCheckout").css("display", "inherit");
         $(".customizeItemOptionsHeader").css("display", "inherit");
-        var itemOptions = cart[cartID].prices;
-        var radioGroup = '<fieldset data-role="controlgroup" id="itemOptionsRadioGroup"></fieldset>';
-        $(".itemOptions").append(radioGroup);
+        var itemOptions = cart[cartID].options;
+        var radioGroup = '<fieldset data-role="controlgroup" id="itemOptionsRadioGroupCheckout"></fieldset>';
+        $(".itemOptionsCheckout").append(radioGroup);
         for (option in itemOptions) {
+            console.log("option: " + option);
             if (itemOptions.hasOwnProperty(option)) {
-                var radioOption = '<input type="radio" name="radio-itemOption" id="radioItemOption-' + option + '" value="off">' +
-                    '<label for="radioItemOption-' + option + '" class="itemOptionRadios" id="itemOptionRadios-' + option + '">'
-                    + option + ": $" + itemOptions[option] + '</label>';
-                $("#itemOptionsRadioGroup").append(radioOption).trigger('create');
+                var radioOption =
+                    '<input type="radio" name="radio-itemOption" id="radioItemOptionCheckout-' + option + '" value="off">' +
+                    '<label for="radioItemOptionCheckout-' + option + '" class="itemOptionRadios" id="itemOptionRadios-' + option + '">'
+                        + option + ": $" + itemOptions[option] + '</label>';
+                $("#itemOptionsRadioGroupCheckout").append(radioOption).trigger('create');
+                // select/activate the option the user selected
+                if(cart[cartID].option === option) {
+                    $("#radioItemOptionCheckout-" + option).prop("checked", true).checkboxradio("refresh");
+                    console.log("HERE");
+                }
                 var newPrice = itemOptions[option];
-                qq("radioItemOption-" + option).setAttribute("onclick", "setPopupPrice(" + newPrice + ")"); // set property to adjust price displayed at the top of the popup upon radio selection
+                qq("radioItemOptionCheckout-" + option).setAttribute("onclick", "setPopupPrice(" + newPrice + ")"); // set property to adjust price displayed at the top of the popup upon radio selection
             }
         }
         $(".includedIngredientsLabel").css("display", "none");      // hide "ingredients" label
     }
 
-    // add an onclick event to remove 1 of the i    tem when the "Remove" button is clicked. Also closes the popup
-    $(".removeFromCart").attr("onclick", "remove1(" + cartID + "); $('." + popupClassName + "').popup('close')"); // set onClick property to call the remove function, passing the id of the item
+    // add an onclick event to remove 1 of the item when the "Remove" button is clicked. Also closes the popup
+    $(".removeFromCart").attr("onclick",                // set onClick property to call the remove function, passing the id of the item
+        "remove1(" + cartID + "); " +
+        "$('." + popupClassName + "').popup('close')"
+    );
 
     customizeItem2(cart[cartID].menuID, popupClassName);     // completes popup setup, convert to
 }
@@ -365,7 +377,7 @@ var customizeItem2 = function(clicked_id, popupClassName) {
     $("." + popupClassName).css("visibility", "visible");   // make popup visible now that all properties are correctly set
 }
 
-// function to change the price displayed in the add item /  ingredients popup
+// function to change the price displayed in the add item / ingredients popup
 var setPopupPrice = function(newPrice) {
     newPrice = "$" + newPrice;
     $(".customizeItemPrice").text(newPrice);
@@ -396,7 +408,7 @@ var add = function(clicked_id) {
     cart[cartCounter]["price"] = menu[clicked_id].price;
     cart[cartCounter]["qty"] = 1;
     cart[cartCounter]["ingredients"] = [];    // store an array of all ingredients
-    cart[cartCounter]["options"] = null;
+    cart[cartCounter]["options"] = menu[clicked_id].prices;
     cart[cartCounter]["menuID"] = clicked_id;
 
     // add all selected ingredients from pop-up
