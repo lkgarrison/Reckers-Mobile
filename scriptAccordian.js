@@ -209,7 +209,7 @@ var customizeItemCheckout = function(cartID) {
     $(".ingredientsListCheckout").css("min-width", 0.4 * $(window).width());     // set min-width of checkboxes
     $(".ingredientsPopupMessage").text("");     // make sure no message is being displayed
     $(".ingredientsList").html("");             // remove previous item's checkboxes, start over fresh
-    $(".itemOptionsCheckout").html("");                 // remove previous item's possible radio group
+    $(".itemOptions").html("");                 // remove previous item's possible radio group
     $(".itemOptionsCheckout").css("display", "none");   // default, unless there are options
 
     // generate checkboxes of ingredients list - only check the boxes for those that were already checked by user. Others should be unchecked
