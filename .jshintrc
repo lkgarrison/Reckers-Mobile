@@ -1,0 +1,12 @@
+{
+    "camelcase": true,
+    "lastsemic": false,
+    "loopfunc": false,
+    "latedef": false,
+    "unused": false,
+    "globals": {
+        "angular": false,
+        "_": false,
+        "moment": false
+    }
+}
