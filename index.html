@@ -21,277 +21,278 @@
 <div data-role="page" id = "menu">
 
   <div data-role="header" data-transition="none" data-position="fixed" data-tap-toggle="false" data-id="mainHeader" data-theme="a" style="position: fixed !important;">
-    <img src="img/reckers_header.png" class="ui-btn-left" id="reckers_header">
-    <h1 class="ui-btn-center">Menu</h1>
-    <img src="img/cartEmpty.png" class="ui-btn-right" data-role="none" id="cart_logo" onclick="checkQuantity()" rel="external">
-    <label id="items_in_cart" class="ui-btn-right" data-role="none" onclick="checkQuantity()" rel="external"></label>
+	<img src="img/reckers_header.png" class="ui-btn-left" id="reckers_header">
+	<h1 class="ui-btn-center">Menu</h1>
+	<img src="img/cartEmpty.png" class="ui-btn-right" data-role="none" id="cart_logo" onclick="checkQuantity()" rel="external">
+	<label id="items_in_cart" class="ui-btn-right" data-role="none" onclick="checkQuantity()" rel="external"></label>
   </div>
 
   <div data-role="collapsible-set" id="accordion" data-tap-toggle="false">
-      <div data-role="collapsible" id="header_pizzas" class="menuHeader">
-      <h3>Pizzas</h3 >
-      <div id = "pizzas"></div>
-    </div>
+	  <div data-role="collapsible" id="header_pizzas" class="menuHeader">
+	  <h3>Pizzas</h3 >
+	  <div id = "pizzas"></div>
+	</div>
 
-    <div data-role="collapsible" id="header_piadinas" class="menuHeader">
-      <h3>Piadinas</h3>
-      <div id = "piadinas"></div>
-    </div>
+	<div data-role="collapsible" id="header_piadinas" class="menuHeader">
+	  <h3>Piadinas</h3>
+	  <div id = "piadinas"></div>
+	</div>
 
-    <div data-role="collapsible" id="header_americanFare" class="menuHeader">
-      <h3>American Fare</h3>
-      <div id = "americanFare"></div>
-    </div>
+	<div data-role="collapsible" id="header_americanFare" class="menuHeader">
+	  <h3>American Fare</h3>
+	  <div id = "americanFare"></div>
+	</div>
 
-    <div data-role="collapsible" id="header_salads" class="menuHeader">
-      <h3>Salads</h3>
-      <div id = "salads"></div>
-    </div>
+	<div data-role="collapsible" id="header_salads" class="menuHeader">
+	  <h3>Salads</h3>
+	  <div id = "salads"></div>
+	</div>
 
-    <div data-role="collapsible" id="header_breakfast" class="menuHeader">
-      <h3>Breakfast</h3>
-      <div id = "breakfast"></div>
-    </div>
+	<div data-role="collapsible" id="header_breakfast" class="menuHeader">
+	  <h3>Breakfast</h3>
+	  <div id = "breakfast"></div>
+	</div>
 
-    <div data-role="collapsible" id="header_sides" class="menuHeader">
-      <h3>Sides</h3>
-      <div id = "sides"></div>
-    </div>
+	<div data-role="collapsible" id="header_sides" class="menuHeader">
+	  <h3>Sides</h3>
+	  <div id = "sides"></div>
+	</div>
 
-    <div data-role="collapsible" id="header_smoothies" class="menuHeader">
-      <h3>Smoothies</h3>
-      <div id = "smoothies"></div>
-    </div>
+	<div data-role="collapsible" id="header_smoothies" class="menuHeader">
+	  <h3>Smoothies</h3>
+	  <div id = "smoothies"></div>
+	</div>
   </div>
 
 
   <div data-role="popup" class="customizeItemOrder" data-theme="a" class="ui-content" data-overlay-theme="b">
-        <!--<h3 class="ui-title">Customize Item</h3> -->
-      <div class="customizeItemPopupWrapper">
+		<!--<h3 class="ui-title">Customize Item</h3> -->
+	  <div class="customizeItemPopupWrapper">
 
-            <div class="customizeItemName popupTop"></div>
-            <div class="customizeItemPrice popupTop"></div>
-            <div class="customizeItemColoredLine"></div>
-            <h3 class="includedIngredientsLabel floatLeft">Included Ingredients:</h3>
-            <div class="scrollForMore">Scroll For More</div>    <!-- Used to indicate scroll to see more ingredients in pop-up -->
-            <form>
-                <div class="ingredientsList" style="overflow-y:auto"></div>
-            </form>
-            <h3 class="customizeItemOptionsHeader floatLeft">Options:</h3>
-            <form class="itemOptions">
-                <fieldset data-role="controlgroup" id="itemOptionsRadioGroup"></fieldset>
-            </form>
-            <span class="ingredientsPopupMessage"></span>
+			<div class="customizeItemName popupTop"></div>
+			<div class="customizeItemPrice popupTop"></div>
+			<div class="customizeItemColoredLine"></div>
+			<h3 class="includedIngredientsLabel floatLeft">Included Ingredients:</h3>
+			<div class="scrollForMore">Scroll For More</div>    <!-- Used to indicate scroll to see more ingredients in pop-up -->
+			<form>
+				<div class="ingredientsList" style="overflow-y:auto"></div>
+			</form>
 
-        <div class="popupButtonWrapper">
-            <a href="#" class="addToCartButton" data-role="button" data-theme="a" data-inline="true" data-rel="back" data-theme="c" data-type="horizontal">
-                Add
-            </a>
-            <a href="#" data-role="button" data-theme="a" data-inline="true" data-rel="back" data-theme="c" data-type="horizontal">
-                Cancel
-            </a>
-        </div>
-    </div>
+			<h3 class="customizeItemOptionsLabel floatLeft">Options:</h3>
+			<div class="itemOptionsMessage">Please Select An Option</div>
+			<form class="itemOptions">
+				<fieldset data-role="controlgroup" id="itemOptionsRadioGroup"></fieldset>
+			</form>
+
+		<div class="popupButtonWrapper">
+			<a href="#" class="addToCartButton" data-role="button" data-theme="a" data-inline="true" data-theme="c" data-type="horizontal">
+				Add
+			</a>
+			<a href="#" data-role="button" data-theme="a" data-inline="true" data-rel="back" data-theme="c" data-type="horizontal">
+				Cancel
+			</a>
+		</div>
+	</div>
   </div>
 
 
   <div data-role="popup" id="emptyCartMessage" data-theme="a" class="centered ui-corner-bottom ui-content" data-overlay-theme="b">
-    <h3 class="ui-title">Checkout Unavailable</h3>
-    <p>Add items to your cart first!</p>
-    <a href="#" data-role="button" data-theme="a" data-inline="true" data-rel="back" data-theme="c" data-type="horizontal">
-      Okay
-    </a>
+	<h3 class="ui-title">Checkout Unavailable</h3>
+	<p>Add items to your cart first!</p>
+	<a href="#" data-role="button" data-theme="a" data-inline="true" data-rel="back" data-theme="c" data-type="horizontal">
+	  Okay
+	</a>
   </div>
 
   <div data-role="footer" id="orderFooter" data-transition="none" data-id="mainFooter" data-theme="a" data-position="fixed" data-tap-toggle="false" class="fixedFooter" style="position: fixed !important;">
-    <div class="ui-grid-d">
-      <div class="ui-block-a" style="width:20%"><img src="img/padding.png"></div>
-      <div class="ui-block-b footerOrder" style="width:20%"><img src="img/footer_order_filled.png"></div>
-      <div class="ui-block-c footerCheckout" style="width:20%"><img src="img/footer_checkout.png" onclick="checkQuantity()" rel="external"></div>
-      <div class="ui-block-d footerPickup" style="width:20%"><img src="img/footer_pickup.png"></div>
-      <div class="ui-block-e" style="width:20%"></div>
-    </div>
+	<div class="ui-grid-d">
+	  <div class="ui-block-a" style="width:20%"><img src="img/padding.png"></div>
+	  <div class="ui-block-b footerOrder" style="width:20%"><img src="img/footer_order_filled.png"></div>
+	  <div class="ui-block-c footerCheckout" style="width:20%"><img src="img/footer_checkout.png" onclick="checkQuantity()" rel="external"></div>
+	  <div class="ui-block-d footerPickup" style="width:20%"><img src="img/footer_pickup.png"></div>
+	  <div class="ui-block-e" style="width:20%"></div>
+	</div>
   </div>
 </div>
 
 
 <div data-role="page" id="order" class = "order">
   <div data-role="header" data-id="mainHeader" data-transition="none" data-position="fixed" data-tap-toggle="false" data-theme="a" id="orderHeader" style="position: fixed !important;">
-    <a href="#" data-role="button" data-icon="arrow-l" data-rel="back" class="ui-btn-left">Back</a>
-    <h1></h1>
-    <img src="img/reckers_header.png" class="ui-btn-right reckersLogoRight" id="checkoutReckersLogo">
+	<a href="#" data-role="button" data-icon="arrow-l" data-rel="back" class="ui-btn-left">Back</a>
+	<h1></h1>
+	<img src="img/reckers_header.png" class="ui-btn-right reckersLogoRight" id="checkoutReckersLogo">
   </div>
 
    <!-- Same popup as on order page, but ingredientsList class in form element has to be unique from order page's ingredientsList
-        popupButtonWrapper class must also be distinct from order page's                                                            -->
-    <div data-role="popup" class="customizeItemCheckout" data-theme="a" class="ui-content" data-overlay-theme="b">
-        <div class="customizeItemPopupWrapper">
+		popupButtonWrapper class must also be distinct from order page's                                                            -->
+	<div data-role="popup" class="customizeItemCheckout" data-theme="a" class="ui-content" data-overlay-theme="b">
+		<div class="customizeItemPopupWrapper">
 
-            <div class="customizeItemName popupTop"></div>
-            <div class="customizeItemPrice popupTop"></div>
-            <div class="customizeItemColoredLine"></div>
-            <h3 class="includedIngredientsLabel floatLeft">Included Ingredients:</h3>
-            <div class="scrollForMore">Scroll For More</div>    <!-- Used to indicate scroll to see more ingredients in pop-up -->
-            <form>
-                <div class="ingredientsListCheckout" data-role="controlgroup" style="overflow-y:auto"></div>
-            </form>
-            <h3 class="customizeItemOptionsHeader floatLeft">Options:</h3>
-            <form class="itemOptionsCheckout itemOptions" data-role="controlgroup"></form>
-            <span class="ingredientsPopupMessage"></span>
+			<div class="customizeItemName popupTop"></div>
+			<div class="customizeItemPrice popupTop"></div>
+			<div class="customizeItemColoredLine"></div>
+			<h3 class="includedIngredientsLabel floatLeft">Included Ingredients:</h3>
+			<div class="scrollForMore">Scroll For More</div>    <!-- Used to indicate scroll to see more ingredients in pop-up -->
+			<form>
+				<div class="ingredientsListCheckout" data-role="controlgroup" style="overflow-y:auto"></div>
+			</form>
+			<h3 class="customizeItemOptionsLabel floatLeft">Options:</h3>
+			<form class="itemOptionsCheckout itemOptions" data-role="controlgroup"></form>
+			<span class="ingredientsPopupMessage"></span>
 
-            <!-- Needs a separate name or else cannot grab height correctly, but pulls from CSS in popupButtonWrapper class -->
-            <div class="popupButtonWrapperCheckout popupButtonWrapper">
-                <a href="#" class="saveItemButton" data-role="button" data-theme="a" data-inline="true" data-theme="c" rel="external" data-type="horizontal">
-                    Save
-                </a>
-                <a href="#" class="removeFromCart" data-role="button" data-theme="a" data-inline="true" data-theme="c" rel="external" data-type="horizontal">
-                    Remove
-                </a>
-                <a href="#" data-role="button" data-theme="a" data-inline="true" data-rel="back" data-theme="c" data-type="horizontal">
-                    Cancel
-                </a>
-            </div>
-        </div>
-    </div>
+			<!-- Needs a separate name or else cannot grab height correctly, but pulls from CSS in popupButtonWrapper class -->
+			<div class="popupButtonWrapperCheckout popupButtonWrapper">
+				<a href="#" class="saveItemButton" data-role="button" data-theme="a" data-inline="true" data-theme="c" rel="external" data-type="horizontal">
+					Save
+				</a>
+				<a href="#" class="removeFromCart" data-role="button" data-theme="a" data-inline="true" data-theme="c" rel="external" data-type="horizontal">
+					Remove
+				</a>
+				<a href="#" data-role="button" data-theme="a" data-inline="true" data-rel="back" data-theme="c" data-type="horizontal">
+					Cancel
+				</a>
+			</div>
+		</div>
+	</div>
 
 
   <div data-role="content" id="wrapper">
-    <div id = "orderContainer">
-      <h2 class = "orderTitle">Order Summary</h2>
-        <p id = "noOrders">Nothing has been ordered<br></p>
-        <div id="totalWrapper">
-            <table id ="orderTable">
-                <!--<tr>
-                    <th></th>
-                    <th align="left">Qty</th>
-                    <th align="left">Item</th>
-                    <th align="left">Price</th>
-                </tr>-->
-            </table>
-            <div id="totalLine"><img src="img/totalLine.png" id="totalLinePNG"></div>
-            <div id = "total" class = "right">Total: </div>
-        </div>
+	<div id = "orderContainer">
+	  <h2 class = "orderTitle">Order Summary</h2>
+		<p id = "noOrders">Nothing has been ordered<br></p>
+		<div id="totalWrapper">
+			<table id ="orderTable">
+				<!--<tr>
+					<th></th>
+					<th align="left">Qty</th>
+					<th align="left">Item</th>
+					<th align="left">Price</th>
+				</tr>-->
+			</table>
+			<div id="totalLine"><img src="img/totalLine.png" id="totalLinePNG"></div>
+			<div id = "total" class = "right">Total: </div>
+		</div>
 
-    </div>
-      <div id="addCancelWrapper">
-          <div id="options">
-              <a href="#menu" data-role="button" data-icon="carat-l" id="addItems" onclick="goToMenu()" rel="external">Add More Food</a>
-              <a href="#" data-role="button" data-icon="delete" id="cancelOrder" onclick="cancelPopup()" rel="external">Cancel Order</a>
-          </div>
-      </div>
+	</div>
+	  <div id="addCancelWrapper">
+		  <div id="options">
+			  <a href="#menu" data-role="button" data-icon="carat-l" id="addItems" onclick="goToMenu()" rel="external">Add More Food</a>
+			  <a href="#" data-role="button" data-icon="delete" id="cancelOrder" onclick="cancelPopup()" rel="external">Cancel Order</a>
+		  </div>
+	  </div>
 
-      <div id="paymentWrapper">
-          <h2 class = "orderTitle">Payment Method</h2>
-          <form id="paymentMethodForm">
-              <fieldset data-role="controlgroup" id="paymentRadioGroup">
-                  <input type="radio" name="radio-paymentMethod" id="creditCard" value="off">
-                  <label for="creditCard">Credit Card</label>
-                  <input type="radio" name="radio-paymentMethod" id="flexPoints" value="off">
-                  <label for="flexPoints">Flex Points</label>
-                  <input type="radio" name="radio-paymentMethod" id="domerDollars" value="other">
-                  <label for="domerDollars">Domer Dollars</label>
-              </fieldset>
-          </form>
+	  <div id="paymentWrapper">
+		  <h2 class = "orderTitle">Payment Method</h2>
+		  <form id="paymentMethodForm">
+			  <fieldset data-role="controlgroup" id="paymentRadioGroup">
+				  <input type="radio" name="radio-paymentMethod" id="creditCard" value="off">
+				  <label for="creditCard">Credit Card</label>
+				  <input type="radio" name="radio-paymentMethod" id="flexPoints" value="off">
+				  <label for="flexPoints">Flex Points</label>
+				  <input type="radio" name="radio-paymentMethod" id="domerDollars" value="other">
+				  <label for="domerDollars">Domer Dollars</label>
+			  </fieldset>
+		  </form>
 
-          <div id="enterPaymentDetails">
-              <h3>Enter Payment Information</h3>
-              <span id="paymentMethodPopupContent"></span>
-              <form id = "creditCardExpDate">
-                  <div class="ui-field-contain">
-                      <label for="selectMonth">Expiration Date</label>
-                      <fieldset data-role="controlgroup" data-type="horizontal">
+		  <div id="enterPaymentDetails">
+			  <h3>Enter Payment Information</h3>
+			  <span id="paymentMethodPopupContent"></span>
+			  <form id = "creditCardExpDate">
+				  <div class="ui-field-contain">
+					  <label for="selectMonth">Expiration Date</label>
+					  <fieldset data-role="controlgroup" data-type="horizontal">
 
-                          <label for="selectMonth">Expiration Date</label>
-                          <select name="selectMonth" id="selectMonth">
-                              <option value="#">January</option>
-                              <option value="#">February</option>
-                              <option value="#">March</option>
-                              <option value="#">April</option>
-                              <option value="#">May</option>
-                              <option value="#">June</option>
-                              <option value="#">July</option>
-                              <option value="#">August</option>
-                              <option value="#">September</option>
-                              <option value="#">October</option>
-                              <option value="#">November</option>
-                              <option value="#">December</option>
-                          </select>
+						  <label for="selectMonth">Expiration Date</label>
+						  <select name="selectMonth" id="selectMonth">
+							  <option value="#">January</option>
+							  <option value="#">February</option>
+							  <option value="#">March</option>
+							  <option value="#">April</option>
+							  <option value="#">May</option>
+							  <option value="#">June</option>
+							  <option value="#">July</option>
+							  <option value="#">August</option>
+							  <option value="#">September</option>
+							  <option value="#">October</option>
+							  <option value="#">November</option>
+							  <option value="#">December</option>
+						  </select>
 
-                          <select name="selectYear" id="selectYear">
-                              <option value="#">2015</option>
-                              <option value="#">2016</option>
-                              <option value="#">2017</option>
-                              <option value="#">2018</option>
-                              <option value="#">2019</option>
-                              <option value="#">2020</option>
-                              <option value="#">2021</option>
-                          </select>
+						  <select name="selectYear" id="selectYear">
+							  <option value="#">2015</option>
+							  <option value="#">2016</option>
+							  <option value="#">2017</option>
+							  <option value="#">2018</option>
+							  <option value="#">2019</option>
+							  <option value="#">2020</option>
+							  <option value="#">2021</option>
+						  </select>
 
-                      </fieldset>
-                  </div>
-              </form>
-          </div>
+					  </fieldset>
+				  </div>
+			  </form>
+		  </div>
 
-          <button id="submit" data-role="button" class="ui-btn ui-icon-carat-r ui-btn-icon-right" onclick="submitClicked()" rel="external">Submit</button>
-      </div>
+		  <button id="submit" data-role="button" class="ui-btn ui-icon-carat-r ui-btn-icon-right" onclick="submitClicked()" rel="external">Submit</button>
+	  </div>
   </div>
 
-    <div data-role="popup" id="confirmCancelOrder" data-theme="a" class="centered ui-corner-top ui-content" data-overlay-theme="b">
-        <h3 class="ui-title">Confirm Cancellation</h3>
-        <p>Are you sure you would like to cancel your order?</p>
-        <a href="#" data-role="button" data-theme="a" data-inline="true" data-theme="c" data-type="horizontal" onclick="cancelOrder()" rel="external">
-            Yes
-        </a>
-        <a href="#" data-role="button" data-theme="a" data-inline="true" data-rel="back" data-theme="c" data-type="horizontal">
-            No
-        </a>
-    </div>
+	<div data-role="popup" id="confirmCancelOrder" data-theme="a" class="centered ui-corner-top ui-content" data-overlay-theme="b">
+		<h3 class="ui-title">Confirm Cancellation</h3>
+		<p>Are you sure you would like to cancel your order?</p>
+		<a href="#" data-role="button" data-theme="a" data-inline="true" data-theme="c" data-type="horizontal" onclick="cancelOrder()" rel="external">
+			Yes
+		</a>
+		<a href="#" data-role="button" data-theme="a" data-inline="true" data-rel="back" data-theme="c" data-type="horizontal">
+			No
+		</a>
+	</div>
 
-    <div data-role="popup" id="submitClicked" data-theme="a" class="centered ui-corner-top ui-content" data-overlay-theme="b">
-      <h3 class="ui-title">Confirm Payment</h3>
-      <p id="submitMessage"></p>
-      <a href="#pickup" data-role="button" data-theme="a" data-inline="true" data-theme="c" data-type="horizontal" onclick="goToPickup()" rel="external">
-        Yes
-      </a>
-      <a href="#" data-role="button" data-theme="a" data-inline="true" data-rel="back" data-theme="c" data-type="horizontal">
-          No
-      </a>
-    </div>
+	<div data-role="popup" id="submitClicked" data-theme="a" class="centered ui-corner-top ui-content" data-overlay-theme="b">
+	  <h3 class="ui-title">Confirm Payment</h3>
+	  <p id="submitMessage"></p>
+	  <a href="#pickup" data-role="button" data-theme="a" data-inline="true" data-theme="c" data-type="horizontal" onclick="goToPickup()" rel="external">
+		Yes
+	  </a>
+	  <a href="#" data-role="button" data-theme="a" data-inline="true" data-rel="back" data-theme="c" data-type="horizontal">
+		  No
+	  </a>
+	</div>
 
   <div data-role="footer" id="checkoutFooter" data-transition="none" data-id="mainFooter" data-theme="a" data-position="fixed" data-tap-toggle="false" class="fixedFooter" style="position: fixed !important;">
-    <div class="ui-grid-d">
-      <div class="ui-block-a" style="width:20%"><img src="img/padding.png"></div> <!-- vital to allow for top padding in footer. taller than images -->
-      <div class="ui-block-b footerOrder" style="width:20%"><img src="img/footer_order.png" onclick="goToMenu()" rel="external"></div>
-      <div class="ui-block-c footerCheckout" style="width:20%"><img src="img/footer_checkout_filled.png"></div>
-      <div class="ui-block-d footerPickup" style="width:20%"><img src="img/footer_pickup.png" onclick="submitClicked()" rel="external"></div>
-      <div class="ui-block-e" style="width:20%"></div>
-    </div>
+	<div class="ui-grid-d">
+	  <div class="ui-block-a" style="width:20%"><img src="img/padding.png"></div> <!-- vital to allow for top padding in footer. taller than images -->
+	  <div class="ui-block-b footerOrder" style="width:20%"><img src="img/footer_order.png" onclick="goToMenu()" rel="external"></div>
+	  <div class="ui-block-c footerCheckout" style="width:20%"><img src="img/footer_checkout_filled.png"></div>
+	  <div class="ui-block-d footerPickup" style="width:20%"><img src="img/footer_pickup.png" onclick="submitClicked()" rel="external"></div>
+	  <div class="ui-block-e" style="width:20%"></div>
+	</div>
   </div>
 
 </div>
 
 <div data-role="page" id="pickup" class = "pickup">
-    <div data-role="header" data-id="mainHeader" data-transition="none" data-position="fixed" data-tap-toggle="false" data-theme="a" id="pickupHeader" style="position: fixed !important;">
-        <a href="#" data-role="button" data-icon="arrow-l" data-rel="back" class="ui-btn-left">Back</a>
-        <h1></h1>
-        <img src="img/reckers_header.png" class="ui-btn-right reckersLogoRight">
-    </div>
+	<div data-role="header" data-id="mainHeader" data-transition="none" data-position="fixed" data-tap-toggle="false" data-theme="a" id="pickupHeader" style="position: fixed !important;">
+		<a href="#" data-role="button" data-icon="arrow-l" data-rel="back" class="ui-btn-left">Back</a>
+		<h1></h1>
+		<img src="img/reckers_header.png" class="ui-btn-right reckersLogoRight">
+	</div>
 
-    <div data-role="content" id="pickupContent">
-        <span id="pickupCode">5679A</span>
-        <div id="pickupDate" class="date"></div>
-        <div id="pickupTime" class="date"></div>
-    </div>
+	<div data-role="content" id="pickupContent">
+		<span id="pickupCode">5679A</span>
+		<div id="pickupDate" class="date"></div>
+		<div id="pickupTime" class="date"></div>
+	</div>
 
-    <div data-role="footer" data-transition="none" data-id="mainFooter" data-theme="a" data-position="fixed" data-tap-toggle="false" class="fixedFooter" style="position: fixed !important;">
-        <div class="ui-grid-d">
-            <div class="ui-block-a" style="width:20%"><img src="img/padding.png"></div> <!-- vital to allow for top padding in footer. taller than images -->
-            <div class="ui-block-b footerOrder" style="width:20%"><img src="img/footer_order.png" onclick="goToMenu()" rel="external"></div>
-            <div class="ui-block-c footerCheckout" style="width:20%"><img src="img/footer_checkout.png" onclick="checkQuantity()" rel="external"></div>
-            <div class="ui-block-d footerPickup" style="width:20%"><img src="img/footer_pickup_filled.png"></div>
-            <div class="ui-block-e" style="width:20%"></div>
-        </div>
-    </div>
+	<div data-role="footer" data-transition="none" data-id="mainFooter" data-theme="a" data-position="fixed" data-tap-toggle="false" class="fixedFooter" style="position: fixed !important;">
+		<div class="ui-grid-d">
+			<div class="ui-block-a" style="width:20%"><img src="img/padding.png"></div> <!-- vital to allow for top padding in footer. taller than images -->
+			<div class="ui-block-b footerOrder" style="width:20%"><img src="img/footer_order.png" onclick="goToMenu()" rel="external"></div>
+			<div class="ui-block-c footerCheckout" style="width:20%"><img src="img/footer_checkout.png" onclick="checkQuantity()" rel="external"></div>
+			<div class="ui-block-d footerPickup" style="width:20%"><img src="img/footer_pickup_filled.png"></div>
+			<div class="ui-block-e" style="width:20%"></div>
+		</div>
+	</div>
 </div>
 
 </body>
