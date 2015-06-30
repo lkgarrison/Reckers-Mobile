@@ -262,12 +262,6 @@ var customizeItemCheckout = function(cartIndex) {
 		}
 	}
 
-	// add an onclick event to remove 1 of the item when the "Remove" button is clicked. Also closes the popup
-	$(".removeFromCart").attr("onclick",                // set onClick property to call the remove function, passing the id of the item
-		"remove1(" + cartIndex + "); " +
-		"$('." + popupClassName + "').popup('close')"
-	);
-
 	// add an onclick event to save the changes made in the popup
 	$(".saveItemButton").attr("onclick", "saveItemChanges(" + cartIndex + ")");
 
@@ -473,6 +467,7 @@ var add = function (menuIndex) {
 		item.textContent = cart[cartIndex].item;
 		item.setAttribute("class", "itemName checkoutPage");
 		item.setAttribute("onclick", "customizeItemCheckout(" + parseInt(cartIndex) + ")"); // call add method same as "+" button onclick. parseInt deletes the string part
+		item.setAttribute("colspan", "2");
 		tr.appendChild(item);
 
 		// add price
@@ -488,6 +483,7 @@ var add = function (menuIndex) {
 		tr.setAttribute("class", "row" + parseInt(cartIndex));
 		tr.appendChild(document.createElement("td"));   // must skip over 2 cells to place ingredients listing
 		tr.appendChild(document.createElement("td"));
+
 		// add each ingredient selected to the checkout page below the line item
 		var ingredientsCell = document.createElement("td");
 		var ingredientsList = "";
@@ -506,9 +502,31 @@ var add = function (menuIndex) {
 		}
 
 		ingredientsCell.textContent = ingredientsList;
-		ingredientsCell.setAttribute("class", "description");   // the same as the description in the accordian on the order page
+		ingredientsCell.setAttribute("class", "ingredientsListing");
 		ingredientsCell.setAttribute("onclick", "customizeItemCheckout(" + parseInt(cartIndex) + ")"); // call add method same as "+" button onclick. parseInt deletes the string part
+		ingredientsCell.setAttribute("colspan", "2");
 		tr.appendChild(ingredientsCell);
+
+		qq("orderTable").appendChild(tr);
+
+		// create row beneath ingredients/options for "Edit" and "Remove" links
+		tr = document.createElement("tr");
+		tr.setAttribute("class", "lineItemOptions row" + cartIndex);
+		tr.appendChild(document.createElement("td"));	// needs one empty cell
+		tr.appendChild(document.createElement("td"));
+
+		editLink = document.createElement("td");
+		editLink.setAttribute("class", "lineItemOption editItemLink");
+		editLink.setAttribute("onclick", "customizeItemCheckout(" + cartIndex + ")");
+		editLink.textContent = "Edit";
+
+		removeLink = document.createElement("td");
+		removeLink.setAttribute("class", "lineItemOption removeItemLink");
+		removeLink.setAttribute("onclick", "remove1(" + cartIndex + ")");
+		removeLink.textContent = "Remove";
+
+		tr.appendChild(editLink);
+		tr.appendChild(removeLink);
 
 		qq("orderTable").appendChild(tr);
 

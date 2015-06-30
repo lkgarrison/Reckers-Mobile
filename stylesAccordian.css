@@ -171,6 +171,11 @@
 	font-size: 13px;
 }
 
+/* each item's ingredients list on checkout page */
+.ingredientsListing {
+	font-size: 13px;
+}
+
 /* remove button wrapper for each item's remove button. must have wrapper to format remove button correctly */
 .rmButtonWrapper {
 	vertical-align: top;
@@ -467,4 +472,24 @@
 .popupButtonWrapper a {
 	margin-top: 0px;
 	margin-bottom: 6px;
+}
+
+/* Styling for "Edit" and "Remove" links below each line item */
+.lineItemOption {
+	color: #E95A33;
+	text-decoration: underline;
+	font-size: 15px;
+}
+
+/* Styling for "Edit" link below each line item on checkout page */
+.editItemLink {
+	padding-left: 25px;
+	padding-right: 20px;
+}
+
+/* Styling for "Remove" link below each line item on checkout page */
+.removeItemLink {
+	text-align: right;
+	padding-right: 25px;
+	padding-left: 20px;
 }
