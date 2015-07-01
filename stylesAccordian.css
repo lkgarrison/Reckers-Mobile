@@ -59,8 +59,11 @@
 /* quantity next to line item */
 .quantity {
 	font-weight: bold;
-	padding-right: 14px;
+	padding-right: 9px;
 	vertical-align: top;
+	font-family: 'Roboto';
+	font-weight: 400;
+	font-size: 17px;
 }
 
 /* for item names on order page */
@@ -86,7 +89,7 @@
 	padding-left: 0;
 	font-family: 'Roboto';
 	font-size: 17px;
-	font-weight: 300;
+	font-weight: 400;
 }
 
 /* styling for each td in a tr of class "lineItemFirstRow". Gives more spacing between line item entries */
@@ -400,8 +403,8 @@
 /* necessary to keep TOTAL and total line right aligned with orderTable */
 #totalWrapper {
 	display: inline-block;
-	margin-right: 20px;      /* gives a touch of room along the right margin */
-	padding-left: 5px;
+	margin-right: 12px;      /* gives a touch of room along the right margin */
+	padding-left: 0px;
 }
 
 /* styling for radio group of payment options on checkout page */
