@@ -63,10 +63,20 @@
 	vertical-align: top;
 }
 
-/* for item name in checkout screen */
-.itemName {
+/* for item names on order page */
+.itemNameOrder {
+	font-family: 'Raleway';
+	font-size: 19px;
+	font-weight: 600;
+}
+
+/* for item names in checkout screen */
+.itemNameCheckout {
 	padding-right: 14px;
 	vertical-align: top;
+	font-family: 'Raleway';
+	font-size: 19px;
+	font-weight: 600;
 }
 
 /* for price/item on checkout page */
@@ -74,6 +84,14 @@
 	vertical-align: top;
 	text-align: left;
 	padding-left: 0;
+	font-family: 'Roboto';
+	font-size: 17px;
+	font-weight: 300;
+}
+
+/* styling for each td in a tr of class "lineItemFirstRow". Gives more spacing between line item entries */
+.lineItemFirstRow > td {
+	padding-top: 10px;
 }
 
 /* backgrounds for menu headers on order page */
@@ -107,11 +125,13 @@
 
 /* default styling for menu headers on order page */
 .menuHeader h3 a {
-	font-size: 20px;
+	font-size: 22px;
 	color: white !important;
-	font-family: Helvetica, Arial, sans-serif;
+	font-family: 'Raleway';
 	font-weight: 500;
 	background-repeat: round;
+	margin-top: 6px;
+	margin-bottom: 6px;
 }
 
 /* menu item title inside each menu seaction. ie "chicken alfredo pizza" */
@@ -127,7 +147,7 @@
 
 /* "order summary" title on checkout page */
 .orderTitle {
-	font-family: Verdana, Tahoma, Century Gothic, Arial, sans-serif;
+	font-family: 'Raleway';
 	color: black;
 	font-weight: 500;
 	font-size: 35px;
@@ -161,19 +181,22 @@
 /* total cost styling */
 #total {
 	font-size: 26px;
-	font-family: Helvetica, Arial, sans-serif;
+	font-family: 'Roboto';
+	font-weight: 300;
 	position: relative;
 	text-align: right;
 }
 
 /* item description */
 .description {
-	font-size: 13px;
+	font-size: 14px;
+	font-family: 'Raleway';
 }
 
 /* each item's ingredients list on checkout page */
 .ingredientsListing {
-	font-size: 13px;
+	font-size: 14px;
+	font-family: 'Raleway';
 }
 
 /* remove button wrapper for each item's remove button. must have wrapper to format remove button correctly */
@@ -224,7 +247,6 @@
 	width: 60%;
 	background-image: url('img/header_piadina.png') !important;
 	color: white;
-	font-family: Helvetica, Arial, sans-serif;
 }
 
 /* cancel order button below order table on checkout page */
@@ -235,7 +257,12 @@
 	width: 60%;
 	background-image: url('img/header_pizza.png') !important;
 	color: white;
-	font-family: Helvetica, Arial, sans-serif;
+}
+
+/* Styling for "Expiration Date" in "Payment Method" section */
+.expirationDate {
+	font-family: 'Raleway';
+	font-weight: 600 !important;
 }
 
 .centered {
@@ -286,6 +313,8 @@
 
 /* styling for item name at the top of the ingredients popup */
 .customizeItemName {
+	font-family: 'Raleway';
+	font-weight: 700;
 	width: 100%;
 	text-align: center;
 	padding-top: 7px;   /* provides padding against top of popup */
@@ -293,6 +322,8 @@
 
 /* styling for item's price at the top of the ingredients popup */
 .customizeItemPrice {
+	font-family: 'Roboto';
+	font-weight: 500;
 	clear: both;
 	width: 100%;
 	text-align: center;
@@ -310,6 +341,8 @@
 
 /* styling for "Included Ingredients" label in ingredients popup */
 .includedIngredientsLabel {
+	font-family: 'Raleway';
+	font-weight: 600;
 	margin-left: 12px;
 	margin-top: 8px;
 	margin-bottom: 8px;
@@ -317,14 +350,18 @@
 
 /* "scroll for more" message in the customize item popup */
 .scrollForMore {
-	margin-top: 10px;
+	font-family: 'Raleway';
+	font-weight: 400;
+	margin-top: 12px;
 	font-size: 15px;
 	color: red;
 }
 
 /* "Please select an option" message in customize item popup */
 .itemOptionsMessage {
-	margin-top: 10px;
+	font-family: 'Raleway';
+	font-weight: 400;
+	margin-top: 11px;
 	margin-right: 12px;
 	font-size: 15px;
 	color: red; 
@@ -358,7 +395,6 @@
 	width: 60%;
 	background-image: url('img/header_salads.png') !important;
 	color: white;
-	font-family: Helvetica, Arial, sans-serif;
 }
 
 /* necessary to keep TOTAL and total line right aligned with orderTable */
@@ -383,7 +419,7 @@
 
 /* stying for header "Enter Payment Information" */
 #enterPaymentDetails h3 {
-	margin-bottom: 5px;
+	margin-bottom: 2px;
 }
 
 /* styling for pickup page */
@@ -456,6 +492,8 @@
 
 /* styling for "Options" header in item customization popup on order and checkout pages */
 .customizeItemOptionsLabel {
+	font-family: 'Roboto';
+	font-weight: 600;
 	margin-left: 12px;
 	margin-top: 8px;
 	margin-bottom: 8px;
@@ -492,4 +530,56 @@
 	text-align: right;
 	padding-right: 25px;
 	padding-left: 20px;
+}
+
+/* Styling for ingredient checkboxes */
+.ingredientCBLabel {
+	font-family: 'Raleway' !important;
+	font-weight: 500 !important;
+}
+
+/* Styling for item option radios */
+.itemOptionRadios {
+	font-family: 'Roboto' !important;
+	font-weight: 400 !important;
+}
+
+/* Font styling for "Add" and "Cancel" butons on checkout page */
+.addCancelButtonCheckout {
+	font-family: 'Raleway';
+	font-weight: 600;
+}
+
+/* Font styling for "Menu" (orderPageTitle) at top of order page */
+.orderPageTitle {
+	font-family: 'Raleway';
+	font-weight: 700;
+}
+
+/* Default font specifications for buttons at the bottom of customize ingredients popups */
+.customizeItemPopupButton {
+	font-family: 'Raleway';
+	font-weight: 600 !important;
+}
+
+/* Default font specifications for JQuery elemtents of class ui-btn */
+.ui-btn {
+	font-family: 'Raleway';
+	font-weight: 500;
+}
+
+/* styling for general html elements */
+h3 {
+	font-family: 'Raleway';
+	font-weight: 700;
+}
+
+p {
+	font-family: 'Roboto';
+	font-weight: 300;
+}
+
+input {
+	font-family: 'Raleway';
+	font-weight: 400;
 }

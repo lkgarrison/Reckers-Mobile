@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <link href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,600,700|Raleway:400,500,600">
   <link href="stylesAccordian.css" type="text/css" rel="stylesheet">
 
   <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
@@ -22,48 +23,47 @@
 
   <div data-role="header" data-transition="none" data-position="fixed" data-tap-toggle="false" data-id="mainHeader" data-theme="a" style="position: fixed !important;">
 	<img src="img/reckers_header.png" class="ui-btn-left" id="reckers_header">
-	<h1 class="ui-btn-center">Menu</h1>
+	<h1 class="orderPageTitle ui-btn-center">Menu</h1>
 	<img src="img/cartEmpty.png" class="ui-btn-right" data-role="none" id="cart_logo" onclick="checkQuantity()" rel="external">
 	<label id="items_in_cart" class="ui-btn-right" data-role="none" onclick="checkQuantity()" rel="external"></label>
   </div>
 
   <div data-role="collapsible-set" id="accordion" data-tap-toggle="false">
-	  <div data-role="collapsible" id="header_pizzas" class="menuHeader">
-	  <h3>Pizzas</h3 >
-	  <div id = "pizzas"></div>
+	<div data-role="collapsible" id="header_pizzas" class="menuHeader">
+	  <h3 class="orderSectionLabels">Pizzas</h3 >
+	  <div id="pizzas"></div>
 	</div>
 
 	<div data-role="collapsible" id="header_piadinas" class="menuHeader">
-	  <h3>Piadinas</h3>
-	  <div id = "piadinas"></div>
+	  <h3 class="orderSectionLabels">Piadinas</h3>
+	  <div id="piadinas"></div>
 	</div>
 
 	<div data-role="collapsible" id="header_americanFare" class="menuHeader">
-	  <h3>American Fare</h3>
-	  <div id = "americanFare"></div>
+	  <h3 class="orderSectionLabels">American Fare</h3>
+	  <div id="americanFare"></div>
 	</div>
 
 	<div data-role="collapsible" id="header_salads" class="menuHeader">
-	  <h3>Salads</h3>
-	  <div id = "salads"></div>
+	  <h3 class="orderSectionLabels">Salads</h3>
+	  <div id="salads"></div>
 	</div>
 
 	<div data-role="collapsible" id="header_breakfast" class="menuHeader">
-	  <h3>Breakfast</h3>
-	  <div id = "breakfast"></div>
+	  <h3 class="orderSectionLabels">Breakfast</h3>
+	  <div id="breakfast"></div>
 	</div>
 
 	<div data-role="collapsible" id="header_sides" class="menuHeader">
-	  <h3>Sides</h3>
-	  <div id = "sides"></div>
+	  <h3 class="orderSectionLabels">Sides</h3>
+	  <div id="sides"></div>
 	</div>
 
 	<div data-role="collapsible" id="header_smoothies" class="menuHeader">
-	  <h3>Smoothies</h3>
-	  <div id = "smoothies"></div>
+	  <h3 class="orderSectionLabels">Smoothies</h3>
+	  <div id="smoothies"></div>
 	</div>
   </div>
-
 
   <div data-role="popup" class="customizeItemOrder" data-theme="a" class="ui-content" data-overlay-theme="b">
 		<!--<h3 class="ui-title">Customize Item</h3> -->
@@ -85,10 +85,10 @@
 			</form>
 
 		<div class="popupButtonWrapper">
-			<a href="#" class="addToCartButton" data-role="button" data-theme="a" data-inline="true" data-theme="c" data-type="horizontal">
+			<a href="#" class="addToCartButton customizeItemPopupButton" data-role="button" data-theme="a" data-inline="true" data-theme="c" data-type="horizontal">
 				Add
 			</a>
-			<a href="#" data-role="button" data-theme="a" data-inline="true" data-rel="back" data-theme="c" data-type="horizontal">
+			<a href="#" class="customizeItemPopupButton" data-role="button" data-theme="a" data-inline="true" data-rel="back" data-theme="c" data-type="horizontal">
 				Cancel
 			</a>
 		</div>
@@ -142,10 +142,10 @@
 
 			<!-- Needs a separate name or else cannot grab height correctly, but pulls from CSS in popupButtonWrapper class -->
 			<div class="popupButtonWrapperCheckout popupButtonWrapper">
-				<a href="#" class="saveItemButton" data-role="button" data-theme="a" data-inline="true" data-theme="c" rel="external" data-type="horizontal">
+				<a href="#" class="saveItemButton customizeItemPopupButton" data-role="button" data-theme="a" data-inline="true" data-theme="c" rel="external" data-type="horizontal">
 					Save
 				</a>
-				<a href="#" data-role="button" data-theme="a" data-inline="true" data-rel="back" data-theme="c" data-type="horizontal">
+				<a href="#" class="customizeItemPopupButton" data-role="button" data-theme="a" data-inline="true" data-rel="back" data-theme="c" data-type="horizontal">
 					Cancel
 				</a>
 			</div>
@@ -173,8 +173,8 @@
 	</div>
 	  <div id="addCancelWrapper">
 		  <div id="options">
-			  <a href="#menu" data-role="button" data-icon="carat-l" id="addItems" onclick="goToMenu()" rel="external">Add More Food</a>
-			  <a href="#" data-role="button" data-icon="delete" id="cancelOrder" onclick="cancelPopup()" rel="external">Cancel Order</a>
+			  <a href="#menu" class="addCancelButtonCheckout button" data-role="button" data-icon="carat-l" id="addItems" onclick="goToMenu()" rel="external">Add More Food</a>
+			  <a href="#" class="addCancelButtonCheckout button" data-role="button" data-icon="delete" id="cancelOrder" onclick="cancelPopup()" rel="external">Cancel Order</a>
 		  </div>
 	  </div>
 
@@ -196,7 +196,7 @@
 			  <span id="paymentMethodPopupContent"></span>
 			  <form id = "creditCardExpDate">
 				  <div class="ui-field-contain">
-					  <label for="selectMonth">Expiration Date</label>
+					  <label for="selectMonth" class="expirationDate">Expiration Date</label>
 					  <fieldset data-role="controlgroup" data-type="horizontal">
 
 						  <label for="selectMonth">Expiration Date</label>

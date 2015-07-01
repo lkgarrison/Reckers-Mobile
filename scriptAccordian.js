@@ -75,7 +75,7 @@ var displayMenu = function() {
 
 		// add item names
 		item.textContent = menu[i].item;
-		item.setAttribute("class", "menuItem");
+		item.setAttribute("class", "itemNameOrder");
 		item.setAttribute("id", i + "item");
 		item.setAttribute("onClick", "customizeItemOrder(" + parseInt(item.id) + ")"); // call add method same as "+" button onclick (with menu index). parseInt deletes the string part
 		tr.appendChild(item);
@@ -438,7 +438,7 @@ var add = function (menuIndex) {
 	// if 1st time item is being added to cart
 	if(cart[cartIndex].qty == 1) {
 		var tr = document.createElement("tr"); // create a new row
-		tr.setAttribute("class", "row" + parseInt(cartIndex));
+		tr.setAttribute("class", "lineItemFirstRow row" + parseInt(cartIndex));
 
 		// create div for remove button
 		var wrapper = document.createElement("div");
@@ -465,7 +465,7 @@ var add = function (menuIndex) {
 		// add item name next to quantity
 		var item = document.createElement("td");
 		item.textContent = cart[cartIndex].item;
-		item.setAttribute("class", "itemName checkoutPage");
+		item.setAttribute("class", "itemNameCheckout checkoutPage");
 		item.setAttribute("onclick", "customizeItemCheckout(" + parseInt(cartIndex) + ")"); // call add method same as "+" button onclick. parseInt deletes the string part
 		item.setAttribute("colspan", "2");
 		tr.appendChild(item);
@@ -707,7 +707,8 @@ var paymentMethodSelected = function(paymentMethod) {
 	if(paymentMethod === "creditCard") {
 		$("#creditCardExpDate").show();
 
-		cardholderName = document.createElement("input");
+		var div2 = document.createElement("div");
+		var cardholderName = document.createElement("input");
 		cardholderName.setAttribute("type", "text");
 		cardholderName.setAttribute("name", "cardholderName");
 		cardholderName.setAttribute("id", "cardHolderName");
@@ -715,9 +716,10 @@ var paymentMethodSelected = function(paymentMethod) {
 		cardholderName.setAttribute("onfocus", "hideFooter()");
 		cardholderName.setAttribute("placeholder", "Cardholder Name");
 		cardholderName.setAttribute("value", "");
-		div.appendChild(cardholderName);
+		div2.appendChild(cardholderName);
 
-		creditCardNumber = document.createElement("input");
+		var div3 = document.createElement("div");
+		var creditCardNumber = document.createElement("input");
 		creditCardNumber.setAttribute("type", "text");
 		creditCardNumber.setAttribute("name", "creditCardNumber");
 		creditCardNumber.setAttribute("id", "creditCardNumber");
@@ -725,7 +727,10 @@ var paymentMethodSelected = function(paymentMethod) {
 		creditCardNumber.setAttribute("onfocus", "hideFooter()");
 		creditCardNumber.setAttribute("placeholder", "Credit Card Number");
 		creditCardNumber.setAttribute("value", "");
-		div.appendChild(creditCardNumber);
+		div3.appendChild(creditCardNumber);
+		
+		div.appendChild(div2);
+		div.appendChild(div3);
 	}
 
 	else if(paymentMethod === "flexPoints" || paymentMethod === "domerDollars") {
