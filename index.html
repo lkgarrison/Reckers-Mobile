@@ -8,18 +8,20 @@
   <link href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,600,700|Raleway:400,500,600">
   <link href="stylesAccordian.css" type="text/css" rel="stylesheet">
-
+  
+  <script src="angular.min.js"></script>	<!-- must be above JQuery, or else JQuery will read the DOM first before ng-repeats execute -->
   <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
   <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
   <script src="underscore-min.js"></script>
+  <script src="controllers.js" type="text/javascript"></script>
+  <script src="collapsibleSectionDirective.js" type="text/javascript"></script>
   <script src="scriptAccordian.js" type="text/javascript"></script>
   <link rel="shortcut icon" href="img/favicon.ico"> <!-- Tab icon -->
-
 </head>
-<body>
 
+<body ng-app="app">
 
-<div data-role="page" id = "menu">
+<div data-role="page" id = "menu" ng-controller="myController">
 
   <div data-role="header" data-transition="none" data-position="fixed" data-tap-toggle="false" data-id="mainHeader" data-theme="a" style="position: fixed !important;">
 	<img src="img/reckers_header.png" class="ui-btn-left" id="reckers_header">
@@ -29,40 +31,7 @@
   </div>
 
   <div data-role="collapsible-set" id="accordion" data-tap-toggle="false">
-	<div data-role="collapsible" id="header_pizzas" class="menuHeader">
-	  <h3 class="orderSectionLabels">Pizzas</h3 >
-	  <div id="pizzas"></div>
-	</div>
-
-	<div data-role="collapsible" id="header_piadinas" class="menuHeader">
-	  <h3 class="orderSectionLabels">Piadinas</h3>
-	  <div id="piadinas"></div>
-	</div>
-
-	<div data-role="collapsible" id="header_americanFare" class="menuHeader">
-	  <h3 class="orderSectionLabels">American Fare</h3>
-	  <div id="americanFare"></div>
-	</div>
-
-	<div data-role="collapsible" id="header_salads" class="menuHeader">
-	  <h3 class="orderSectionLabels">Salads</h3>
-	  <div id="salads"></div>
-	</div>
-
-	<div data-role="collapsible" id="header_breakfast" class="menuHeader">
-	  <h3 class="orderSectionLabels">Breakfast</h3>
-	  <div id="breakfast"></div>
-	</div>
-
-	<div data-role="collapsible" id="header_sides" class="menuHeader">
-	  <h3 class="orderSectionLabels">Sides</h3>
-	  <div id="sides"></div>
-	</div>
-
-	<div data-role="collapsible" id="header_smoothies" class="menuHeader">
-	  <h3 class="orderSectionLabels">Smoothies</h3>
-	  <div id="smoothies"></div>
-	</div>
+  	<collapsible-section-header ng-repeat="section in collapsibleSectionData" section="section"></collapsible-section-header>
   </div>
 
   <div data-role="popup" class="customizeItemOrder" data-theme="a" class="ui-content" data-overlay-theme="b">
