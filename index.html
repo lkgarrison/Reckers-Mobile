@@ -19,9 +19,9 @@
   <link rel="shortcut icon" href="img/favicon.ico"> <!-- Tab icon -->
 </head>
 
-<body ng-app="app">
+<body ng-app="app" ng-controller="myController">
 
-<div data-role="page" id = "menu" ng-controller="myController">
+<div data-role="page" id="menu">
 
   <div data-role="header" data-transition="none" data-position="fixed" data-tap-toggle="false" data-id="mainHeader" data-theme="a" style="position: fixed !important;">
 	<img src="img/reckers_header.png" class="ui-btn-left" id="reckers_header">
@@ -170,28 +170,11 @@
 
 						  <label for="selectMonth">Expiration Date</label>
 						  <select name="selectMonth" id="selectMonth">
-							  <option value="#">January</option>
-							  <option value="#">February</option>
-							  <option value="#">March</option>
-							  <option value="#">April</option>
-							  <option value="#">May</option>
-							  <option value="#">June</option>
-							  <option value="#">July</option>
-							  <option value="#">August</option>
-							  <option value="#">September</option>
-							  <option value="#">October</option>
-							  <option value="#">November</option>
-							  <option value="#">December</option>
+							  <option ng-repeat="month in months">{{ month }}</option>
 						  </select>
 
 						  <select name="selectYear" id="selectYear">
-							  <option value="#">2015</option>
-							  <option value="#">2016</option>
-							  <option value="#">2017</option>
-							  <option value="#">2018</option>
-							  <option value="#">2019</option>
-							  <option value="#">2020</option>
-							  <option value="#">2021</option>
+							  <option ng-repeat="year in years">{{ year }}</option>
 						  </select>
 
 					  </fieldset>

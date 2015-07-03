@@ -789,7 +789,7 @@ var checkQuantity = function() {     // will determine whether to go to checkout
 
 // function to change to menu page and collapse the accordion
 var goToMenu = function() {          // button click will change to menu page
-	$( "#accordion" ).children().collapsible( "collapse" );     // collapse the collapsible set
+	$( ".menuHeader" ).collapsible( "collapse" );     // collapse the collapsible set by collapsing each section
 	$.mobile.changePage("#menu");
 };
 
