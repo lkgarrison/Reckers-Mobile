@@ -47,8 +47,8 @@ var loadMenu = function () {
 		return Parse.Promise.when(menu);
 
 	}, function(error) {
-		console.log("Failed to initialize Menu from Parse");
-		console.log(error);
+		console.error("Failed to initialize Menu from Parse");
+		console.error(error);
 
 	}).then(function() {
 		// when menu is entirely downloaded
@@ -99,13 +99,14 @@ var displayMenu = function() {
 		chooseSection(tr, i);
 	}
 
-	qq("pizzas").appendChild(pizzaTable);
+	/*qq("pizzas").appendChild(pizzaTable);
 	qq("piadinas").appendChild(piadinaTable);
 	qq("americanFare").appendChild(americanFareTable);
 	qq("salads").appendChild(saladTable);
 	qq("breakfast").appendChild(breakfastTable);
 	qq("sides").appendChild(sideTable);
 	qq("smoothies").appendChild(smoothieTable);
+	*/
 };
 
 // adds row to correct section in the accordion
@@ -133,7 +134,7 @@ var chooseSection = function(tr, i) {
 			smoothieTable.appendChild(tr);
 			break;
 		default:
-			console.log("Item type mismatch");
+			console.error("Item type mismatch");
 			break;
 	}
 };
@@ -226,7 +227,7 @@ var customizeItemCheckout = function(cartIndex) {
 				$(".ingredientCB-" + i).prop('checked', false).checkboxradio('refresh');
 			} else {        // if ingredient was checked by the user
 				var newBox = '<label name="ingredientCBLabel" class="ingredientCBLabel' +
-					'"><input type="checkbox" name="ingredientCB" checked="true" class="ingredientCB' + i + '"/>' +
+					'"><input type="checkbox" name=7"ingredientCB" checked="true" class="ingredientCB' + i + '"/>' +
 					ingredientsList[i] + '</label>';
 				$(".ingredientsListCheckout").append(newBox).trigger('create');
 			}
@@ -310,7 +311,7 @@ var customizeItemPart2 = function (menuIndex, popupClassName) {
 		scrollDivClassName = "ingredientsListCheckout";
 		buttonWrapper = "popupButtonWrapperCheckout";
 	} else {
-		console.log("Invalid class name for scrolling div in customize item popup");
+		console.error("Invalid class name for scrolling div in customize item popup");
 	}
 
 	// set image for divider line at the top of popup based on food type

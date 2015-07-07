@@ -1,4 +1,20 @@
 <div data-role="collapsible" id="header_{{ section.id }}" class="menuHeader">
 	<h3 class="orderSectionLabels">{{ section.label }}</h3>
-	<div id="{{ section.id }}"></div>
+	<div id="{{ section.id }}">
+		<table>
+			<tbody ng-repeat='item in menu | filter: {type:"pizza"}'>
+				<tr>
+					<td>
+						<input id="item.id" ng-click="customizeItemOrder(item.id)" type="button" class="addButton" value="" data-role="none">
+					</td>
+					<td class="itemNameOrder" ng-click="item.id">{{ item.item }}<td>
+					<td class="price">{{ item.price | currency }}</td>
+				</tr>
+				<tr>
+					<td></td>
+					<td class="description" ng-click="customizeItemOrder(item.id)">{{ item.description }}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
 </div>

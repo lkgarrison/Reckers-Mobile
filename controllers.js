@@ -1,6 +1,7 @@
-var app = angular.module('app', []);
+var app = angular.module('app', ['menuService']);
 
 app.controller("myController", function ($scope) {
+	// add data for collapsible set for menu on order page
 	var collapsibleSectionLabels = ['Pizzas', 'Piadinas', 'American Fare', 'Salads', 'Breakfast', 'Sides', 'Smoothies'];
 	var collapsibleSectionIds = ['pizzas', 'piadinas', 'americanFare', 'salads', 'breakfast', 'sides', 'smoothies'];
 	$scope.collapsibleSectionData = collapsibleSectionLabels.map(function (value, index) {
