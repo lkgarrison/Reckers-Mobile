@@ -1,4 +1,4 @@
-app.directive("collapsibleSectionHeader", ['Menu', function (Menu) {
+app.directive("collapsibleSectionHeader", ['MenuService', function (MenuService) {
 	return {
 		restrict: 'E',
 		scope: {
@@ -10,17 +10,12 @@ app.directive("collapsibleSectionHeader", ['Menu', function (Menu) {
 			 * use $timeout to make sure $digest cycle is complete
 			 */
 			$timeout(function () {
-				Menu.getMenu().then(function (menuData) {
+				MenuService.getMenu().then(function (menuData) {
 					$scope.menu = menuData;
-					console.log($scope.menu);
-
-				});
-				
-				Menu.getMenuTypes().then(function (menuTypes) {
-					$scope.menuTypes = menuTypes;
-					console.log($scope.menuTypes);
 				});
 			});
+
+			$scope.menuTypes = MenuService.getMenuTypes();
 				
 		},
 		link: function () {

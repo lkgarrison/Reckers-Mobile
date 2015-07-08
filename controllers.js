@@ -1,16 +1,19 @@
-var app = angular.module('app', ['menuService']);
+var app = angular.module('app', ['MenuService']);
 
-app.controller("myController", function ($scope) {
+app.controller("myController", ['$scope', '$timeout', 'MenuService', function ($scope, $timeout, MenuService) {
 	// add data for collapsible set for menu on order page
 	var collapsibleSectionLabels = ['Pizzas', 'Piadinas', 'American Fare', 'Salads', 'Breakfast', 'Sides', 'Smoothies'];
-	var collapsibleSectionIds = ['pizzas', 'piadinas', 'americanFare', 'salads', 'breakfast', 'sides', 'smoothies'];
-	$scope.collapsibleSectionData = collapsibleSectionLabels.map(function (value, index) {
-		return {
-			label: value,
-			id: collapsibleSectionIds[index]
-		};
+	var menuTypes = MenuService.getMenuTypes();
+	$timeout(function () {
+		$scope.collapsibleSectionData = collapsibleSectionLabels.map(function (value, index) {
+			return {
+				label: value,
+				type: menuTypes[index]
+			};
+		});
 	});
-
+	
+	
 	// save months and years for credit card expiration dates
 	$scope.months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'Decemeber'];
 	
@@ -20,4 +23,4 @@ app.controller("myController", function ($scope) {
 	for(var i = 0; i < nYears; i++) {
 		$scope.years.push(currentYear + i);
 	}
-});
+}]);

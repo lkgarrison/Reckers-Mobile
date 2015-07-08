@@ -98,11 +98,11 @@
 }
 
 /* backgrounds for menu headers on order page */
-#header_pizzas .ui-collapsible-heading-toggle {
+#header_pizza .ui-collapsible-heading-toggle {
 	background-image: url('img/header_pizzaND.png');
 }
 
-#header_piadinas .ui-collapsible-heading-toggle {
+#header_piadina .ui-collapsible-heading-toggle {
 	background-image: url('img/header_piadinaND.png');
 }
 
@@ -110,7 +110,7 @@
 	background-image: url('img/header_sandwichesND.png');
 }
 
-#header_salads .ui-collapsible-heading-toggle {
+#header_salad .ui-collapsible-heading-toggle {
 	background-image: url('img/header_saladsND.png');
 }
 
@@ -118,11 +118,11 @@
 	background-image: url('img/header_breakfastND.png');
 }
 
-#header_sides .ui-collapsible-heading-toggle {
+#header_side .ui-collapsible-heading-toggle {
 	background-image: url('img/header_sidesND.png');
 }
 
-#header_smoothies .ui-collapsible-heading-toggle {
+#header_smoothie .ui-collapsible-heading-toggle {
 	background-image: url('img/header_smoothiesND.png');
 }
 

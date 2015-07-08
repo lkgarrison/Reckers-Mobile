@@ -1,10 +1,11 @@
-var menuService = angular.module('menuService', []);
+var menuService = angular.module('MenuService', ['appConfig']);
 
-menuService.service('Menu', function () {
+menuService.service('MenuService', ['configService', function (configService) {
 	Parse.initialize("CZtjkZAV9gQzln2C3KKi7vsXRl4ppAMenjXiPGrx", "LVzkRhUfya9rMXDxGlda88o9d8XkPvd19YJdgWC6");
 	var query = new Parse.Query("Menu");
 	var menu = [];
-	var menuTypes = [];
+	var parseMenuTypes = [];
+	var menuTypes = configService.getCollapsibleSetOrder();
 
 	var menuPromise = query.find()
 	.then(
@@ -33,7 +34,7 @@ menuService.service('Menu', function () {
 	.then(function () {
 		// when menu is entirely downloaded, create array of menu types (no repeats)
 		var allTypesRepeated = _.pluck(menu, 'type');
-		menuTypes = _.unique(allTypesRepeated);
+		parseMenuTypes = _.unique(allTypesRepeated);
 
 		/* return a resolved promise immediately */
 		return new Parse.Promise().resolve();
@@ -45,17 +46,18 @@ menuService.service('Menu', function () {
 		});
 	};
 
-	/* create an array of unique types of food in the menu (no repeats) */
 	this.getMenuTypes = function () {
-		return menuPromise.then(function () {
-			return menuTypes;
-		});
+		return menuTypes;
 	};
 
-	/* function returns a promise that resolves when the menu data has loaded */
-	this.whenMenuDataIsLoaded = function () {
-		return menuPromise.then(function () {
-			return true;
+	// when menuTypes from menu service become available, make sure configured food types are legitimate food types from the Parse Menu
+	var validateConfiguredMenuTypes = function() {
+		getMenuTypes().then(function (menuTypes) {
+			_.each(collapsibleSetOrder, function (foodType) {
+				if(menuTypes.indexOf(foodType) === -1) {
+					console.error('"' + foodType + '"' + " is not a valid food type. It not match any of the food types specified in the menu on Parse. Please check the app.config settings.");
+				}
+			});
 		});
 	};
-});
+}]);
