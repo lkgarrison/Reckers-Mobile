@@ -50,14 +50,22 @@ menuService.service('MenuService', ['configService', function (configService) {
 		return menuTypes;
 	};
 
+	/* function returns a promise that resolves when the menu data has loaded */
+	this.whenMenuDataIsLoaded = function () {
+		return menuPromise.then(function () {
+			return true;
+		});
+	};
+
+	// validateConfiguredMenuTypes
 	// when menuTypes from menu service become available, make sure configured food types are legitimate food types from the Parse Menu
-	var validateConfiguredMenuTypes = function() {
-		getMenuTypes().then(function (menuTypes) {
-			_.each(collapsibleSetOrder, function (foodType) {
-				if(menuTypes.indexOf(foodType) === -1) {
+	(function() {
+		menuPromise.then(function () {
+			_.each(menuTypes, function (foodType) {
+				if(parseMenuTypes.indexOf(foodType) === -1) {
 					console.error('"' + foodType + '"' + " is not a valid food type. It not match any of the food types specified in the menu on Parse. Please check the app.config settings.");
 				}
 			});
 		});
-	};
+	})();
 }]);

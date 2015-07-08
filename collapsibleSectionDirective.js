@@ -14,7 +14,7 @@ app.directive("collapsibleSectionHeader", ['MenuService', function (MenuService)
 					$scope.menu = menuData;
 				});
 			});
-
+			
 			$scope.menuTypes = MenuService.getMenuTypes();
 				
 		},

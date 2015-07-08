@@ -14,131 +14,6 @@ newlyAddedCartItem = {};	// temporary storage for newly added item instead of im
 notFoundIndex = -1;		// sentinel value for "not found" in an array
 ingredientsScrollTolerance = 18;    // tolerance in ingredients popup when scrolling will be activated before the "scroll for more" message is displayed
 
-// create a table for each of the food types
-pizzaTable = document.createElement("table");
-piadinaTable = document.createElement("table");
-americanFareTable = document.createElement("table");
-saladTable = document.createElement("table");
-breakfastTable = document.createElement("table");
-sideTable = document.createElement("table");
-smoothieTable = document.createElement("table");
-
-var loadMenu = function () {
-
-	Parse.initialize("CZtjkZAV9gQzln2C3KKi7vsXRl4ppAMenjXiPGrx", "LVzkRhUfya9rMXDxGlda88o9d8XkPvd19YJdgWC6");
-
-	var query = new Parse.Query("Menu");
-
-	query.find().then(function (results) {
-		// Add one promise for each item into an array (menu)
-		_.each(results, function(result) {
-			// Start adding the result to the menu immediately
-			menu.push({
-				item: result.get("item"),
-				type: result.get("type"),
-				price: result.get("price"),
-				qty: 0,
-				description: result.get("description"),
-				ingredients: result.get("ingredients"),
-				options: result.get("prices")
-			});
-		});
-		// Return a new promise that is resolved when all items are retrieved and added to the menu array.
-		return Parse.Promise.when(menu);
-
-	}, function(error) {
-		console.error("Failed to initialize Menu from Parse");
-		console.error(error);
-
-	}).then(function() {
-		// when menu is entirely downloaded
-		displayMenu();
-	});
-};
-
-var displayMenu = function() {
-	for(var i = 0; i < menu.length; i++) {
-	   var tr = document.createElement("tr");  // first row will contain add button, item name, price
-
-		// add the add buttons
-		var item = document.createElement("td");
-		var button = document.createElement("td");
-		var addButton = document.createElement("input");
-		addButton.setAttribute("id", parseInt(i));       // assign a unique id to the button that is the item name. this id it the menu index of the item
-		addButton.setAttribute("onClick", "customizeItemOrder(this.id)"); // set onClick property to call the add function, passing the menu index of the item
-		addButton.setAttribute("type", "button");
-		addButton.setAttribute("class", "addButton");
-		addButton.setAttribute("value", "");
-		addButton.setAttribute("data-role", "none");
-		button.appendChild(addButton);
-		tr.appendChild(button);
-
-		// add item names
-		item.textContent = menu[i].item;
-		item.setAttribute("class", "itemNameOrder");
-		item.setAttribute("id", i + "item");
-		item.setAttribute("onClick", "customizeItemOrder(" + parseInt(item.id) + ")"); // call add method same as "+" button onclick (with menu index). parseInt deletes the string part
-		tr.appendChild(item);
-
-		// add price
-		var price = document.createElement("td");
-		price.textContent = "$" + menu[i].price.toFixed(2);
-		price.setAttribute("class", "price");
-		tr.appendChild(price);
-
-		chooseSection(tr, i);
-
-		tr = document.createElement("tr"); // second row is for description only
-		tr.appendChild(document.createElement("td")); // add an empty cell for spacing
-		var description = document.createElement("td");
-		description.textContent = menu[i].description;
-		description.setAttribute("class", "description");
-		description.setAttribute("onclick", "customizeItemOrder(" + parseInt(item.id) + ")"); // call add method same as "+" button onclick (with menu inex). parseInt deletes the string part
-		tr.appendChild(description);
-
-		chooseSection(tr, i);
-	}
-
-	/*qq("pizzas").appendChild(pizzaTable);
-	qq("piadinas").appendChild(piadinaTable);
-	qq("americanFare").appendChild(americanFareTable);
-	qq("salads").appendChild(saladTable);
-	qq("breakfast").appendChild(breakfastTable);
-	qq("sides").appendChild(sideTable);
-	qq("smoothies").appendChild(smoothieTable);
-	*/
-};
-
-// adds row to correct section in the accordion
-var chooseSection = function(tr, i) {
-	switch (menu[i].type) {
-		case "pizza":
-			pizzaTable.appendChild(tr);
-			break;
-		case "piadina":
-			piadinaTable.appendChild(tr);
-			break;
-		case "americanFare":
-			americanFareTable.appendChild(tr);
-			break;
-		case "salad":
-			saladTable.appendChild(tr);
-			break;
-		case "breakfast":
-			breakfastTable.appendChild(tr);
-			break;
-		case "side":
-			sideTable.appendChild(tr);
-			break;
-		case "smoothie":
-			smoothieTable.appendChild(tr);
-			break;
-		default:
-			console.error("Item type mismatch");
-			break;
-	}
-};
-
 // opens a popup to customize the item that was clicked
 var customizeItemOrder = function (menuIndex) {
 	var popupClassName = "customizeItemOrder"; // use this variable to change only the checkout page's item popup
@@ -836,7 +711,6 @@ var showFooter = function() {
 };
 
 window.onload = function () {
-	loadMenu();
 	$("#enterPaymentDetails").hide();   // keep payment method details form hidden until a method is selected
 };
 
