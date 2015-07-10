@@ -4,9 +4,9 @@
 		<tbody ng-repeat='item in menu | filter: {type:section.type}'>
 			<tr>
 				<td>
-					<input id="item.id" ng-click="customizeItemOrder(section.type)" type="button" class="addButton" value="" data-role="none">
+					<input id="item.id" ng-click="customizeItemOrder(item.id)" type="button" class="addButton" value="" data-role="none">
 				</td>
-				<td class="itemNameOrder" ng-click="item.id">{{ item.item }}<td>
+				<td class="itemNameOrder" ng-click="testBroadcast()">{{ item.item }}<td>
 				<td class="price">{{ item.price | currency }}</td>
 			</tr>
 			<tr>

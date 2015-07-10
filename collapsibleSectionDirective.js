@@ -1,4 +1,4 @@
-app.directive("collapsibleSectionHeader", ['MenuService', function (MenuService) {
+app.directive("collapsibleSectionHeader", ['MenuService', 'EventService', function (MenuService, EventService) {
 	return {
 		restrict: 'E',
 		scope: {
@@ -7,7 +7,7 @@ app.directive("collapsibleSectionHeader", ['MenuService', function (MenuService)
 		templateUrl: 'collapsibleSectionDirective.html',
 		controller: function ($scope, $timeout) {
 			/* make Menu service data accessible to directive's html
-			 * use $timeout to make sure $digest cycle is complete
+			 * use $timeout to ensure $digest cycle is complete and $scope is applied
 			 */
 			$timeout(function () {
 				MenuService.getMenu().then(function (menuData) {
@@ -16,7 +16,10 @@ app.directive("collapsibleSectionHeader", ['MenuService', function (MenuService)
 			});
 			
 			$scope.menuTypes = MenuService.getMenuTypes();
-				
+
+			$scope.testBroadcast = function () {
+				EventService.broadcast('testingBroadcast', {'key': 'value'});
+			};
 		},
 		link: function () {
 			// apply JQuery "collapsible" attribute to each element of class "menuHeader"

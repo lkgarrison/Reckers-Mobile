@@ -1,4 +1,4 @@
-var app = angular.module('app', ['MenuService']);
+var app = angular.module('app', ['MenuService', 'EventBus']);
 
 app.controller("myController", ['$scope', '$timeout', 'MenuService', function ($scope, $timeout, MenuService) {
 	// add data for collapsible set for menu on order page
@@ -12,7 +12,11 @@ app.controller("myController", ['$scope', '$timeout', 'MenuService', function ($
 			};
 		});
 	});
-	
+
+	$scope.$on('testingBroadcast', function (scope, data) {
+		console.log(data);
+		console.log("hello world");
+	});
 	
 	// save months and years for credit card expiration dates
 	$scope.months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'Decemeber'];
