@@ -22,7 +22,7 @@ menuService.service('MenuService', ['configService', function (configService) {
 					description: result.get("description"),
 					ingredients: result.get("ingredients"),
 					options: result.get("prices"),
-					id: counter++
+					index: counter++
 				});
 			});
 			// Return a new promise that is resolved when all items are retrieved and added to the menu array.

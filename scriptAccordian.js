@@ -6,7 +6,7 @@ var qq = function (id) {
 };
 
 menu = []; // this will be an array of the food objects. makes menu a global variable
-ordered = []; // array keeps track of menu index of ordered items
+ordered = []; // OBSOLETE. array keeps track of menu index of ordered items. OBSOLETE
 total = 0;  // track total cost of items in cart
 totalQuantity = 0;  // total number of items in cart (displayed in cart image)
 cart = [];          // array to hold all objects that are in cart (item, qty, price, ingredients, options

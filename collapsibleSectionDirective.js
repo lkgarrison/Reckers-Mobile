@@ -17,8 +17,10 @@ app.directive("collapsibleSectionHeader", ['MenuService', 'EventService', functi
 			
 			$scope.menuTypes = MenuService.getMenuTypes();
 
-			$scope.testBroadcast = function () {
-				EventService.broadcast('testingBroadcast', {'key': 'value'});
+			// broadcast request to open customize item popup for order page. Passes menuIndex of item
+			$scope.broadcastCustomizeItemRequest = function (menuIndex) {
+				console.log("here: " + menuIndex);
+				EventService.broadcast('customizeItem-order', menuIndex);
 			};
 		},
 		link: function () {

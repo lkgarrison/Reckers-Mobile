@@ -4,14 +4,14 @@
 		<tbody ng-repeat='item in menu | filter: {type:section.type}'>
 			<tr>
 				<td>
-					<input id="item.id" ng-click="customizeItemOrder(item.id)" type="button" class="addButton" value="" data-role="none">
+					<input id="item.index" ng-click="broadcastCustomizeItemRequest(item.index)" type="button" class="addButton" value="" data-role="none">
 				</td>
-				<td class="itemNameOrder" ng-click="testBroadcast()">{{ item.item }}<td>
+				<td class="itemNameOrder" ng-click="broadcastCustomizeItemRequest(item.index)">{{ item.item }}<td>
 				<td class="price">{{ item.price | currency }}</td>
 			</tr>
 			<tr>
 				<td></td>
-				<td class="description" ng-click="customizeItemOrder(item.id)">{{ item.description }}</td>
+				<td class="description" ng-click="broadcastCustomizeItemRequest(item.index)">{{ item.description }}</td>
 			</tr>
 		</tbody>
 	</table>
