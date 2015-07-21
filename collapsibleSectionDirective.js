@@ -12,6 +12,7 @@ app.directive("collapsibleSectionHeader", ['MenuService', 'EventService', functi
 			$timeout(function () {
 				MenuService.getMenu().then(function (menuData) {
 					$scope.menu = menuData;
+					$scope.$apply();
 				});
 			});
 			
@@ -19,7 +20,6 @@ app.directive("collapsibleSectionHeader", ['MenuService', 'EventService', functi
 
 			// broadcast request to open customize item popup for order page. Passes menuIndex of item
 			$scope.broadcastCustomizeItemRequest = function (menuIndex) {
-				console.log("here: " + menuIndex);
 				EventService.broadcast('customizeItem-order', menuIndex);
 			};
 		},

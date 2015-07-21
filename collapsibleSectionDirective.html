@@ -4,14 +4,20 @@
 		<tbody ng-repeat='item in menu | filter: {type:section.type}'>
 			<tr>
 				<td>
-					<input id="item.index" ng-click="broadcastCustomizeItemRequest(item.index)" type="button" class="addButton" value="" data-role="none">
+					<a ui-sref='customize-item-order({menuIndex: item.index})'>
+						<input id="item.index" ng-click="broadcastCustomizeItemRequest(item.index)" type="button" class="addButton" value="" data-role="none">
+					</a>
 				</td>
-				<td class="itemNameOrder" ng-click="broadcastCustomizeItemRequest(item.index)">{{ item.item }}<td>
+				<td ng-click="broadcastCustomizeItemRequest(item.index)">
+					<a class="itemNameOrder" ui-sref='customize-item-order({menuIndex: item.index})'>{{ item.name }}</a>
+				<td>
 				<td class="price">{{ item.price | currency }}</td>
 			</tr>
 			<tr>
 				<td></td>
-				<td class="description" ng-click="broadcastCustomizeItemRequest(item.index)">{{ item.description }}</td>
+				<td ng-click="broadcastCustomizeItemRequest(item.index)">
+					<a class="description" ui-sref='customize-item-order({menuIndex: item.index})'>{{ item.description }}</a>
+				</td>
 			</tr>
 		</tbody>
 	</table>

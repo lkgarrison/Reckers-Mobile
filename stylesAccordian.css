@@ -70,7 +70,7 @@
 .itemNameOrder {
 	font-family: 'Raleway';
 	font-size: 19px;
-	font-weight: 600;
+	font-weight: 600 !important;
 }
 
 /* for item names in checkout screen */
@@ -194,6 +194,7 @@
 .description {
 	font-size: 14px;
 	font-family: 'Raleway';
+	font-weight: 400 !important;
 }
 
 /* each item's ingredients list on checkout page */
@@ -585,4 +586,13 @@ p {
 input {
 	font-family: 'Raleway';
 	font-weight: 400;
+}
+
+a {
+	text-decoration: none;
+	color: #333 !important;
+}
+
+td {
+	padding: 0;
 }

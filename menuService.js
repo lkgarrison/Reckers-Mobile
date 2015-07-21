@@ -15,7 +15,7 @@ menuService.service('MenuService', ['configService', function (configService) {
 			_.each(results, function(result) {
 				// Start adding the result to the menu immediately
 				menu.push({
-					item: result.get("item"),
+					name: result.get("item"),
 					type: result.get("type"),
 					price: result.get("price"),
 					qty: 0,
@@ -32,6 +32,13 @@ menuService.service('MenuService', ['configService', function (configService) {
 			console.error(error);
 		})
 	.then(function () {
+		// convert ingredients string to an array
+		for(var i = 0; i < menu.length; i++) {
+			if (menu[i].ingredients !== undefined) {
+				menu[i].ingredients = menu[i].ingredients.split(',');
+			}
+		}
+
 		// when menu is entirely downloaded, create array of menu types (no repeats)
 		var allTypesRepeated = _.pluck(menu, 'type');
 		parseMenuTypes = _.unique(allTypesRepeated);

@@ -1,0 +1,24 @@
+<div class='page'>
+	<div class="customizeItemName popupTop">{{ item.name }}</div>
+	<div class="customizeItemPrice popupTop">{{ item.price | currency }}</div>
+	<div class="customizeItemColoredLine pizza-header"></div>
+	<h3 class="includedIngredientsLabel floatLeft">Included Ingredients:</h3>
+	<div class="scrollForMore">Scroll For More</div>    <!-- Used to indicate scroll to see more ingredients -->
+
+	<div class='flexcontainer2 checklistContainer'>
+		<div flex='80' layout='row' layout-wrap ng-repeat="ingredient in ingredients">
+			<md-checkbox class='md-primary' ng-checked="exists(ingredient, selected)" ng-click="toggle(ingredient, selected)">
+				{{ ingredient }}
+			</md-checkbox>
+		</div>
+	</div>
+
+	<div class='actionButtonContainer'>
+		<a ui-sref='order'>
+			<md-button class="addToCartButton md-raised md-primary" ng-click='addItem()'>Add</md-button>
+		</a>
+		<a ui-sref='order'>
+			<md-button class="addToCartButton md-raised md-primary">Cancel</md-button>
+		</a>
+	</div>
+</div>

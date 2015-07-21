@@ -1,24 +1,36 @@
-var app = angular.module('app', ['MenuService', 'EventBus', 'ngRoute']);
+var app = angular.module('app', ['MenuService', 'EventBus', 'ui.router', 'door3.css', 'ngMaterial']);
+app.run(['$state', '$stateParams',
+    function($state, $stateParams) {
+        //this solves page refresh and getting back to state
+}]);
 
-app.config(['$routeProvider',
-	function($routeProvider) {
-		$routeProvider
-			.when('/', {
-				templateUrl: 'pages/order.html',
-				controller: 'orderController'
-			})
+app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
+	$locationProvider.html5Mode(true);
 
-			.when('/checkout', {
-				templateUrl: 'pages/checkout.html',
-				controller: 'checkoutController'
-			})
+	$urlRouterProvider.otherwise('/order');
 
-			.otherwise({
-				redirectTo: '/'
-			});
-	  }]);
+	$stateProvider
+		.state('order', {
+			url: '/order',
+			templateUrl: 'pages/order.html',
+			controller: 'orderController'
+		})
 
-app.controller('headerFooterController', ['$scope', '$route', function ($scope, $route) {
+		.state('checkout', {
+			url: '/checkout',
+			templateUrl: 'pages/checkout.html',
+			controller: 'checkoutController'
+		})
+
+		.state('customize-item-order', {
+			url: '/customize-item-order/{menuIndex}',
+			templateUrl: 'pages/customize-item-order.html',
+			controller: 'customizeItemOrderController',
+			css: 'pages/customize-item.css'
+		});
+});
+
+app.controller('headerFooterController', ['$scope', function ($scope) {
 	var checkForPageError = function () {
 		currentPages = _.difference([$scope.isOrderPage, $scope.isCheckoutPage, $scope.isPickupPage], [false]);
 		if (currentPages.length > 1) {
@@ -27,21 +39,21 @@ app.controller('headerFooterController', ['$scope', '$route', function ($scope, 
 	};
 
 	var loadedTemplateUrl;
-	$scope.$on('$routeChangeSuccess', function () {
-		// this listener will be destroyed automatically when the scope is destroyed
+	// $scope.$on('$routeChangeSuccess', function () {
+	// 	// this listener will be destroyed automatically when the scope is destroyed
 
-		if (_.has($route.current, 'loadedTemplateUrl')) {
-			loadedTemplateUrl = $route.current.loadedTemplateUrl;
+	// 	if (_.has($route.current, 'loadedTemplateUrl')) {
+	// 		loadedTemplateUrl = $route.current.loadedTemplateUrl;
 
-			// determine current page
-			$scope.isOrderPage = loadedTemplateUrl.indexOf('order') !== -1;
-			$scope.isCheckoutPage = loadedTemplateUrl.indexOf('checkout') !== -1;
-			$scope.isPickupPage = loadedTemplateUrl.indexOf('pickup') !== -1;
+	// 		// determine current page
+	// 		$scope.isOrderPage = loadedTemplateUrl.indexOf('order') !== -1;
+	// 		$scope.isCheckoutPage = loadedTemplateUrl.indexOf('checkout') !== -1;
+	// 		$scope.isPickupPage = loadedTemplateUrl.indexOf('pickup') !== -1;
 
-			// ensure route url is such that only one page is active at a time
-			checkForPageError();
-		}
-	});
+	// 		// ensure route url is such that only one page is active at a time
+	// 		checkForPageError();
+	// 	}
+	// });
 }]);
 
 app.controller("orderController", ['$scope', '$timeout', '$location', 'MenuService', function ($scope, $timeout, $location, MenuService) {
@@ -58,7 +70,6 @@ app.controller("orderController", ['$scope', '$timeout', '$location', 'MenuServi
 	});
 
 	$scope.$on('customizeItem-order', function () {
-		$location.path('checkout');
 	});
 }]);
 
