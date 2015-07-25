@@ -10,16 +10,24 @@
 	top: 3%;
 }
 
-#cart_logo {
+#cartLogo {
 	height: 30px;
 	width: auto;
+	margin-top: 2px;
 }
 
-#items_in_cart {
+.cartQuantity {
 	color: red;
-	font-size: 14pt;
-	padding-right: 8px;
+	font-size: 14pt !important;
 	margin-top: 0;
+}
+
+.cartQuantitySingleDigits {
+	padding-right: 8px;
+}
+
+.cartQuantityDoubleDigits {
+	padding-right: 3px;
 }
 
 /* styling for all fixed persistant footers on each page */
@@ -595,4 +603,27 @@ a {
 
 td {
 	padding: 0;
+}
+
+.header-container {
+	height: 42px;
+	width: 100%;
+	position: absolute;
+	background-color: #e9e9e9;
+	top: 0;
+}
+
+.header {
+	height: 42px;
+	position: absolute;;
+	top: 0;
+}
+
+.content {
+	top: 42px;
+	width: 100%;
+	position: absolute;
+	overflow-y: auto;
+	overflow-x: hidden;
+	bottom: 65px;
 }

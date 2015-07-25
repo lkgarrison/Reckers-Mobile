@@ -1,28 +1,31 @@
-app.controller('customizeItemOrderController', ['$scope', '$timeout', '$stateParams', 'MenuService', function ($scope, $timeout, $stateParams, MenuService) {
+app.controller('customizeItemOrderController', ['$scope', '$timeout', '$state', '$stateParams', 'MenuService', 'CartService', function ($scope, $timeout, $state, $stateParams, MenuService, CartService) {
 	var menuIndex = $stateParams.menuIndex;
-
+	var tempItem;
+	var selectedIngredients = [];
 	$timeout(function () {
 		MenuService.getMenu().then(function (menuData) {
 			$scope.menu = menuData;
 			$scope.item = menuData[menuIndex];
 			$scope.ingredients = menuData[menuIndex].ingredients;
+			selectedIngredients = _.clone(menuData[menuIndex].ingredients, true);
+			tempItem = _.clone(menuData[menuIndex], true);
 			$scope.$apply();
 		});
 	});
 
-	$scope.selected = [];
-	$scope.toggle = function (item, list) {
-		var idx = list.indexOf(item);
-		if (idx > -1) list.splice(idx, 1);
-		else list.push(item);
+	$scope.toggle = function (item) {
+		var index = selectedIngredients.indexOf(item);
+		if (index > -1) selectedIngredients.splice(index, 1);
+		else selectedIngredients.push(item);
 	};
 
-	$scope.exists = function (item, list) {
-		return list.indexOf(item) > -1;
+	$scope.isSelectedIngredient = function (item) {
+		return selectedIngredients.indexOf(item) > -1;
 	};
 
 	$scope.addItem = function () {
-
+		tempItem.ingredients = selectedIngredients;
+		CartService.addItem(tempItem);
 	};
 
 }]);

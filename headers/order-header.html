@@ -1,0 +1,6 @@
+<div class="header header-container">
+	<img src="../img/reckers_header.png" class="header-logo">
+	<div class="header header-center header-text">Menu</div>
+	<img ng-src="{{ cartLogo }}" class="header header-cart-logo" onclick="checkQuantity()">
+	<label ng-if="quantity > 0" class="header header-cart-quantity {{ cartQuantityClass }}" onclick="checkQuantity()">{{ quantity }}</label>
+</div>

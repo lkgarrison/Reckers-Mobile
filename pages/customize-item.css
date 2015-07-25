@@ -96,6 +96,12 @@
 	position: relative;
 }
 
+md-checkbox .md-label span {
+	font-family: 'Raleway';
+	font-weight: 400;
+	font-size: 17px;
+}
+
 .flexcontainer {
    display: -webkit-flex;
    display: flex;
@@ -127,12 +133,4 @@
 
 .md-checkbox {
 	margin: 10px;
-}
-
-.page {
-	width: 100%;
-	height: 100%;
-	position: relative;
-	overflow-y: auto;
-	overflow-x: hidden;
 }
