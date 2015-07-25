@@ -27,8 +27,6 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
 					templateUrl: 'pages/order.html',
 					controller: 'orderController',
 				}
-				
-				
 			}
 			
 		})
