@@ -1,3 +1,7 @@
+.md-dialog-backdrop {
+	background-color: rgba(0, 0, 0, 0.35) !important;
+}
+
 #reckers_header, .reckersLogoRight {
 	height: 92%;
 	width: auto;

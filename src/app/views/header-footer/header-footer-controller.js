@@ -1,6 +1,12 @@
-angular.module('app').controller('headerFooterController', ['$scope', '$state', 'CartService', function ($scope, $state, CartService) {
+angular.module('app').controller('headerFooterController', ['$scope', '$state', 'CartService', 'EventService', function ($scope, $state, CartService, EventService) {
 	$scope.quantity = 0;
 
+	// broadcast so that order-view can pick up the broadcast and display the popup
+	$scope.broadcastNoItemsInCartError = function () {
+		EventService.broadcast('no-items-in-cart-error');
+	};
+
+	// update quantity displayed inside cart logo
 	$scope.$on('item-added', function () {
 		$scope.quantity = CartService.getTotalQuantity();
 	});
