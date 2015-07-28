@@ -1,0 +1,59 @@
+/* backgrounds for menu headers on order page */
+#header_pizza .ui-collapsible-heading-toggle {
+	background-image: url('/assets/img/header_pizzaND.png');
+}
+
+#header_piadina .ui-collapsible-heading-toggle {
+	background-image: url('/assets/img/header_piadinaND.png');
+}
+
+#header_americanFare .ui-collapsible-heading-toggle {
+	background-image: url('/assets/img/header_sandwichesND.png');
+}
+
+#header_salad .ui-collapsible-heading-toggle {
+	background-image: url('/assets/img/header_saladsND.png');
+}
+
+#header_breakfast .ui-collapsible-heading-toggle {
+	background-image: url('/assets/img/header_breakfastND.png');
+}
+
+#header_side .ui-collapsible-heading-toggle {
+	background-image: url('/assets/img/header_sidesND.png');
+}
+
+#header_smoothie .ui-collapsible-heading-toggle {
+	background-image: url('/assets/img/header_smoothiesND.png');
+}
+
+/* default styling for menu headers on order page */
+.menuHeader h3 a {
+	font-size: 22px;
+	color: white !important;
+	font-family: 'Raleway';
+	font-weight: 500;
+	background-repeat: round;
+	margin-top: 6px;
+	margin-bottom: 6px;
+}
+
+/* for item names on order page */
+.itemNameOrder {
+	font-family: 'Raleway';
+	font-size: 19px;
+	font-weight: 600 !important;
+}
+
+/* add button next to each item on the menu on the order page */
+.addButton {
+	background: none;
+	border: none;
+	background-image: url('/assets/img/addButton.png');
+	background-repeat: no-repeat;
+	type: submit;
+	position: relative;
+	left: 0%;
+	padding-right: 15px;
+}
+

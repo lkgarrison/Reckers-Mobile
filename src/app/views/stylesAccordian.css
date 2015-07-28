@@ -1,33 +1,7 @@
-#menu {
-	position: absolute;
-	left: 0%;
-	top: 0px;
-}
-
 #reckers_header, .reckersLogoRight {
 	height: 92%;
 	width: auto;
 	top: 3%;
-}
-
-#cartLogo {
-	height: 30px;
-	width: auto;
-	margin-top: 2px;
-}
-
-.cartQuantity {
-	color: red;
-	font-size: 14pt !important;
-	margin-top: 0;
-}
-
-.cartQuantitySingleDigits {
-	padding-right: 8px;
-}
-
-.cartQuantityDoubleDigits {
-	padding-right: 3px;
 }
 
 /* styling for all fixed persistant footers on each page */
@@ -74,13 +48,6 @@
 	font-size: 17px;
 }
 
-/* for item names on order page */
-.itemNameOrder {
-	font-family: 'Raleway';
-	font-size: 19px;
-	font-weight: 600 !important;
-}
-
 /* for item names in checkout screen */
 .itemNameCheckout {
 	padding-right: 14px;
@@ -98,51 +65,6 @@
 	font-family: 'Roboto';
 	font-size: 17px;
 	font-weight: 400;
-}
-
-/* styling for each td in a tr of class "lineItemFirstRow". Gives more spacing between line item entries */
-.lineItemFirstRow > td {
-	padding-top: 10px;
-}
-
-/* backgrounds for menu headers on order page */
-#header_pizza .ui-collapsible-heading-toggle {
-	background-image: url('img/header_pizzaND.png');
-}
-
-#header_piadina .ui-collapsible-heading-toggle {
-	background-image: url('img/header_piadinaND.png');
-}
-
-#header_americanFare .ui-collapsible-heading-toggle {
-	background-image: url('img/header_sandwichesND.png');
-}
-
-#header_salad .ui-collapsible-heading-toggle {
-	background-image: url('img/header_saladsND.png');
-}
-
-#header_breakfast .ui-collapsible-heading-toggle {
-	background-image: url('img/header_breakfastND.png');
-}
-
-#header_side .ui-collapsible-heading-toggle {
-	background-image: url('img/header_sidesND.png');
-}
-
-#header_smoothie .ui-collapsible-heading-toggle {
-	background-image: url('img/header_smoothiesND.png');
-}
-
-/* default styling for menu headers on order page */
-.menuHeader h3 a {
-	font-size: 22px;
-	color: white !important;
-	font-family: 'Raleway';
-	font-weight: 500;
-	background-repeat: round;
-	margin-top: 6px;
-	margin-bottom: 6px;
 }
 
 /* menu item title inside each menu seaction. ie "chicken alfredo pizza" */
@@ -229,18 +151,6 @@
 	padding-right: 15px;
 	align: left;
 
-}
-
-/* add button next to each item on the menu on the order page */
-.addButton {
-	background: none;
-	border: none;
-	background-image: url('img/addButton.png');
-	background-repeat: no-repeat;
-	type: submit;
-	position: relative;
-	left: 0%;
-	padding-right: 15px;
 }
 
 /* div for add and cancel buttons beneath the order table on checkout page */
