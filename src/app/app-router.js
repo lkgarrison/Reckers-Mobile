@@ -51,23 +51,9 @@ angular.module('app').config(function ($stateProvider, $urlRouterProvider, $loca
 					css: 'app/views/header-footer/header/order/order-header-styles.css'
 				},
 				'content' : {
-					templateUrl: 'app/views/checkout/checkout-view.html'
+					templateUrl: 'app/views/checkout/checkout-view.html',
+					controller: 'checkoutController'
 				}
 			}
 		});
-
-		// .state('checkout', {
-		// 	url: '/checkout',
-		// 	templateUrl: 'pages/checkout.html',
-		// 	controller: 'checkoutController',
-		// 	phase: 'checkout'
-		// })
-
-		// .state('customize-item-order', {
-		// 	url: '/customize-item-order/{menuIndex}',
-		// 	templateUrl: 'pages/customize-item-order.html',
-		// 	controller: 'customizeItemOrderController',
-		// 	phase: 'order',
-		// 	css: 'pages/customize-item.css'
-		// });
 });
