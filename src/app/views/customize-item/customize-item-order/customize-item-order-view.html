@@ -5,13 +5,18 @@
 	<h3 class="includedIngredientsLabel floatLeft">Included Ingredients:</h3>
 	<!-- <div class="scrollForMore">Scroll For More</div>  -->   <!-- Used to indicate scroll to see more ingredients -->
 
-	<div class='flexcontainer2 checklistContainer'>
+	<div class='flexcontainer checklistContainer'>
 		<div flex='80' layout='row' layout-wrap ng-repeat="ingredient in ingredients">
 			<md-checkbox class='md-primary' ng-checked="isSelectedIngredient(ingredient)" ng-click="toggle(ingredient)">
 				{{ ingredient }}
 			</md-checkbox>
 		</div>
 	</div>
+
+	<md-input-container flex class='special-instructions'>
+		<label>Special Instructions</label>
+		<input ng-model="specialInstructions">
+	</md-input-container>
 
 	<div class='actionButtonContainer'>
 		<a ui-sref='root.order'>

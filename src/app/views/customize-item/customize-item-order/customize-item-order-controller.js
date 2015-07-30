@@ -25,6 +25,7 @@ app.controller('customizeItemOrderController', ['$scope', '$timeout', '$state', 
 
 	$scope.addItem = function () {
 		tempItem.ingredients = selectedIngredients;
+		tempItem.specialInstructions = $scope.specialInstructions;
 		CartService.addItem(tempItem);
 	};
 
