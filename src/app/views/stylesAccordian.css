@@ -520,17 +520,26 @@ td {
 }
 
 .header-container {
-	height: 42px;
 	width: 100%;
-	position: absolute;
 	background-color: #e9e9e9;
-	top: 0;
 }
 
 .header {
 	height: 42px;
 	position: absolute;;
 	top: 0;
+}
+
+.footer-container {
+	width: 100%;
+	background-color: #e9e9e9;
+}
+
+.footer {
+	height: 65px;
+	width: 100%;
+	position: absolute;;
+	bottom: 0;
 }
 
 .content {

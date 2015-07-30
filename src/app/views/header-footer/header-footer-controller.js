@@ -2,8 +2,12 @@ angular.module('app').controller('headerFooterController', ['$scope', '$state', 
 	$scope.quantity = 0;
 
 	// broadcast so that order-view can pick up the broadcast and display the popup
-	$scope.broadcastNoItemsInCartError = function () {
-		EventService.broadcast('no-items-in-cart-error');
+	$scope.attemptToGoToCheckout = function () {
+		if ($scope.quantity === 0) {
+			EventService.broadcast('no-items-in-cart-error');
+		} else {
+			$state.go('root.checkout');
+		}
 	};
 
 	// update quantity displayed inside cart logo

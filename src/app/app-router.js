@@ -21,6 +21,10 @@ angular.module('app').config(function ($stateProvider, $urlRouterProvider, $loca
 					templateUrl: 'app/views/order/order-view.html',
 					controller: 'orderController',
 					css: 'app/views/order/order-styles.css'
+				},
+				'footer' : {
+					templateUrl: 'app/views/header-footer/footer/order/order-footer-view.html',
+					css: 'app/views/header-footer/footer/footer-styles.css'
 				}
 			}
 			
@@ -38,6 +42,10 @@ angular.module('app').config(function ($stateProvider, $urlRouterProvider, $loca
 					templateUrl: 'app/views/customize-item/customize-item-order/customize-item-order-view.html',
 					controller: 'customizeItemOrderController',
 					css: 'app/views/customize-item/customize-item-order/customize-item-order-styles.css'
+				},
+				'footer' : {
+					templateUrl: 'app/views/header-footer/footer/order/order-footer-view.html',
+					css: 'app/views/header-footer/footer/footer-styles.css'
 				}
 			}
 		})
@@ -53,6 +61,10 @@ angular.module('app').config(function ($stateProvider, $urlRouterProvider, $loca
 				'content' : {
 					templateUrl: 'app/views/checkout/checkout-view.html',
 					controller: 'checkoutController'
+				},
+				'footer' : {
+					templateUrl: 'app/views/header-footer/footer/checkout/checkout-footer-view.html',
+					css: 'app/views/header-footer/footer/footer-styles.css'
 				}
 			}
 		});

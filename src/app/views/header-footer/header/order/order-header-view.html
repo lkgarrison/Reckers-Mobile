@@ -1,13 +1,11 @@
 <div class='header header-container'>
 	<img src='/assets/img/reckers_header.png' class='header-logo'>
 	<div class='header header-center header-text'>Menu</div>
-	<div ng-if='quantity > 0'>
-		<a ui-sref='root.checkout'>
-			<img ng-src='assets/img/cartWithItems.png' class='header header-cart-logo'>
-			<label class='header header-cart-quantity' ng-class="quantity < 10 ? 'cart-quantity-single-digits' : 'cart-quantity-double-digits'">{{ quantity }}</label>
-		</a>
+	<div ng-if='quantity > 0' ng-click='attemptToGoToCheckout()'>
+		<img ng-src='assets/img/cartWithItems.png' class='header header-cart-logo'>
+		<label class='header header-cart-quantity' ng-class="quantity < 10 ? 'cart-quantity-single-digits' : 'cart-quantity-double-digits'">{{ quantity }}</label>
 	</div>
 	<div ng-if='quantity === 0'>
-		<img ng-src='assets/img/cartEmpty.png' class='header header-cart-logo' ng-click='broadcastNoItemsInCartError()'>
+		<img ng-src='assets/img/cartEmpty.png' class='header header-cart-logo' ng-click='attemptToGoToCheckout()'>
 	</div>
 </div>
