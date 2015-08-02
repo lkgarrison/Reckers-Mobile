@@ -1,0 +1,31 @@
+{
+  "name": "Reckers-Mobile",
+  "version": "0.1.0",
+  "homepage": "https://github.com/lkgarrison/Reckers-Mobile",
+  "authors": [
+    "Luke Garrison <lgarriso@nd.edu>"
+  ],
+  "description": "Web based interface to remotely create and pay for orders at ND's campus cafe, Reckers",
+  "main": "index.html",
+  "directory": "lib",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.4",
+    "angular": "~1.4.3",
+    "angular-animate": "~1.4.3",
+    "angular-aria": "~1.4.3",
+    "angular-material": "~0.10.0",
+    "jquery-mobile-bower": "~1.4.5",
+    "lodash": "~3.10.0",
+    "angular-ui-router": "~0.2.15",
+    "angular-css": "~1.0.7",
+    "parse-js-sdk": "~1.4.2"
+  }
+}
