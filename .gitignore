@@ -1,0 +1,9 @@
+# project directories
+dist
+.tmp
+
+# node modules
+node_modules
+
+# libraries installed via bower
+src/assets/lib/
