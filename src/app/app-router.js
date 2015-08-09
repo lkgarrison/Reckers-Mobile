@@ -55,8 +55,8 @@ angular.module('app').config(function ($stateProvider, $urlRouterProvider, $loca
 			phase: 'checkout',
 			views: {
 				'header' : {
-					templateUrl: 'app/views/header-footer/header/order/order-header-view.html',
-					css: 'app/views/header-footer/header/order/order-header-styles.css'
+					templateUrl: 'app/views/header-footer/header/checkout/checkout-header-view.html',
+					css: 'app/views/header-footer/header/checkout/checkout-header-styles.css'
 				},
 				'content' : {
 					templateUrl: 'app/views/checkout/checkout-view.html',
