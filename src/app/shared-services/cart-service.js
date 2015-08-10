@@ -26,6 +26,8 @@ cartService.service('CartService', ['EventService', function (EventService) {
 		var cartIndex = getIndex(item);
 		if (cartIndex === false) {
 			console.error('Unable to remove item');
+
+			return;
 		}
 
 		if (item.qty > 1) {
@@ -35,6 +37,7 @@ cartService.service('CartService', ['EventService', function (EventService) {
 			cart.splice(cartIndex, 1);
 		}
 
+		total -= item.price;
 		EventService.broadcast('cart-updated');
 	};
 
