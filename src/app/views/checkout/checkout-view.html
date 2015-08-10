@@ -1,1 +1,26 @@
-<p> checkout page - initial test </p>
+<div class='checkout-wrapper'>
+	<h2 class = "order-title">Order Summary</h2>
+	<p ng-if='cart.length === 0'>Nothing has been ordered<br></p>
+	<div class='total-wrapper'>
+		<table class='order-table'>
+			<tbody ng-repeat='item in cart'>
+				<tr>
+					<td class='remove-button'></td>
+					<td class='quantity checkout-page'>{{item.qty}}</td>
+					<td class='item-name-checkout' colspan='2'>{{item.name}}</td>
+					<td>{{item.price | currency}}</td>
+				</tr>
+				<tr>
+					<td colspan='2'></td>
+					<td class='ingredients-listing' colspan='2'>{{commafyIngredients(item.ingredients)}}</td>
+				</tr>
+				<tr>
+					<td colspan='2'></td>
+					<td class='edit-checkout line-item-option'>Edit</td>
+					<td ng-click='remove(item)' class='remove-checkout line-item-option'>Remove</td>
+			</tbody>
+		</table>
+		<div class='total-line'><img src="assets/img/totalLine.png" id="totalLinePNG"></div>
+		<div class='total right'>Total: {{total | currency}}</div>
+	</div>
+</div>

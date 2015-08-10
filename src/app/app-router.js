@@ -60,7 +60,8 @@ angular.module('app').config(function ($stateProvider, $urlRouterProvider, $loca
 				},
 				'content' : {
 					templateUrl: 'app/views/checkout/checkout-view.html',
-					controller: 'checkoutController'
+					controller: 'checkoutController',
+					css: 'app/views/checkout/checkout-styles.css'
 				},
 				'footer' : {
 					templateUrl: 'app/views/header-footer/footer/checkout/checkout-footer-view.html',

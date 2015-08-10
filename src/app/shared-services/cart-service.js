@@ -7,19 +7,35 @@ cartService.service('CartService', ['EventService', function (EventService) {
 
 	this.addItem = function (item) {
 		var existingCartIndex = getIndex(item);
-		console.log(existingCartIndex);
+
+		// ensure angular sees cart's items as unique
+		item = _.omit(item, '$$hashKey');
 		if (existingCartIndex === false) {
 			item.qty = 1;
 			cart.push(item);
-			console.log('    new item');
 		} else {
 			cart[existingCartIndex].qty++;
-			console.log('    existing item');
 		}
 
 		totalQuantity++;
 		total += item.price;
 		EventService.broadcast('item-added');
+	};
+
+	this.removeItem = function (item) {
+		var cartIndex = getIndex(item);
+		if (cartIndex === false) {
+			console.error('Unable to remove item');
+		}
+
+		if (item.qty > 1) {
+			cart[cartIndex].qty--;
+		} else {
+			// remove the item from the cart since it had a qty of 1
+			cart.splice(cartIndex, 1);
+		}
+
+		EventService.broadcast('cart-updated');
 	};
 
 	this.getTotal = function () {

@@ -1,0 +1,100 @@
+/* Wrapper for checkout page's content */
+.checkout-wrapper {
+	padding-left: 8px;
+}
+
+/* "order summary" title on checkout page */
+.order-title {
+	font-family: 'Raleway';
+	color: black;
+	font-weight: 500;
+	font-size: 35px;
+	padding-left: 6px;
+	padding-top: 0px;
+	padding-bottom: 0px;
+	margin: 0px;
+}
+
+/* necessary to keep TOTAL and total line right aligned with orderTable */
+.total-wrapper {
+	display: inline-block;
+	margin-right: 12px;      /* gives a touch of room along the right margin */
+	padding-left: 0px;
+}
+
+/* horizontal line above the total cost on the checkout page */
+.total-line {
+	margin-top: 0;
+	padding-top: 0;
+	text-align: right;
+}
+
+/* total cost styling */
+.total {
+	font-size: 26px;
+	font-family: 'Roboto';
+	font-weight: 300;
+	position: relative;
+	text-align: right;
+}
+
+/* remove button wrapper for each item's remove button. must have wrapper to format remove button correctly */
+.remove-button-wrapper {
+	vertical-align: top;
+	padding-top: 0;
+	margin-top: 0;
+	height: 100%;
+}
+
+/* remove button for each item on checkout page */
+.remove-button {
+	background: none;
+	border: none;
+	background-image: url('/assets/img/removeButton1.5.png');
+	background-repeat: no-repeat;
+	left: 0%;
+	padding-right: 15px;
+	align: left;
+}
+
+/* quantity next to line item */
+.quantity {
+	font-weight: bold;
+	padding-right: 9px;
+	vertical-align: top;
+	font-family: 'Roboto';
+	font-weight: 400;
+	font-size: 17px;
+}
+
+/* for item names in checkout screen */
+.item-name-checkout {
+	padding-right: 14px;
+	vertical-align: top;
+	font-family: 'Raleway';
+	font-size: 19px;
+	font-weight: 600;
+}
+
+/* for price/item on checkout page */
+.price {
+	vertical-align: top;
+	text-align: left;
+	padding-left: 0;
+	font-family: 'Roboto';
+	font-size: 17px;
+	font-weight: 400;
+}
+
+/* each item's ingredients list on checkout page */
+.ingredients-listing {
+	font-size: 14px;
+	font-family: 'Raleway';
+}
+
+/* for "edit" and "remove" links below each item */
+.line-item-option {
+	text-align: center;
+	text-decoration: underline;
+	color: #EA5E33;
+}
