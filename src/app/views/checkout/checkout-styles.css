@@ -50,21 +50,20 @@
 .remove-button {
 	background: none;
 	border: none;
-	background-image: url('/assets/img/removeButton1.5.png');
+	background-image: url('/assets/img/removeButton.png');
 	background-repeat: no-repeat;
 	left: 0%;
-	padding-right: 15px;
+	padding-right: 19px;
 	align: left;
 }
 
 /* quantity next to line item */
 .quantity {
-	font-weight: bold;
 	padding-right: 9px;
 	vertical-align: top;
 	font-family: 'Roboto';
 	font-weight: 400;
-	font-size: 17px;
+	font-size: 19px;
 }
 
 /* for item names in checkout screen */
@@ -82,7 +81,7 @@
 	text-align: left;
 	padding-left: 0;
 	font-family: 'Roboto';
-	font-size: 17px;
+	font-size: 18px;
 	font-weight: 400;
 }
 
@@ -96,5 +95,28 @@
 .line-item-option {
 	text-align: center;
 	text-decoration: underline;
-	color: #EA5E33;
+	color: #E74433;
+}
+
+/* div for add and cancel buttons beneath the order table on checkout page */
+.checkout-button-group {
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+	padding-top: 15px;
+}
+
+/* for checkout buttons on checkout page */
+.checkout-button {
+	width: 60%;
+}
+
+/* add items button below order table on checkout page */
+.add-more-items {
+	background-image: url('/assets/img/header_piadina.png') !important;
+}
+
+/* cancel order button below order table on checkout page */
+.cancel-order {
+	background-image: url('/assets/img/header_pizza.png') !important;
 }

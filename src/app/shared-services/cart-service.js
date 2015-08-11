@@ -54,6 +54,13 @@ cartService.service('CartService', ['EventService', function (EventService) {
 		return cart;
 	};
 
+	this.emptyCart = function () {
+		cart = [];
+		total = 0;
+		totalQuantity = 0;
+		broadcastCartUpdate();
+	};
+
 	function broadcastCartUpdate() {
 		EventService.broadcast('cart-updated');
 	}

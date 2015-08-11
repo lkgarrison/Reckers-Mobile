@@ -82,107 +82,11 @@
 	padding-right: 10px;
 }
 
-/* "order summary" title on checkout page */
-.orderTitle {
-	font-family: 'Raleway';
-	color: black;
-	font-weight: 500;
-	font-size: 35px;
-	padding-left: 6px;
-	padding-top: 0px;
-	padding-bottom: 0px;
-	margin: 0px;
-}
-
-/* contains orderTitle, line items with ingredients, and total cost */
-#orderContainer {
-	border: none;
-	height: 100%;
-	font-size: 18px;
-	font-family: Verdana, Tahoma, Century Gothic, Arial, sans-serif;
-	font-weight: 500;
-	padding-top: 0px;
-	padding-left: 0px;
-	overflow: auto;      /* enables scrolling */
-	padding-bottom: 0;
-	margin-bottom: 0;
-}
-
-/* horizontal line above the total cost on the checkout page */
-#totalLine {
-	margin-top: 0;
-	padding-top: 0;
-	text-align: right;
-}
-
-/* total cost styling */
-#total {
-	font-size: 26px;
-	font-family: 'Roboto';
-	font-weight: 300;
-	position: relative;
-	text-align: right;
-}
-
 /* item description */
 .description {
 	font-size: 14px;
 	font-family: 'Raleway';
 	font-weight: 400 !important;
-}
-
-/* each item's ingredients list on checkout page */
-.ingredientsListing {
-	font-size: 14px;
-	font-family: 'Raleway';
-}
-
-/* remove button wrapper for each item's remove button. must have wrapper to format remove button correctly */
-.rmButtonWrapper {
-	vertical-align: top;
-	padding-top: 0;
-	margin-top: 0;
-	height: 100%;
-}
-
-/* remove button for each item on checkout page */
-.removeButton {
-	background: none;
-	border: none;
-	background-image: url('img/removeButton1.5.png');
-	background-repeat: no-repeat;
-	left: 0%;
-	padding-right: 15px;
-	align: left;
-
-}
-
-/* div for add and cancel buttons beneath the order table on checkout page */
-#options {
-	font-family: Verdana, Tahoma, Century Gothic, Arial, sans-serif;
-	color: dimgray;
-	padding-top: 10px;
-	text-align: center;
-}
-
-/* add items button below order table on checkout page */
-#addItems {
-	padding-left: 0;
-	padding-right: 0;
-	margin-left: 20%;           /* centered */
-	width: 60%;
-	background-image: url('img/header_piadina.png') !important;
-	color: white;
-}
-
-/* cancel order button below order table on checkout page */
-#cancelOrder {
-	padding-left: 0;
-	padding-right: 0;
-	margin-left: 20%;           /* centered */
-	width: 60%;
-	background-image: url('img/header_pizza.png') !important;
-	color: white;
 }
 
 /* Styling for "Expiration Date" in "Payment Method" section */

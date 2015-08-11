@@ -1,4 +1,4 @@
-angular.module('app').controller('checkoutController', ['$scope', 'CartService', function ($scope, CartService) {
+angular.module('app').controller('checkoutController', ['$scope', '$state', '$mdDialog', 'CartService', function ($scope, $state, $mdDialog, CartService) {
 	$scope.cart = CartService.getCart();
 	$scope.total = CartService.getTotal();
 
@@ -16,6 +16,22 @@ angular.module('app').controller('checkoutController', ['$scope', 'CartService',
 
 	$scope.remove = function(item) {
 		CartService.removeItem(item);
+	};
+
+	$scope.confirmCancel = function () {
+		$mdDialog.show(
+			$mdDialog.confirm()
+				.parent(angular.element(document.body))
+				.title('Confirm Cancellation')
+				.content('Are you sure you would like to cancel your order?')
+				.ok('Yes')
+				.cancel('No')
+
+		).then(function () {
+			// handler for confirming order cancellation
+			CartService.emptyCart();
+			$state.go('root.order');
+		});
 	};
 
 	// update the cart for the view

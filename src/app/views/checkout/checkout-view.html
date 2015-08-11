@@ -8,7 +8,7 @@
 					<td ng-click='remove(item)' class='remove-button'></td>
 					<td class='quantity checkout-page'>{{item.qty}}</td>
 					<td class='item-name-checkout' colspan='2'>{{item.name}}</td>
-					<td>{{item.price | currency}}</td>
+					<td class='price'>{{item.price | currency}}</td>
 				</tr>
 				<tr>
 					<td colspan='2'></td>
@@ -22,5 +22,14 @@
 		</table>
 		<div class='total-line'><img src="assets/img/totalLine.png" id="totalLinePNG"></div>
 		<div class='total right'>Total: {{total | currency}}</div>
+	</div>
+
+	<div class='checkout-button-group'>
+		<a ui-sref='root.order'>
+			<md-button class='add-more-items checkout-button md-raised md-primary'>Add More Food</md-button>
+		</a>
+		<div>
+			<md-button class='cancel-order checkout-button md-raised md-primary' ng-click='confirmCancel()'>Cancel Order</md-button>
+		</div>
 	</div>
 </div>
