@@ -1,10 +1,10 @@
-angular.module('app').controller('headerFooterController', ['$scope', '$state', 'CartService', 'EventService', function ($scope, $state, CartService, EventService) {
+angular.module('app').controller('headerFooterController', ['$scope', '$state', '$mdDialog', 'CartService', function ($scope, $state, $mdDialog, CartService) {
 	$scope.quantity = 0;
 
 	// broadcast so that order-view can pick up the broadcast and display the popup
 	$scope.attemptToGoToCheckout = function () {
 		if ($scope.quantity === 0) {
-			EventService.broadcast('no-items-in-cart-error');
+			displayNoItemsInCartError();
 		} else {
 			$state.go('root.checkout');
 		}
@@ -14,6 +14,16 @@ angular.module('app').controller('headerFooterController', ['$scope', '$state', 
 	$scope.$on('cart-updated', function () {
 		$scope.quantity = CartService.getTotalQuantity();
 	});
+
+	function displayNoItemsInCartError() {
+		$mdDialog.show(
+			$mdDialog.alert()
+				.parent(angular.element(document.body))
+				.title('Empty Cart')
+				.content('Add items to your cart first!')
+				.ok('Okay!')
+		);
+	}
 
 	function checkForPageError() {
 		currentPages = _.difference([$scope.isOrderPage, $scope.isCheckoutPage, $scope.isPickupPage], [false]);
