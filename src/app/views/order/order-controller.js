@@ -10,7 +10,4 @@ angular.module('app').controller("orderController", ['$scope', '$timeout', '$loc
 			};
 		});
 	});
-
-	$scope.$on('customizeItem-order', function () {
-	});
 }]);

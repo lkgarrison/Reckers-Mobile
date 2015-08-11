@@ -5,17 +5,17 @@
 			<tr>
 				<td>
 					<a ui-sref='root.customize-item-order({menuIndex: item.index})'>
-						<input id="item.index" ng-click="broadcastCustomizeItemRequest(item.index)" type="button" class="addButton" value="" data-role="none">
+						<input id="item.index" type="button" class="addButton" value="" data-role="none">
 					</a>
 				</td>
-				<td ng-click="broadcastCustomizeItemRequest(item.index)">
+				<td>
 					<a class="itemNameOrder" ui-sref='root.customize-item-order({menuIndex: item.index})'>{{ item.name }}</a>
 				<td>
 				<td class="price">{{ item.price | currency }}</td>
 			</tr>
 			<tr>
 				<td></td>
-				<td ng-click="broadcastCustomizeItemRequest(item.index)">
+				<td>
 					<a class="description" ui-sref='root.customize-item-order({menuIndex: item.index})'>{{ item.description }}</a>
 				</td>
 			</tr>

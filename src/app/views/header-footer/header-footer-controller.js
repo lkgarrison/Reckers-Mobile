@@ -11,7 +11,7 @@ angular.module('app').controller('headerFooterController', ['$scope', '$state', 
 	};
 
 	// update quantity displayed inside cart logo
-	$scope.$on('item-added', function () {
+	$scope.$on('cart-updated', function () {
 		$scope.quantity = CartService.getTotalQuantity();
 	});
 

@@ -10,9 +10,4 @@ angular.module('app').controller('collapsibleSectionController', ['$scope', '$ti
 	});
 
 	$scope.menuTypes = MenuService.getMenuTypes();
-
-	// broadcast request to open customize item popup for order page. Passes menuIndex of item
-	$scope.broadcastCustomizeItemRequest = function (menuIndex) {
-		EventService.broadcast('customizeItem-order', menuIndex);
-	};
 }]);

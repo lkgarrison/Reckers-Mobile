@@ -5,7 +5,7 @@
 		<table class='order-table'>
 			<tbody ng-repeat='item in cart'>
 				<tr>
-					<td class='remove-button'></td>
+					<td ng-click='remove(item)' class='remove-button'></td>
 					<td class='quantity checkout-page'>{{item.qty}}</td>
 					<td class='item-name-checkout' colspan='2'>{{item.name}}</td>
 					<td>{{item.price | currency}}</td>

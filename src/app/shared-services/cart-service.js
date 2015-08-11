@@ -19,7 +19,7 @@ cartService.service('CartService', ['EventService', function (EventService) {
 
 		totalQuantity++;
 		total += item.price;
-		EventService.broadcast('item-added');
+		broadcastCartUpdate();
 	};
 
 	this.removeItem = function (item) {
@@ -37,8 +37,9 @@ cartService.service('CartService', ['EventService', function (EventService) {
 			cart.splice(cartIndex, 1);
 		}
 
+		totalQuantity--;
 		total -= item.price;
-		EventService.broadcast('cart-updated');
+		broadcastCartUpdate();
 	};
 
 	this.getTotal = function () {
@@ -52,6 +53,10 @@ cartService.service('CartService', ['EventService', function (EventService) {
 	this.getCart = function () {
 		return cart;
 	};
+
+	function broadcastCartUpdate() {
+		EventService.broadcast('cart-updated');
+	}
 
 	// return index of item if it already exists in the cart. If new item is unique, returns false
 	function getIndex(newItem) {
