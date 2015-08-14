@@ -133,6 +133,14 @@ module.exports = function(grunt) {
 				},
 				tasks: ['jshint']
 			},
+			none: {
+				files: ['none'],
+				options: { 
+					atBegin: true,
+					livereload: 35729
+				},
+				tasks: ['jshint']
+			},
 			dev2: {
 				files: [ 'Gruntfile.js', 'app/*.js', '*.html' ],
 				tasks: [ 'jshint', 'karma:unit', 'ngtemplates:app', 'concat:appjs', 'clean:temp' ],
@@ -151,11 +159,11 @@ module.exports = function(grunt) {
 
 		karma: {
 			options: {
-				configFile: 'config/karma.conf.js'
+				configFile: 'test/unit/karma.conf.js'
 			},
 			unit: {
 				singleRun: true
-			},
+			},	
 			
 			continuous: {
 				singleRun: false,
@@ -164,8 +172,9 @@ module.exports = function(grunt) {
 		}
 	});
 
+	grunt.registerTask('watch-none', ['express', 'open', 'watch:none']);
 	grunt.registerTask('dev', ['express', 'open', 'watch:dev']);
-	grunt.registerTask('test', [ 'bower', 'jshint', 'karma:continuous' ]);
+	grunt.registerTask('test', ['jshint', 'karma:continuous' ]);
 	grunt.registerTask('minified', [ 'bower', 'connect:server', 'watch:min' ]);
 	grunt.registerTask('package', [ 'bower', 'jshint', 'karma:unit', 'ngtemplates:app', 'concat:appjs', 'uglify:dist',
 		'clean:tmp' ]);
