@@ -23,7 +23,7 @@ module.exports = function (config) {
 
 		plugins: [
 			'karma-jasmine',
-			'karma-phantomjs-launcher',
+			'karma-chrome-launcher'
 		],
 
 		reporters: ['progress'],
@@ -37,7 +37,7 @@ module.exports = function (config) {
 		// enable/disable watching file and executing tests whenever any file changes
 		autoWatch: true,
 
-		browsers: ['PhantomJS'],
+		browsers: ['Chrome'],
 
 		singleRun: true
 	});

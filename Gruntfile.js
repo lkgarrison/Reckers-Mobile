@@ -161,13 +161,23 @@ module.exports = function(grunt) {
 		},
 
 		karma: {
-			options: {
-				configFile: 'test/unit/karma.conf.js'
+			debug: {
+				options: {
+					configFile: 'test/unit/karma.conf.debug.js'
+				},
+				singleRun: false,
+				autoWatch: true
 			},
-			unit: {
+			single: {
+				options: {
+					configFile: 'test/unit/karma.conf.js'
+				},
 				singleRun: true
 			},
 			continuous: {
+				options: {
+					configFile: 'test/unit/karma.conf.js'
+				},
 				singleRun: false,
 				autoWatch: true
 			}
@@ -176,8 +186,9 @@ module.exports = function(grunt) {
 
 	grunt.registerTask('watch-none', ['express', 'open:dev', 'watch:none']);
 	grunt.registerTask('dev', ['express', 'open:dev', 'watch:dev']);
-	grunt.registerTask('test', ['jshint', 'karma:continuous' ]);
-	grunt.registerTask('debug', ['jshint', 'open:debug', 'karma:continuous']);
+	grunt.registerTask('test', ['jshint', 'karma:continuous']);
+	grunt.registerTask('unit', ['jshint', 'karma:continuous']);
+	grunt.registerTask('debug', ['jshint', 'karma:debug']);
 	grunt.registerTask('minified', [ 'bower', 'connect:server', 'watch:min' ]);
 	grunt.registerTask('package', [ 'bower', 'jshint', 'karma:unit', 'ngtemplates:app', 'concat:appjs', 'uglify:dist',
 		'clean:tmp' ]);
