@@ -108,8 +108,11 @@ module.exports = function(grunt) {
 		},
 
 		open: {
-			all: {
+			dev: {
 				path: 'http://localhost:' + PORT
+			},
+			debug: {
+				path: 'http://localhost:9876'
 			}
 		},
 
@@ -163,8 +166,7 @@ module.exports = function(grunt) {
 			},
 			unit: {
 				singleRun: true
-			},	
-			
+			},
 			continuous: {
 				singleRun: false,
 				autoWatch: true
@@ -172,9 +174,10 @@ module.exports = function(grunt) {
 		}
 	});
 
-	grunt.registerTask('watch-none', ['express', 'open', 'watch:none']);
-	grunt.registerTask('dev', ['express', 'open', 'watch:dev']);
+	grunt.registerTask('watch-none', ['express', 'open:dev', 'watch:none']);
+	grunt.registerTask('dev', ['express', 'open:dev', 'watch:dev']);
 	grunt.registerTask('test', ['jshint', 'karma:continuous' ]);
+	grunt.registerTask('debug', ['jshint', 'open:debug', 'karma:continuous']);
 	grunt.registerTask('minified', [ 'bower', 'connect:server', 'watch:min' ]);
 	grunt.registerTask('package', [ 'bower', 'jshint', 'karma:unit', 'ngtemplates:app', 'concat:appjs', 'uglify:dist',
 		'clean:tmp' ]);
