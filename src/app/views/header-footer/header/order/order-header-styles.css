@@ -26,7 +26,7 @@
 	right: 0;
 	height: 30px;
 	width: auto;
-	margin-top: 4px;
+	margin-top: 6px;
 	margin-right: 5px;
 }
 
@@ -34,7 +34,7 @@
 	right: 0;
 	color: red;
 	font-size: 19px !important;
-	margin-top: 2px !important;
+	margin-top: 4px !important;
 }
 
 .cart-quantity-single-digits {
