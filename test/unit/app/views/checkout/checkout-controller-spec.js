@@ -14,16 +14,16 @@ describe('Controller: checkout-controller', function () {
 
 	var $rootScope, $scope, $state, $controller, $q;
 	var target;
-	beforeEach(inject(function(_$rootScope_, _$state_, _$q_, _$controller_) {
+	beforeEach(inject(function(_$rootScope_, _$q_, _$controller_, _$state_) {
 		$rootScope = _$rootScope_;
 		$scope = $rootScope.$new();
-		state = _$state_;
+		$state = _$state_;
 		$q = _$q_;
 		$controller = _$controller_;
 
 		target = $controller('checkoutController', {
 			$scope: $scope,
-			$state: state,
+			$state: $state,
 			$mdDialog: $mdDialog,
 			CartService: cartService
 		});
@@ -32,9 +32,11 @@ describe('Controller: checkout-controller', function () {
 	var deferred;
 	function confirmModal() {
 		deferred = $q.defer();
-		$mdDialog.cancel.and.returnValue(deferred.promise);
-		$mdDialog.show.and.returnValue(deferred.promise);
+	
+		$mdDialog.show.and.callThrough();
 		deferred.resolve();
+
+		$mdDialog.show.and.returnValue(deferred.promise);
 	}
 
 	it('should be defined', function() {
@@ -74,12 +76,25 @@ describe('Controller: checkout-controller', function () {
 			expect($mdDialog.show).toHaveBeenCalled();
 		});
 
-		fit('should clear the cart', function () {
-			confirmModal();
+		// TODO:
+		// test that cartservice gets called when cancel confirm modal is resolved (but not when rejected)
+	});
 
-			$scope.confirmCancel();
+	describe('cart-updated event', function () {
+		it('should update controller\'s copy of the cart', function () {
+			$rootScope.$broadcast('cart-updated');
+			expect(cartService.getCart).toHaveBeenCalled();
+		});
 
-			expect(cartService.emptyCart).toHaveBeenCalled();
+		it('should update controller\'s copy of the total cost', function () {
+			$rootScope.$broadcast('cart-updated');
+			expect(cartService.getTotal).toHaveBeenCalled();
+		});
+	});
+
+	describe('payment information', function () {
+		it('should store all 12 months for credit card expiration date selection', function () {
+			expect($scope.months).toEqual(['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'Decemeber']);
 		});
 	});
 });
