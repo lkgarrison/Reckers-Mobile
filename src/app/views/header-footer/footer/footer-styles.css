@@ -1,8 +1,24 @@
+/* container for footer */
+.footer-container {
+	width: 100%;
+	background-color: #e9e9e9;
+}
+
+/* class styling that can be added to footer elements to provide common styling */
+.footer {
+	height: 65px;
+	width: 100%;
+	position: absolute;;
+	bottom: 0;
+}
+
+/* styling for order, checkout, and pickup footer icons */
 .footer-icon {
 	margin-left: 7px;
 	margin-right: 7px;
 }
 
+/* order, checkout and pickup footer icons are in this flex container */
 .flex-container {
 	display: flex;
 	flex-direction: row;
