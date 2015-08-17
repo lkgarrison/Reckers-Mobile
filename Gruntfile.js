@@ -35,9 +35,11 @@ module.exports = function(grunt) {
 				dest: 'dist/app.js'
 			},
 			css: {
+				options: {
+					separator: '\n\n'
+				},
 				src: ['src/app/**/*.css'],
-				// dest: '.tmp/styles.css'
-				dest: 'dist/styles.css'
+				dest: 'src/.tmp/styles.css'
 			}
 		},
 
@@ -110,9 +112,6 @@ module.exports = function(grunt) {
 		open: {
 			dev: {
 				path: 'http://localhost:' + PORT
-			},
-			debug: {
-				path: 'http://localhost:9876'
 			}
 		},
 
@@ -184,8 +183,8 @@ module.exports = function(grunt) {
 		}
 	});
 
-	grunt.registerTask('watch-none', ['express', 'open:dev', 'watch:none']);
-	grunt.registerTask('dev', ['express', 'open:dev', 'watch:dev']);
+	grunt.registerTask('watch-none', ['concat:css', 'express', 'open:dev', 'watch:none']);
+	grunt.registerTask('dev', ['concat:css', 'express', 'open:dev', 'watch:dev']);
 	grunt.registerTask('test', ['jshint', 'karma:continuous']);
 	grunt.registerTask('unit', ['jshint', 'karma:continuous']);
 	grunt.registerTask('debug', ['jshint', 'karma:debug']);

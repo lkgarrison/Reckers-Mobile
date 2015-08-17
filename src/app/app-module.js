@@ -1,1 +1,1 @@
-var app = angular.module('app', ['MenuService', 'CartService', 'EventBus', 'ui.router', 'door3.css', 'ngMaterial']);
+var app = angular.module('app', ['MenuService', 'CartService', 'EventBus', 'ui.router', 'ngMaterial']);

@@ -11,7 +11,6 @@ module.exports = function (config) {
 			'src/assets/lib/angular-animate/angular-animate.min.js',
 			'src/assets/lib/angular-aria/angular-aria.min.js',
 			'src/assets/lib/angular-ui-router/release/angular-ui-router.js',
-			'src/assets/lib/angular-css/angular-css.js',
 			'src/assets/lib/angular-material/angular-material.js',
 			'src/app/**/*.js',
 			'test/unit/**/*.js'

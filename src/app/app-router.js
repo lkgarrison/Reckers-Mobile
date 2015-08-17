@@ -14,17 +14,14 @@ angular.module('app').config(function ($stateProvider, $urlRouterProvider, $loca
 			phase: 'order',
 			views: {
 				'header' : {
-					templateUrl: 'app/views/header-footer/header/order/order-header-view.html',
-					css: 'app/views/header-footer/header/order/order-header-styles.css'
+					templateUrl: 'app/views/header-footer/header/order/order-header-view.html'
 				},
 				'content' : {
 					templateUrl: 'app/views/order/order-view.html',
-					controller: 'orderController',
-					css: 'app/views/order/order-styles.css'
+					controller: 'orderController'
 				},
 				'footer' : {
-					templateUrl: 'app/views/header-footer/footer/order/order-footer-view.html',
-					css: 'app/views/header-footer/footer/footer-styles.css'
+					templateUrl: 'app/views/header-footer/footer/order/order-footer-view.html'
 				}
 			}
 			
@@ -35,17 +32,14 @@ angular.module('app').config(function ($stateProvider, $urlRouterProvider, $loca
 			phase: 'order',
 			views: {
 				'header' : {
-					templateUrl: 'app/views/header-footer/header/order/order-header-view.html',
-					css: 'app/views/header-footer/header/order/order-header-styles.css'
+					templateUrl: 'app/views/header-footer/header/order/order-header-view.html'
 				},
 				'content' : {
 					templateUrl: 'app/views/customize-item/customize-item-order/customize-item-order-view.html',
-					controller: 'customizeItemOrderController',
-					css: 'app/views/customize-item/customize-item-order/customize-item-order-styles.css'
+					controller: 'customizeItemOrderController'
 				},
 				'footer' : {
-					templateUrl: 'app/views/header-footer/footer/order/order-footer-view.html',
-					css: 'app/views/header-footer/footer/footer-styles.css'
+					templateUrl: 'app/views/header-footer/footer/order/order-footer-view.html'
 				}
 			}
 		})
@@ -55,17 +49,14 @@ angular.module('app').config(function ($stateProvider, $urlRouterProvider, $loca
 			phase: 'checkout',
 			views: {
 				'header' : {
-					templateUrl: 'app/views/header-footer/header/checkout/checkout-header-view.html',
-					css: 'app/views/header-footer/header/checkout/checkout-header-styles.css'
+					templateUrl: 'app/views/header-footer/header/checkout/checkout-header-view.html'
 				},
 				'content' : {
 					templateUrl: 'app/views/checkout/checkout-view.html',
-					controller: 'checkoutController',
-					css: 'app/views/checkout/checkout-styles.css'
+					controller: 'checkoutController'
 				},
 				'footer' : {
-					templateUrl: 'app/views/header-footer/footer/checkout/checkout-footer-view.html',
-					css: 'app/views/header-footer/footer/footer-styles.css'
+					templateUrl: 'app/views/header-footer/footer/checkout/checkout-footer-view.html'
 				}
 			}
 		});
