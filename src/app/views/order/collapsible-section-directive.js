@@ -7,8 +7,8 @@ app.directive("collapsibleSectionHeader", function () {
 		templateUrl: 'app/views/order/collapsible-section-view.html',
 		controller: 'collapsibleSectionController',
 		link: function () {
-			// apply JQuery "collapsible" attribute to each element of class "menuHeader"
-			$(".menuHeader").collapsible({
+			// apply JQuery "collapsible" attribute to each element of class "menu-header"
+			$(".menu-header").collapsible({
 				collapsible: true,
 			});
 		}

@@ -2,46 +2,6 @@
 	background-color: rgba(0, 0, 0, 0.35) !important;
 }
 
-#reckers_header, .reckersLogoRight {
-	height: 92%;
-	width: auto;
-	top: 3%;
-}
-
-/* styling for all fixed persistant footers on each page */
-.fixedFooter {
-	position: fixed;
-	height: 65px;
-	z-index: 999999;
-	line-height: 65px;
-	display: inline-block;
-}
-
-/* for order icon in footer */
-.footerOrder {
-	height: 55px;
-	width: auto;
-	text-align: left;
-	padding-top: 5px;
-}
-
-/* for checkout icon in footer */
-.footerCheckout {
-	height: 55px;
-	width: auto;
-	text-align: center;
-	padding-top: 5px;
-}
-
-/* for pickup icon in footer */
-.footerPickup {
-	height: 55px;
-	width: auto;
-	text-align: right;
-	padding-top: 5px;
-	padding-left: 8px;
-}
-
 /* quantity next to line item */
 .quantity {
 	font-weight: bold;
@@ -50,15 +10,6 @@
 	font-family: 'Roboto';
 	font-weight: 400;
 	font-size: 17px;
-}
-
-/* for item names in checkout screen */
-.itemNameCheckout {
-	padding-right: 14px;
-	vertical-align: top;
-	font-family: 'Raleway';
-	font-size: 19px;
-	font-weight: 600;
 }
 
 /* for price/item on checkout page */
@@ -82,109 +33,10 @@
 	padding-right: 10px;
 }
 
-/* item description */
-.description {
-	font-size: 14px;
-	font-family: 'Raleway';
-	font-weight: 400 !important;
-}
-
 /* Styling for "Expiration Date" in "Payment Method" section */
 .expirationDate {
 	font-family: 'Raleway';
 	font-weight: 600 !important;
-}
-
-.centered {
-	text-align: center;      /* centers the buttons */
-}
-
-/* styling for popup on order and checkout page */
-.customizeItemOrder, .customizeItemCheckout {
-	text-align: center;
-	padding: 0;
-	margin-left: 0;
-	margin-right: 0;
-	left: 0;
-	bottom: 65px;        /* must match footer height! */
-	position: fixed;
-	overflow: hidden;
-}
-
-/* wrapper for content of ingredients popup on order and checkout pages */
-.customizeItemPopupWrapper {
-	padding-left: 0px;
-	padding-right: 0px;
-	clear: both;
-}
-
-/* wrapper for buttons at the bottom of the ingredients popup */
-.popupButtonWrapper {
-	clear: both;
-	bottom: 0;
-	width: 100%;            /* for center alignment */
-	text-align: center;
-	padding-bottom: 9px;
-	padding-top: 11px;
-}
-
-/* make checkboxes touch vertically */
-.ui-checkbox {
-	margin-top: 0;
-	margin-bottom: 0;
-}
-
-/* styling for item name and price at the top of the ingredients popup */
-.popupTop {
-	font-weight: bold;
-	font-family: Verdana, Helvetica, Arial, Tahoma, Century Gothic, sans-serif;
-	font-size: 20px;
-}
-
-/* styling for item name at the top of the ingredients popup */
-.customizeItemName {
-	font-family: 'Raleway';
-	font-weight: 700;
-	width: 100%;
-	text-align: center;
-	padding-top: 7px;   /* provides padding against top of popup */
-}
-
-/* styling for item's price at the top of the ingredients popup */
-.customizeItemPrice {
-	font-family: 'Roboto';
-	font-weight: 500;
-	clear: both;
-	width: 100%;
-	text-align: center;
-}
-
-/* styling in the ingredients popup for the colored line that separates the name and price of the item from the ingredients list */
-.customizeItemColoredLine {
-	clear: both;
-	width: 100%;
-	height: 7px;
-	margin-left: 0;
-	margin-right: 0;
-	margin-top: 6px;
-}
-
-/* styling for "Included Ingredients" label in ingredients popup */
-.includedIngredientsLabel {
-	font-family: 'Raleway';
-	font-weight: 600;
-	margin-left: 12px;
-	margin-top: 8px;
-	margin-bottom: 8px;
-}
-
-/* "scroll for more" message in the customize item popup */
-.scrollForMore {
-	font-family: 'Raleway';
-	font-weight: 400;
-	margin-top: 12px;
-	font-size: 15px;
-	color: red;
 }
 
 /* "Please select an option" message in customize item popup */
@@ -196,18 +48,6 @@
 	font-size: 15px;
 	color: red; 
 	float: right;
-}
-
-/* wrapper div for all content on checkout page */
-#wrapper {
-	padding-left: 8px;
-	padding-top: 0;
-	width: 100%;
-}
-
-/* wrapper for the add and cancel buttons below the line items and total cost on checkout page */
-#addCancelWrapper {
-	clear: both;
 }
 
 /* wrapper for all payment related content on checkout page */
@@ -225,13 +65,6 @@
 	width: 60%;
 	background-image: url('img/header_salads.png') !important;
 	color: white;
-}
-
-/* necessary to keep TOTAL and total line right aligned with orderTable */
-#totalWrapper {
-	display: inline-block;
-	margin-right: 12px;      /* gives a touch of room along the right margin */
-	padding-left: 0px;
 }
 
 /* styling for radio group of payment options on checkout page */
@@ -279,123 +112,6 @@
 	font-size: 30px;
 	color: black;
 	font-weight: bold;
-}
-
-.floatLeft {
-	float: left;
-}
-
-.floatRight {
-	float: right;
-}
-
-/* list of ingredients (checkbox) in item customization popup on order and checkout pages */
-.ingredientsList {
-	float: left;
-	clear: both;
-	padding-left: 30px;
-	margin-top: 0;
-	margin-bottom: 0;
-}
-
-.ingredientsListCheckout {
-	float:left;
-	clear:both;
-	padding-left:30px;
-	margin-top:0;
-	margin-bottom:0;
-}
-
-/* styling for item options radio group in item customization popup on order and checkout pages */
-.itemOptions {
-	margin-top: 20px;
-	margin-left: 20px;
-	max-width: 60%;
-	clear: both;
-}
-
-/* styling for all JQuery mobile radio buttons */
-.ui-radio {
-	margin-top: 0;
-	margin-bottom: 0;
-}
-
-/* styling for "Options" header in item customization popup on order and checkout pages */
-.customizeItemOptionsLabel {
-	font-family: 'Roboto';
-	font-weight: 600;
-	margin-left: 12px;
-	margin-top: 8px;
-	margin-bottom: 8px;
-	clear: left;
-}
-
-/* effectively sets height of checkboxes */
-.ui-checkbox label {
-	padding-bottom: 9px;
-	padding-top: 9px;
-}
-
-/* sets margins around buttons at the bottom of the ingredients popup */
-.popupButtonWrapper a {
-	margin-top: 0px;
-	margin-bottom: 6px;
-}
-
-/* Styling for "Edit" and "Remove" links below each line item */
-.lineItemOption {
-	color: #E95A33;
-	text-decoration: underline;
-	font-size: 15px;
-}
-
-/* Styling for "Edit" link below each line item on checkout page */
-.editItemLink {
-	padding-left: 25px;
-	padding-right: 20px;
-}
-
-/* Styling for "Remove" link below each line item on checkout page */
-.removeItemLink {
-	text-align: right;
-	padding-right: 25px;
-	padding-left: 20px;
-}
-
-/* Styling for ingredient checkboxes */
-.ingredientCBLabel {
-	font-family: 'Raleway' !important;
-	font-weight: 500 !important;
-}
-
-/* Styling for item option radios */
-.itemOptionRadios {
-	font-family: 'Roboto' !important;
-	font-weight: 400 !important;
-}
-
-/* Font styling for "Add" and "Cancel" butons on checkout page */
-.addCancelButtonCheckout {
-	font-family: 'Raleway';
-	font-weight: 600;
-}
-
-/* Font styling for "Menu" (orderPageTitle) at top of order page */
-.orderPageTitle {
-	font-family: 'Raleway';
-	font-weight: 700;
-}
-
-/* Default font specifications for buttons at the bottom of customize ingredients popups */
-.customizeItemPopupButton {
-	font-family: 'Raleway';
-	font-weight: 600 !important;
-}
-
-/* Default font specifications for JQuery elemtents of class ui-btn */
-.ui-btn {
-	font-family: 'Raleway';
-	font-weight: 500;
 }
 
 /* styling for general html elements */

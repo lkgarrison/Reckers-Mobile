@@ -1,11 +1,16 @@
+/* styling for item name and price at the top of the ingredients popup */
+.popupTop {
+	font-size: 20px;
+	width: 100%;
+	text-align: center;
+	position: relative;
+}
+
 /* styling for item name at the top of the ingredients popup */
 .customizeItemName {
 	font-family: 'Raleway';
 	font-weight: 700;
-	width: 100%;
-	text-align: center;
 	padding-top: 7px;   /* provides padding against top of popup */
-	position: relative;
 }
 
 /* styling for item's price at the top of the ingredients popup */
@@ -13,9 +18,6 @@
 	font-family: 'Roboto';
 	font-weight: 500;
 	clear: both;
-	width: 100%;
-	text-align: center;
-	position: relative;
 }
 
 /* styling in the ingredients popup for the colored line that separates the name and price of the item from the ingredients list */

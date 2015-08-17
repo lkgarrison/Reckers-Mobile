@@ -28,7 +28,7 @@
 }
 
 /* default styling for menu headers on order page */
-.menuHeader h3 a {
+.menu-header h3 a {
 	font-size: 22px;
 	color: white !important;
 	font-family: 'Raleway';
@@ -39,14 +39,14 @@
 }
 
 /* for item names on order page */
-.itemNameOrder {
+.item-name-order {
 	font-family: 'Raleway';
 	font-size: 19px;
 	font-weight: 600 !important;
 }
 
 /* add button next to each item on the menu on the order page */
-.addButton {
+.add-button {
 	background: none;
 	border: none;
 	background-image: url('/assets/img/addButton.png');
@@ -57,3 +57,9 @@
 	padding-right: 15px;
 }
 
+/* item description */
+.description {
+	font-size: 14px;
+	font-family: 'Raleway';
+	font-weight: 400 !important;
+}
