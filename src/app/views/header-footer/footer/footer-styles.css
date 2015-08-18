@@ -19,7 +19,7 @@
 }
 
 /* order, checkout and pickup footer icons are in this flex container */
-.flex-container {
+.flex-container-footer {
 	display: flex;
 	flex-direction: row;
 	justify-content: center;

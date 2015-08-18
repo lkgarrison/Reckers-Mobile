@@ -1,0 +1,8 @@
+/* class for ingredients checklist container */
+.flex-container-customize-item {
+	display: -webkit-flex;
+	display: flex;
+	-webkit-flex-direction: column;
+	flex-direction: column;
+	position: relative;
+}
