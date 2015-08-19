@@ -128,12 +128,12 @@ module.exports = function(grunt) {
 
 		watch: {
 			dev: {
-				files: ['src/app/**/*', 'src/index.html'],
+				files: ['src/app/**/*', 'src/index.html', 'test/unit/**/*.js'],
 				options: { 
 					atBegin: true,
 					livereload: 35729
 				},
-				tasks: ['jshint', 'concat:css']
+				tasks: ['concat:css', 'jshint', 'karma:single']
 			},
 			none: {
 				files: ['none'],
