@@ -36,7 +36,8 @@ angular.module('app').config(function ($stateProvider, $urlRouterProvider, $loca
 				},
 				'content' : {
 					templateUrl: 'app/views/customize-item/customize-item-order/customize-item-order-view.html',
-					controller: 'customizeItemOrderController'
+					controller: 'customizeItemOrderController',
+					controllerAs: 'vm'
 				},
 				'footer' : {
 					templateUrl: 'app/views/header-footer/footer/order/order-footer-view.html'
