@@ -6,10 +6,16 @@
 
 	<div class='flex-container-customize-item checklist-container'>
 		<div flex='80' layout='row' layout-wrap ng-repeat="ingredient in ingredients">
-			<md-checkbox class='md-primary' ng-checked="isSelectedIngredient(ingredient)" ng-click="toggle(ingredient)">
+			<md-checkbox class='md-primary' ng-checked="isSelectedIngredient(ingredient)" ng-click="toggleIngredient(ingredient)">
 				{{ ingredient }}
 			</md-checkbox>
 		</div>
+	</div>
+
+	<div class='flex-container-customize-item options-container'>
+		<md-radio-group ng-model="option">
+			<md-radio-button ng-repeat='option in options' value="{{option[0]}}" class="md-primary">{{option[0]}}: {{option[1] | currency}}</md-radio-button>
+		</md-radio-group>
 	</div>
 
 	<md-input-container flex class='special-instructions'>
@@ -18,9 +24,7 @@
 	</md-input-container>
 
 	<div class='action-button-container'>
-		<a ui-sref='root.order'>
-			<md-button class="addToCartButton md-raised md-primary" ng-click='addItem()'>Add</md-button>
-		</a>
+		<md-button class="addToCartButton md-raised md-primary" ng-click='addItem()'>Add</md-button>
 		<a ui-sref='root.order'>
 			<md-button class="addToCartButton md-raised md-primary">Cancel</md-button>
 		</a>

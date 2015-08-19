@@ -37,7 +37,7 @@
 	font-weight: 600;
 	margin-left: 12px;
 	margin-top: 8px;
-	margin-bottom: 8px;
+	margin-bottom: 0px;
 	position: relative;
 }
 
@@ -59,7 +59,6 @@
 
 .checklist-container {
 	width: 100%;
-	margin-left: 35px;
 	position: fixed;
 	position: relative;
 }
