@@ -16,7 +16,6 @@ app.controller('customizeItemOrderController', ['$scope', '$timeout', '$state', 
 			// create a copy of the ingredients and the entire item
 			selectedIngredients = _.clone(menuData[menuIndex].ingredients, true);
 			tempItem = _.clone(menuData[menuIndex], true);
-			$scope.$apply();
 		});
 	});
 
@@ -32,7 +31,7 @@ app.controller('customizeItemOrderController', ['$scope', '$timeout', '$state', 
 
 	vm.addItem = function () {
 		if (!validateItem()) {
-			return;
+			return false;
 		}
 
 		$state.go('root.order');
@@ -40,6 +39,8 @@ app.controller('customizeItemOrderController', ['$scope', '$timeout', '$state', 
 		tempItem.specialInstructions = vm.specialInstructions;
 		tempItem.option = vm.option;
 		CartService.addItem(tempItem);
+
+		return true;
 	};
 
 	function validateItem() {

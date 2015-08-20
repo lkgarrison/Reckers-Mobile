@@ -1,5 +1,3 @@
-// 'use strict';
-
 describe('Controller: checkout-controller', function () {
 	var cartService = jasmine.createSpyObj('cartService', ['getCart', 'getTotal', 'removeItem', 'emptyCart']);
 	var $mdDialog = jasmine.createSpyObj('$mdDialog', ['show', 'confirm', 'parent', 'title', 'content', 'ok', 'cancel']);
