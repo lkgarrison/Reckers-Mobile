@@ -102,7 +102,8 @@ module.exports = function(grunt) {
 			},
 			dist: {
 				src: ['dist/*','!dist/index.html']
-			}
+			},
+			coverage: ['src/app/**/index.html', 'src/app/**/*.js.html']
 		},
 
 		jshint: {
@@ -112,6 +113,22 @@ module.exports = function(grunt) {
 		open: {
 			dev: {
 				path: 'http://localhost:' + PORT
+			}
+		},
+
+		connect: {
+			coverage: {
+				options: {
+					port: 5555,
+					base: {
+						path: 'dist/reports/coverage/',
+						options: {
+							index: 'index.html'
+						}
+					},
+					open: true,
+					keepalive: true
+				}
 			}
 		},
 
@@ -179,10 +196,17 @@ module.exports = function(grunt) {
 				},
 				singleRun: false,
 				autoWatch: true
-			}
+			},
+			coverage: {
+				options: {
+					configFile: 'test/unit/karma.conf.coverage.js'
+				},
+				singleRun: true
+			},
 		}
 	});
 
+	grunt.registerTask('coverage', ['karma:coverage', 'clean:coverage', 'connect:coverage']);
 	grunt.registerTask('watch-none', ['concat:css', 'express', 'open:dev', 'watch:none']);
 	grunt.registerTask('dev', ['concat:css', 'express', 'open:dev', 'watch:dev']);
 	grunt.registerTask('test', ['jshint', 'karma:continuous']);
