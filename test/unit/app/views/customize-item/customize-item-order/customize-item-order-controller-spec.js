@@ -77,10 +77,17 @@ describe('customize-item-order-controller', function () {
 			});
 		});
 
-		it('should be toggled by toggleIngredient function', function () {
+		it('should be removed by toggleIngredient function', function () {
 			target.toggleIngredient('lettuce');
 
 			expect(target.isSelectedIngredient('lettuce')).toEqual(false);
+		});
+
+		it('should be re-added by toggleIngredient function', function () {
+			target.toggleIngredient('lettuce');
+			target.toggleIngredient('lettuce');
+
+			expect(target.isSelectedIngredient('lettuce')).toEqual(true);
 		});
 	});
 
