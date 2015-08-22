@@ -45,23 +45,23 @@ describe('Controller: checkout-controller', function () {
 		var ingredientsArray = ['chicken', 'tomato', 'cheese'];
 
 		it('should return undefined if ingredientsArray is undefined', function () {
-			expect($scope.commafyIngredients(undefined)).toEqual(undefined);
+			expect(target.commafyIngredients(undefined)).toEqual(undefined);
 		});
 
 		it('should not return a string that ends with a comma', function () {
-			var result = $scope.commafyIngredients(ingredientsArray);
+			var result = target.commafyIngredients(ingredientsArray);
 			result = result[result.length - 1] !== ',';
 			expect(result).toBeTruthy();
 		});
 
 		it('should return a string of comma-separated ingredients', function () {
-			expect($scope.commafyIngredients(ingredientsArray)).toEqual('chicken, tomato, cheese');
+			expect(target.commafyIngredients(ingredientsArray)).toEqual('chicken, tomato, cheese');
 		});
 	});
 
 	describe('remove', function () {
 		it('should call CartService.removeItem', function () {
-			$scope.remove(0);
+			target.remove(0);
 			expect(cartService.removeItem).toHaveBeenCalled();
 		});
 	});
@@ -69,7 +69,7 @@ describe('Controller: checkout-controller', function () {
 	describe('confirmCancel', function () {
 		it('should show confirm dialog', function () {
 			confirmModal();
-			$scope.confirmCancel();
+			target.confirmCancel();
 
 			expect($mdDialog.show).toHaveBeenCalled();
 		});
@@ -92,7 +92,7 @@ describe('Controller: checkout-controller', function () {
 
 	describe('payment information', function () {
 		it('should store all 12 months for credit card expiration date selection', function () {
-			expect($scope.months).toEqual(['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'Decemeber']);
+			expect(target.months).toEqual(['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'Decemeber']);
 		});
 	});
 });

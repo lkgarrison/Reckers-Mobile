@@ -1,8 +1,10 @@
 angular.module('app').controller('checkoutController', ['$scope', '$state', '$mdDialog', 'CartService', function ($scope, $state, $mdDialog, CartService) {
-	$scope.cart = CartService.getCart();
-	$scope.total = CartService.getTotal();
+	var vm = this;
 
-	$scope.commafyIngredients = function(ingredients) {
+	vm.cart = CartService.getCart();
+	vm.total = CartService.getTotal();
+
+	vm.commafyIngredients = function(ingredients) {
 		if (ingredients !== undefined) {
 			var ingredientsList = '';
 			for (var i = 0; i < ingredients.length; i++) {
@@ -14,11 +16,11 @@ angular.module('app').controller('checkoutController', ['$scope', '$state', '$md
 		}
 	};
 
-	$scope.remove = function(item) {
+	vm.remove = function(item) {
 		CartService.removeItem(item);
 	};
 
-	$scope.confirmCancel = function () {
+	vm.confirmCancel = function () {
 		$mdDialog.show(
 			$mdDialog.confirm()
 				.parent(angular.element(document.body))
@@ -36,17 +38,17 @@ angular.module('app').controller('checkoutController', ['$scope', '$state', '$md
 
 	// update the cart for the view
 	$scope.$on('cart-updated', function () {
-		$scope.cart = CartService.getCart();
-		$scope.total = CartService.getTotal();
+		vm.cart = CartService.getCart();
+		vm.total = CartService.getTotal();
 	});
 
 	// save months and years for credit card expiration dates
-	$scope.months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'Decemeber'];
+	vm.months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'Decemeber'];
 
-	$scope.years = [];
+	vm.years = [];
 	var currentYear = new Date().getFullYear();
 	var nYears = 10;
 	for(var i = 0; i < nYears; i++) {
-		$scope.years.push(currentYear + i);
+		vm.years.push(currentYear + i);
 	}
 }]);

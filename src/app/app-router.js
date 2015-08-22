@@ -18,7 +18,8 @@ angular.module('app').config(function ($stateProvider, $urlRouterProvider, $loca
 				},
 				'content' : {
 					templateUrl: 'app/views/order/order-view.html',
-					controller: 'orderController'
+					controller: 'orderController',
+					controllerAs: 'vm'
 				},
 				'footer' : {
 					templateUrl: 'app/views/header-footer/footer/order/order-footer-view.html'
@@ -54,7 +55,8 @@ angular.module('app').config(function ($stateProvider, $urlRouterProvider, $loca
 				},
 				'content' : {
 					templateUrl: 'app/views/checkout/checkout-view.html',
-					controller: 'checkoutController'
+					controller: 'checkoutController',
+					controllerAs: 'vm'
 				},
 				'footer' : {
 					templateUrl: 'app/views/header-footer/footer/checkout/checkout-footer-view.html'
