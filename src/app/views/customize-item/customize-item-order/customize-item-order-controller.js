@@ -1,6 +1,8 @@
 app.controller('customizeItemOrderController', ['$scope', '$timeout', '$state', '$stateParams', 'MenuService', 'CartService', function ($scope, $timeout, $state, $stateParams, MenuService, CartService) {
 	var vm = this;
 
+	var addButtonClicked = false;
+
 	var menuIndex = $stateParams.menuIndex;
 	var tempItem;
 	var selectedIngredients = [];
@@ -29,7 +31,19 @@ app.controller('customizeItemOrderController', ['$scope', '$timeout', '$state', 
 		return selectedIngredients.indexOf(item) > -1;
 	};
 
+	vm.shouldDisplayItemOptionsMessage = function () {
+		if (vm.option) {
+			return false;
+		} else if (addButtonClicked) {
+			return true;
+		} else if (!addButtonClicked) {
+			return false;
+		}
+	};
+
 	vm.addItem = function () {
+		addButtonClicked = true;
+
 		if (!validateItem()) {
 			return false;
 		}
@@ -44,10 +58,8 @@ app.controller('customizeItemOrderController', ['$scope', '$timeout', '$state', 
 	};
 
 	function validateItem() {
-		if (vm.item.options !== undefined) {
-			if (vm.option === undefined) {
-				return false;
-			}
+		if (vm.item.options !== undefined && vm.option === undefined) {
+			return false;
 		}
 
 		return true;

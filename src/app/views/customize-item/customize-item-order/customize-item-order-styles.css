@@ -1,4 +1,4 @@
-/* styling for item name and price at the top of the ingredients popup */
+/* styling for item name and price at the top of the customize-item page */
 .popup-top {
 	font-size: 20px;
 	width: 100%;
@@ -6,14 +6,14 @@
 	position: relative;
 }
 
-/* styling for item name at the top of the ingredients popup */
+/* styling for item name at the top of the customize-item page */
 .customize-item-name {
 	font-family: 'Raleway';
 	font-weight: 700;
-	padding-top: 7px;   /* provides padding against top of popup */
+	padding-top: 7px;   /* provides padding against top of page */
 }
 
-/* styling for item's price at the top of the ingredients popup */
+/* styling for item's price at the top of the customize-item page */
 .customize-item-price {
 	font-family: 'Roboto';
 	font-weight: 500;
@@ -31,8 +31,8 @@
 	position: relative;
 }
 
-/* styling for "Included Ingredients" label in ingredients popup */
-.included-ingredients-label {
+/* styling for "Included Ingredients" and "Options" label on customize-item page */
+.customize-item-section-label {
 	font-family: 'Raleway';
 	font-weight: 600;
 	margin-left: 12px;
@@ -41,16 +41,14 @@
 	position: relative;
 }
 
-/* "Please select an option" message in customize item popup */
+/* "Please select an option" message on customize item page */
 .item-options-message {
 	font-family: 'Raleway';
 	font-weight: 400;
 	margin-top: 11px;
 	margin-right: 12px;
-	font-size: 15px;
+	font-size: 16px;
 	color: red; 
-	float: right;
-	position: relative;
 }
 
 .pizza-header {

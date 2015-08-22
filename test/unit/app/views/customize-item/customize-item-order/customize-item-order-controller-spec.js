@@ -128,6 +128,36 @@ describe('customize-item-order-controller', function () {
 
 				expect(target.addItem()).toEqual(false);
 			});
+
+			it('should return true if item has options and an option is selected', function () {
+				target.option = 'Regular';
+
+				expect(target.addItem()).toEqual(true);
+			});
+		});
+	});
+
+	describe('add button', function () {
+		beforeEach(function () {
+			getMenuAsync();
+			$timeout.flush();
+		});
+
+		it('should not display item option message before clicked if item has options and no option is selected', function () {
+			expect(target.shouldDisplayItemOptionsMessage()).toEqual(false);
+		});
+
+		it('should display item option message when clicked if item has options and no option is selected', function () {
+			target.addItem();	// simulates clicking "add" button
+
+			expect(target.shouldDisplayItemOptionsMessage()).toEqual(true);
+		});
+
+		it('should not display item option message when clicked if item has options and an option is selected', function () {
+			target.option = 'Regular';	// simulates choosing an option
+			target.addItem();	// simulates clicking "add" button
+
+			expect(target.shouldDisplayItemOptionsMessage()).toEqual(false);
 		});
 	});
 });
