@@ -1,79 +1,81 @@
 var cartService = angular.module('CartService', ['EventBus']);
 
 cartService.service('CartService', ['EventService', function (EventService) {
-	var cart = [];
-	var total = 0;
-	var totalQuantity = 0;
+	this._cart = [];
+	this._total = 0;
+	this._totalQuantity = 0;
 
 	this.addItem = function (item) {
-		var existingCartIndex = getIndex(item);
+		var existingCartIndex = this._getIndex(item);
 
 		// ensure angular sees cart's items as unique
 		item = _.omit(item, '$$hashKey');
 		if (existingCartIndex === false) {
 			item.qty = 1;
-			cart.push(item);
+			this._cart.push(item);
 		} else {
-			cart[existingCartIndex].qty++;
+			this._cart[existingCartIndex].qty++;
 		}
 
-		totalQuantity++;
-		total += item.price;
-		broadcastCartUpdate();
+		this._totalQuantity++;
+		this._total += item.price;
+		this._broadcastCartUpdate();
 	};
 
 	this.removeItem = function (item) {
-		var cartIndex = getIndex(item);
+		var cartIndex = this._getIndex(item);
 		if (cartIndex === false) {
 			console.error('Unable to remove item');
 
-			return;
+			return false;
 		}
 
 		if (item.qty > 1) {
-			cart[cartIndex].qty--;
+			this._cart[cartIndex].qty--;
 		} else {
 			// remove the item from the cart since it had a qty of 1
-			cart.splice(cartIndex, 1);
+			this._cart.splice(cartIndex, 1);
 		}
 
-		totalQuantity--;
-		total -= item.price;
-		broadcastCartUpdate();
+		this._totalQuantity--;
+		this._total -= item.price;
+		this._broadcastCartUpdate();
+
+		return true;
 	};
 
 	this.getTotal = function () {
-		return total;
+		return this._total;
 	};
 
 	this.getTotalQuantity = function () {
-		return totalQuantity;
+		return this._totalQuantity;
 	};
 
 	this.getCart = function () {
-		return cart;
+		return this._cart;
 	};
 
 	this.emptyCart = function () {
-		cart = [];
-		total = 0;
-		totalQuantity = 0;
-		broadcastCartUpdate();
+		this._cart = [];
+		this._total = 0;
+		this._totalQuantity = 0;
+		this._broadcastCartUpdate();
 	};
 
-	function broadcastCartUpdate() {
+	this._broadcastCartUpdate = function() {
 		EventService.broadcast('cart-updated');
-	}
+	};
 
 	// return index of item if it already exists in the cart. If new item is unique, returns false
-	function getIndex(newItem) {
-		if (cart.length === 0) {
+	this._getIndex = function(newItem) {
+		if (this._cart.length === 0) {
 			return false;
 		}
 
 		// cart.forEach(function (item, index) {
-		for (var i = 0; i < cart.length; i++) {
-			var item = cart[i];
+		for (var i = 0; i < this._cart.length; i++) {
+			var item = this._cart[i];
 
 			if (newItem.name !== item.name) {
 				continue;
@@ -95,5 +97,5 @@ cartService.service('CartService', ['EventService', function (EventService) {
 		}
 
 		return false;
-	}
+	};
 }]);
