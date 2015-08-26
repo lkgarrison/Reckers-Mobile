@@ -1,0 +1,15 @@
+.header-back-button-wrapper {
+	height: 42px;
+}
+
+.header-back-button-helper {
+	display: inline-block;
+	vertical-align: middle;
+	height: 100%;
+}
+
+.header-back-button {
+	vertical-align: middle;
+	margin: 5px;
+	height: 60%;
+}

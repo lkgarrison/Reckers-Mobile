@@ -206,6 +206,7 @@ module.exports = function(grunt) {
 		}
 	});
 
+	grunt.registerTask('coverage-refresh', ['karma:coverage', 'clean:coverage']);
 	grunt.registerTask('coverage', ['karma:coverage', 'clean:coverage', 'connect:coverage']);
 	grunt.registerTask('watch-none', ['concat:css', 'express', 'open:dev', 'watch:none']);
 	grunt.registerTask('dev', ['concat:css', 'express', 'open:dev', 'watch:dev']);
