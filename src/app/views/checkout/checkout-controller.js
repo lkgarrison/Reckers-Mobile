@@ -4,19 +4,25 @@ angular.module('app').controller('checkoutController', ['$scope', '$state', '$md
 	vm.cart = CartService.getCart();
 	vm.total = CartService.getTotal();
 
-	vm.commafyIngredients = function(ingredients) {
-		if (ingredients !== undefined) {
-			var ingredientsList = '';
-			for (var i = 0; i < ingredients.length; i++) {
-				ingredientsList+= ingredients[i];
-				if (i != ingredients.length - 1) ingredientsList += ", ";
-			}
+	vm.getOptionsAndIngredients = function (item) {
+		var optionAndIngredients = '';
+		var separator = ': ';
 
-			return ingredientsList;
+		if (item.option !== undefined) {
+			optionAndIngredients += item.option;
 		}
+
+		if (item.ingredients !== undefined) {
+			if (item.option !== undefined) {
+				optionAndIngredients += separator;
+			}
+			optionAndIngredients += commafyIngredients(item.ingredients);
+		}
+
+		return optionAndIngredients;
 	};
 
-	vm.remove = function(item) {
+	vm.remove = function (item) {
 		CartService.removeItem(item);
 	};
 
@@ -50,5 +56,17 @@ angular.module('app').controller('checkoutController', ['$scope', '$state', '$md
 	var nYears = 10;
 	for(var i = 0; i < nYears; i++) {
 		vm.years.push(currentYear + i);
+	}
+
+	function commafyIngredients(ingredients) {
+		if (ingredients !== undefined) {
+			var ingredientsList = '';
+			for (var i = 0; i < ingredients.length; i++) {
+				ingredientsList+= ingredients[i];
+				if (i != ingredients.length - 1) ingredientsList += ", ";
+			}
+
+			return ingredientsList;
+		}
 	}
 }]);

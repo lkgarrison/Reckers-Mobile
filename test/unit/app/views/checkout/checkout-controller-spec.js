@@ -27,6 +27,14 @@ describe('Controller: checkout-controller', function () {
 		});
 	}));
 
+	var mockItem;
+	beforeEach(function () {
+		mockItem = {};
+	});
+
+	var ingredientsArray = ['chicken', 'tomato', 'cheese'];
+	var option = 'Regular';
+
 	var deferred;
 	function confirmModal() {
 		deferred = $q.defer();
@@ -41,21 +49,43 @@ describe('Controller: checkout-controller', function () {
 		expect(target).toBeDefined();
 	});
 
-	describe('commafyIngredients', function () {
-		var ingredientsArray = ['chicken', 'tomato', 'cheese'];
+	describe('getOptionsAndIngredients', function () {
 
-		it('should return undefined if ingredientsArray is undefined', function () {
-			expect(target.commafyIngredients(undefined)).toEqual(undefined);
+		describe('when item has no option selected', function () {
+			beforeEach(function () {
+				mockItem.option = undefined;
+				mockItem.ingredients = ingredientsArray;
+			});
+
+			it('and no selected ingredients, the string should be empty', function () {
+				mockItem.ingredients = [];
+				expect(target.getOptionsAndIngredients(mockItem)).toEqual('');
+			});
+
+			it('and has selected ingredients, it should not return a string that ends with a comma', function () {
+				var result = target.getOptionsAndIngredients(mockItem);
+				result = result[result.length - 1] !== ',';
+				expect(result).toBeTruthy();
+			});
+
+			it('and has selected ingredients, it should return a string of comma-separated ingredients', function () {
+				expect(target.getOptionsAndIngredients(mockItem)).toEqual('chicken, tomato, cheese');
+			});
 		});
 
-		it('should not return a string that ends with a comma', function () {
-			var result = target.commafyIngredients(ingredientsArray);
-			result = result[result.length - 1] !== ',';
-			expect(result).toBeTruthy();
+		it('should return the option when item has an option but no ingredients', function () {
+			mockItem.option = option;
+			mockItem.ingredients = undefined;
+
+			expect(target.getOptionsAndIngredients(mockItem)).toEqual(option);
 		});
 
-		it('should return a string of comma-separated ingredients', function () {
-			expect(target.commafyIngredients(ingredientsArray)).toEqual('chicken, tomato, cheese');
+		it('should return option + separator + ingredients string when item has option and ingredients', function () {
+			mockItem.option = option;
+			mockItem.ingredients = ingredientsArray;
+			var separator = ': ';
+
+			expect(target.getOptionsAndIngredients(mockItem)).toEqual(option + separator + 'chicken, tomato, cheese');
 		});
 	});
 
