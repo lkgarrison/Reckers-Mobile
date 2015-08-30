@@ -69,7 +69,7 @@ angular.module('app').config(function ($stateProvider, $urlRouterProvider, $loca
 			phase: 'checkout',
 			views: {
 				'header' : {
-					templateUrl: 'app/views/header-footer/header/checkout/checkout-header-view.html'
+					templateUrl: 'app/views/header-footer/header/customize-item/customize-item-checkout-header-view.html'
 				},
 				'content' : {
 					templateUrl: 'app/views/customize-item/customize-item-checkout/customize-item-checkout-view.html',
