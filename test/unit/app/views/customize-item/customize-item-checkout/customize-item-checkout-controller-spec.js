@@ -1,18 +1,18 @@
-xdescribe('customize-item-checkout-controller', function () {
-	var cartService = jasmine.createSpyObj('cartService', ['addItem', 'getCart']);
+describe('customize-item-checkout-controller', function () {
+	var cartService = jasmine.createSpyObj('cartService', ['addItem', 'saveItem', 'getCart']);
 
 	beforeEach(module('app'));
 	beforeEach(module('templates'));
 
 	var ingredients = ['lettuce', 'tomato', 'cheese'];
-	var mockCart = [{
-		ingredients: ingredients,
-		options: {
-			'Large': 5.00,
-			'Regular': 3.50
-		},
-		option: 'Regular'
-	}];
+	var mockCart;
+	beforeEach(function () {
+		mockCart = [{
+			selectedIngredients: ingredients,
+			options: [['Large', 5.00], ['Regular', 3.50]],
+			option: 'Regular'
+		}];
+	});
 
 	beforeEach(function () {
 		cartService.getCart.and.returnValue(mockCart);
@@ -41,12 +41,6 @@ xdescribe('customize-item-checkout-controller', function () {
 	});
 
 	describe('ingredients', function () {
-		it('should all be selected initially', function () {
-			_.each(ingredients, function(ingredient) {
-				expect(target.isSelectedIngredient(ingredient)).toEqual(true);
-			});
-		});
-
 		it('should be removed by toggleIngredient function', function () {
 			target.toggleIngredient('lettuce');
 
@@ -54,78 +48,57 @@ xdescribe('customize-item-checkout-controller', function () {
 		});
 
 		it('should be re-added by toggleIngredient function', function () {
-			target.toggleIngredient('lettuce');
-			target.toggleIngredient('lettuce');
+			target.toggleIngredient('cheese');
+			target.toggleIngredient('cheese');
 
-			expect(target.isSelectedIngredient('lettuce')).toEqual(true);
+			expect(target.isSelectedIngredient('cheese')).toEqual(true);
 		});
 	});
 
-	describe('addItem', function () {
-
-		describe('when item has no options', function () {
-			beforeEach(function () {
-				getMenuAsyncNoOptions();
-				$timeout.flush();
-			});
-
-			it('should return true', function () {
-				expect(target.addItem()).toEqual(true);
-			});
-
-			it('should transition to order state', function () {
-				spyOn($state, 'go');
-				target.addItem();
-
-				expect($state.go).toHaveBeenCalledWith('root.order');
-			});
-
-			it('should call CartService.addItem', function () {
-				target.addItem();
-
-				expect(cartService.addItem).toHaveBeenCalled();
-			});
-		});
-		
-		describe('when item has options', function () {
-			beforeEach(function () {
-				getMenuAsync();
-				$timeout.flush();
-			});
-
-			it('should return false if item has options but no option is selected', function () {
-				target.option = undefined;
-
-				expect(target.addItem()).toEqual(false);
-			});
-
-			it('should return true if item has options and an option is selected', function () {
-				target.option = 'Regular';
-
-				expect(target.addItem()).toEqual(true);
-			});
-		});
-	});
-
-	describe('add button', function () {
+	describe('saveItem', function () {
 		beforeEach(function () {
-			getMenuAsync();
-			$timeout.flush();
+			cartService.saveItem.and.returnValue(true);
 		});
 
+		it('should call cartService.saveItem', function () {
+			target.saveItem();
+
+			expect(cartService.saveItem).toHaveBeenCalled();
+		});
+
+		it('should return false if cartService.saveItem returns false', function () {
+			cartService.saveItem.and.returnValue(false);
+
+			expect(target.saveItem()).toEqual(false);
+		});
+
+		it('should go to checkout page if successful', function () {
+			spyOn($state, 'go');
+			target.saveItem();
+
+			expect($state.go).toHaveBeenCalledWith('root.checkout');
+		});
+
+		it('should return true if successful', function () {
+			expect(target.saveItem()).toEqual(true);
+		});
+	});
+
+	describe('save button', function () {
 		it('should not display item option message before clicked if item has options and no option is selected', function () {
 			expect(target.shouldDisplayItemOptionsMessage()).toEqual(false);
 		});
 
 		it('should display item option message when clicked if item has options and no option is selected', function () {
-			target.addItem();	// simulates clicking "add" button
+			target.saveItem();	// simulates clicking "add" button
+			target.item.option = undefined;
 
 			expect(target.shouldDisplayItemOptionsMessage()).toEqual(true);
 		});
 
 		it('should not display item option message when clicked if item has options and an option is selected', function () {
-			target.option = 'Regular';	// simulates choosing an option
-			target.addItem();	// simulates clicking "add" button
+			target.item.option = 'Regular';	// simulates choosing an option
+			target.saveItem();	// simulates clicking "add" button
 
 			expect(target.shouldDisplayItemOptionsMessage()).toEqual(false);
 		});
