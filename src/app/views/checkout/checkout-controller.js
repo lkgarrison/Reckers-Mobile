@@ -12,11 +12,11 @@ angular.module('app').controller('checkoutController', ['$scope', '$state', '$md
 			optionAndIngredients += item.option;
 		}
 
-		if (item.ingredients !== undefined) {
+		if (item.selectedIngredients !== undefined) {
 			if (item.option !== undefined) {
 				optionAndIngredients += separator;
 			}
-			optionAndIngredients += commafyIngredients(item.ingredients);
+			optionAndIngredients += commafyIngredients(item.selectedIngredients);
 		}
 
 		return optionAndIngredients;

@@ -3,10 +3,10 @@
 	<div class='customize-item-price popup-top'>{{ vm.item.price | currency }}</div>
 	<div class='customize-item-colored-line pizza-header'></div>
 	
-	<div ng-if='vm.item.ingredients'>
+	<div ng-if='vm.item.availableIngredients'>
 		<h3 class='customize-item-section-label'>Included Ingredients:</h3>
 		<div class='flex-container-customize-item checklist-container'>
-			<div flex='80' layout='row' layout-wrap ng-repeat="ingredient in vm.ingredients">
+			<div flex='80' layout='row' layout-wrap ng-repeat="ingredient in vm.item.availableIngredients">
 				<md-checkbox class='md-primary' ng-checked="vm.isSelectedIngredient(ingredient)" ng-click="vm.toggleIngredient(ingredient)">
 					{{ ingredient }}
 				</md-checkbox>
@@ -20,15 +20,15 @@
 			<div ng-if='vm.shouldDisplayItemOptionsMessage()' class='item-options-message'>Please select an option</div>
 		</div>
 		<div class='flex-container-customize-item options-container'>
-			<md-radio-group ng-model="vm.option">
-				<md-radio-button ng-repeat='option in vm.options' value="{{option[0]}}" class="md-primary customize-item-radio-option">{{option[0]}}: {{option[1] | currency}}</md-radio-button>
+			<md-radio-group ng-model="vm.item.option">
+				<md-radio-button ng-repeat='option in vm.item.options' value="{{option[0]}}" class="md-primary customize-item-radio-option">{{option[0]}}: {{option[1] | currency}}</md-radio-button>
 			</md-radio-group>
 		</div>
 	</div>
 
 	<md-input-container flex class='special-instructions'>
 		<label>Special Instructions</label>
-		<input ng-model="vm.specialInstructions">
+		<input ng-model="vm.item.specialInstructions">
 	</md-input-container>
 
 	<div class='action-button-container'>

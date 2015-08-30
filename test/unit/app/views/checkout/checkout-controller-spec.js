@@ -54,11 +54,11 @@ describe('Controller: checkout-controller', function () {
 		describe('when item has no option selected', function () {
 			beforeEach(function () {
 				mockItem.option = undefined;
-				mockItem.ingredients = ingredientsArray;
+				mockItem.selectedIngredients = ingredientsArray;
 			});
 
 			it('and no selected ingredients, the string should be empty', function () {
-				mockItem.ingredients = [];
+				mockItem.selectedIngredients = [];
 				expect(target.getOptionsAndIngredients(mockItem)).toEqual('');
 			});
 
@@ -75,14 +75,14 @@ describe('Controller: checkout-controller', function () {
 
 		it('should return the option when item has an option but no ingredients', function () {
 			mockItem.option = option;
-			mockItem.ingredients = undefined;
+			mockItem.selectedIngredients = undefined;
 
 			expect(target.getOptionsAndIngredients(mockItem)).toEqual(option);
 		});
 
 		it('should return option + separator + ingredients string when item has option and ingredients', function () {
 			mockItem.option = option;
-			mockItem.ingredients = ingredientsArray;
+			mockItem.selectedIngredients = ingredientsArray;
 			var separator = ': ';
 
 			expect(target.getOptionsAndIngredients(mockItem)).toEqual(option + separator + 'chicken, tomato, cheese');

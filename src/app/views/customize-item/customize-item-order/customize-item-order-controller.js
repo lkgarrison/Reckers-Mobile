@@ -4,34 +4,31 @@ app.controller('customizeItemOrderController', ['$scope', '$timeout', '$state', 
 	var addButtonClicked = false;
 
 	var menuIndex = $stateParams.menuIndex;
-	var tempItem;
 	var selectedIngredients = [];
 	$timeout(function () {
 		MenuService.getMenu().then(function (menuData) {
 			// pull data from menu service
 			vm.menu = menuData;
 			vm.item = menuData[menuIndex];
-			vm.ingredients = menuData[menuIndex].ingredients;
-			vm.options = menuData[menuIndex].options;
 
-			// create a copy of the ingredients and the entire item
-			selectedIngredients = _.clone(menuData[menuIndex].ingredients, true);
-			tempItem = _.clone(menuData[menuIndex], true);
+			// initialize selected ingredients and option
+			vm.item.selectedIngredients = _.clone(vm.item.availableIngredients, true);
+			vm.item.option = undefined;
 		});
 	});
 
 	vm.toggleIngredient = function (ingredient) {
-		var index = selectedIngredients.indexOf(ingredient);
-		if (index > -1) selectedIngredients.splice(index, 1);
-		else selectedIngredients.push(ingredient);
+		var index = vm.item.selectedIngredients.indexOf(ingredient);
+		if (index > -1) vm.item.selectedIngredients.splice(index, 1);
+		else vm.item.selectedIngredients.push(ingredient);
 	};
 
 	vm.isSelectedIngredient = function (item) {
-		return selectedIngredients.indexOf(item) > -1;
+		return vm.item.selectedIngredients.indexOf(item) > -1;
 	};
 
 	vm.shouldDisplayItemOptionsMessage = function () {
-		if (vm.option) {
+		if (vm.item.option) {
 			return false;
 		} else if (addButtonClicked) {
 			return true;
@@ -48,16 +45,13 @@ app.controller('customizeItemOrderController', ['$scope', '$timeout', '$state', 
 		}
 
 		$state.go('root.order');
-		tempItem.ingredients = selectedIngredients;
-		tempItem.specialInstructions = vm.specialInstructions;
-		tempItem.option = vm.option;
-		CartService.addItem(tempItem);
+		CartService.addItem(vm.item);
 
 		return true;
 	};
 
 	function validateItem() {
-		if (vm.item.options !== undefined && vm.option === undefined) {
+		if (vm.item.options !== undefined && vm.item.option === undefined) {
 			return false;
 		}
 

@@ -28,7 +28,7 @@ describe('customize-item-order-controller', function () {
 	var deferred;
 	var ingredients = ['lettuce', 'tomato', 'cheese'];
 	var menuData = [{
-		ingredients: ingredients,
+		availableIngredients: ingredients,
 		options: [['Large', 5.00], ['Regular', 3.50]]
 	}];
 	function getMenuAsync() {
@@ -38,7 +38,7 @@ describe('customize-item-order-controller', function () {
 	}
 
 	var menuDataNoOptions = [{
-		ingredients: ingredients,
+		availableIngredients: ingredients,
 		options: undefined
 	}];
 	function getMenuAsyncNoOptions() {
@@ -110,13 +110,13 @@ describe('customize-item-order-controller', function () {
 			});
 
 			it('should return false if item has options but no option is selected', function () {
-				target.option = undefined;
+				target.item.option = undefined;
 
 				expect(target.addItem()).toEqual(false);
 			});
 
 			it('should return true if item has options and an option is selected', function () {
-				target.option = 'Regular';
+				target.item.option = 'Regular';
 
 				expect(target.addItem()).toEqual(true);
 			});
@@ -140,7 +140,7 @@ describe('customize-item-order-controller', function () {
 		});
 
 		it('should not display item option message when clicked if item has options and an option is selected', function () {
-			target.option = 'Regular';	// simulates choosing an option
+			target.item.option = 'Regular';	// simulates choosing an option
 			target.addItem();	// simulates clicking "add" button
 
 			expect(target.shouldDisplayItemOptionsMessage()).toEqual(false);

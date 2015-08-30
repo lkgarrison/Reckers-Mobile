@@ -20,7 +20,7 @@ menuService.service('MenuService', ['configService', function (configService) {
 					price: result.get("price"),
 					qty: 0,
 					description: result.get("description"),
-					ingredients: result.get("ingredients"),
+					availableIngredients: result.get("ingredients"),
 					options: result.get("prices"),
 					index: counter++
 				});
@@ -61,9 +61,9 @@ menuService.service('MenuService', ['configService', function (configService) {
 
 	function setupItemData () {
 		for(var i = 0; i < menu.length; i++) {
-			// convert ingredients string to an array
-			if (menu[i].ingredients !== undefined) {
-				menu[i].ingredients = menu[i].ingredients.split(',');
+			// convert availableIngredients string to an array
+			if (menu[i].availableIngredients !== undefined) {
+				menu[i].availableIngredients = menu[i].availableIngredients.split(',');
 			}
 
 			// convert options object into a an array of pairs for simpler iteration
