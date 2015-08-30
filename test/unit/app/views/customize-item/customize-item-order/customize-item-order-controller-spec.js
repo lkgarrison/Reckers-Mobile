@@ -37,16 +37,6 @@ describe('customize-item-order-controller', function () {
 		deferred.resolve(menuData);
 	}
 
-	var menuDataNoOptions = [{
-		availableIngredients: ingredients,
-		options: undefined
-	}];
-	function getMenuAsyncNoOptions() {
-		deferred = $q.defer();
-		menuService.getMenu.and.returnValue(deferred.promise);
-		deferred.resolve(menuDataNoOptions);
-	}
-
 	it('should be defined', function() {
 		expect(target).toBeDefined();
 	});
@@ -78,48 +68,33 @@ describe('customize-item-order-controller', function () {
 	});
 
 	describe('addItem', function () {
-
-		describe('when item has no options', function () {
-			beforeEach(function () {
-				getMenuAsyncNoOptions();
-				$timeout.flush();
-			});
-
-			it('should return true', function () {
-				expect(target.addItem()).toEqual(true);
-			});
-
-			it('should transition to order state', function () {
-				spyOn($state, 'go');
-				target.addItem();
-
-				expect($state.go).toHaveBeenCalledWith('root.order');
-			});
-
-			it('should call CartService.addItem', function () {
-				target.addItem();
-
-				expect(cartService.addItem).toHaveBeenCalled();
-			});
+		beforeEach(function () {
+			getMenuAsync();
+			$timeout.flush();
+			cartService.addItem.and.returnValue(true);
 		});
-		
-		describe('when item has options', function () {
-			beforeEach(function () {
-				getMenuAsync();
-				$timeout.flush();
-			});
 
-			it('should return false if item has options but no option is selected', function () {
-				target.item.option = undefined;
+		it('should call cartService.addItem', function () {
+			target.addItem();
 
-				expect(target.addItem()).toEqual(false);
-			});
+			expect(cartService.addItem).toHaveBeenCalled();
+		});
 
-			it('should return true if item has options and an option is selected', function () {
-				target.item.option = 'Regular';
+		it('should return false if cartService.addItem returns false', function () {
+			cartService.addItem.and.returnValue(false);
 
-				expect(target.addItem()).toEqual(true);
-			});
+			expect(target.addItem()).toEqual(false);
+		});
+
+		it('should transition to order state', function () {
+			spyOn($state, 'go');
+			target.addItem();
+
+			expect($state.go).toHaveBeenCalledWith('root.order');
+		});
+
+		it('should return true if cartService.addItem returns true', function () {
+			expect(target.addItem()).toEqual(true);
 		});
 	});
 

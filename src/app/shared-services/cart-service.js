@@ -55,6 +55,10 @@ cartService.service('CartService', ['EventService', function (EventService) {
 			return false;
 		}
 
+		if (!this._validateItem(item)) {
+			return false;
+		}
+
 		this._cart[cartIndex] = item;
 
 		return true;
@@ -93,7 +97,7 @@ cartService.service('CartService', ['EventService', function (EventService) {
 				continue;
 			} else if (newItem.option !== item.option) {
 				continue;
-			} else if (_.xor(newItem.ingredients, item.ingredients).length !== 0) {
+			} else if (_.xor(newItem.selectedIngredients, item.selectedIngredients).length !== 0) {
 				continue;
 			}
 

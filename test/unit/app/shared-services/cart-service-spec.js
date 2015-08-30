@@ -89,6 +89,11 @@ describe('cart-service', function () {
 			expect(cartService.addItem(mockItem)).toEqual(false);
 		});
 
+		it('should return true if item has no options', function () {
+			mockItem.options = undefined;
+			expect(cartService.addItem(mockItem)).toEqual(true);
+		});
+
 		it('should return true if item is added successfully', function () {
 			expect(cartService.addItem(mockItem)).toEqual(true);
 		});
@@ -159,6 +164,11 @@ describe('cart-service', function () {
 
 		it('should return false if cartIndex is >= cart.length', function () {
 			expect(cartService.saveItem(mockItem2, 5)).toEqual(false);
+		});
+
+		it('should return false if item has options but none are selected', function () {
+			mockItem.option = undefined;
+			expect(cartService.addItem(mockItem)).toEqual(false);
 		});
 
 		it('should return true if the specified item is updated successfully', function () {
@@ -247,7 +257,7 @@ describe('cart-service', function () {
 
 		it('should distinguish items based on their selected ingredients', function () {
 			cartService.addItem(mockItem);
-			mockItem2.ingredients = ['Chicken', 'Spinach'];
+			mockItem2.selectedIngredients = ['Chicken', 'Spinach'];
 			cartService.addItem(mockItem2);
 
 			expect(cartService.getIndex(mockItem)).toEqual(0);
