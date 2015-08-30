@@ -44,6 +44,16 @@ cartService.service('CartService', ['EventService', function (EventService) {
 		return true;
 	};
 
+	this.saveItem = function (item, cartIndex) {
+		if (cartIndex < 0 || cartIndex >= this._cart.length) {
+			return false;
+		}
+
+		this._cart[cartIndex] = item;
+
+		return true;
+	};
+
 	this.getTotal = function () {
 		return this._total;
 	};

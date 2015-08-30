@@ -12,7 +12,7 @@ describe('cart-service', function () {
 		cartService = _CartService_;
 	}));
 
-	var mockItem;
+	var mockItem, mockItem2;
 	beforeEach(function () {
 		mockItem = {
 			"name": "Chicken Alfredo Pizza",
@@ -31,6 +31,8 @@ describe('cart-service', function () {
 			"index": 5,
 			"$$hashKey": "object:50"
 		};
+
+		mockItem2 = _.clone(mockItem);
 	});
 
 	describe('initialization', function () {
@@ -136,6 +138,30 @@ describe('cart-service', function () {
 		// });
 	});
 
+	describe('saveItem', function () {
+		beforeEach(function () {
+			cartService.addItem(mockItem);
+			mockItem2.ingredients = ['Chicken', 'Spinach'];
+		});
+
+		it('should return false if cartIndex is < 0', function () {
+			expect(cartService.saveItem(mockItem2, -1)).toEqual(false);
+		});
+
+		it('should return false if cartIndex is >= cart.length', function () {
+			expect(cartService.saveItem(mockItem2, 5)).toEqual(false);
+		});
+
+		it('should return true if the specified item is updated successfully', function () {
+			expect(cartService.saveItem(mockItem2, 0)).toEqual(true);
+		});
+
+		it('should update the item at the specified cart index', function () {
+			cartService.saveItem(mockItem2, 0);
+			expect(cartService._cart[0]).toEqual(mockItem2);
+		});
+	});
+
 	describe('getTotal', function () {
 		it('should return total', function () {
 			cartService.addItem(mockItem);
@@ -191,11 +217,6 @@ describe('cart-service', function () {
 	});
 
 	describe('getIndex', function () {
-		var mockItem2;
-		beforeEach(function () {
-			mockItem2 = _.clone(mockItem);
-		});
-
 		it('should return false if the cart is empty', function () {
 			expect(cartService.getIndex(mockItem)).toEqual(false);
 		});
