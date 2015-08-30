@@ -84,6 +84,15 @@ describe('cart-service', function () {
 			expect(cartService._cart[0].hasOwnProperty('$$hashKey')).toEqual(false);
 		});
 
+		it('should return false if item has options but none are selected', function () {
+			mockItem.option = undefined;
+			expect(cartService.addItem(mockItem)).toEqual(false);
+		});
+
+		it('should return true if item is added successfully', function () {
+			expect(cartService.addItem(mockItem)).toEqual(true);
+		});
+
 		// fit('should broadcast that the cart was updated', function () {
 		// 	eventService.broadcast.and.callThrough();
 		// 	expect(eventService.broadcast).toHaveBeenCalled();

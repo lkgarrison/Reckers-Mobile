@@ -6,6 +6,10 @@ cartService.service('CartService', ['EventService', function (EventService) {
 	this._totalQuantity = 0;
 
 	this.addItem = function (item) {
+		if (!this._validateItem(item)) {
+			return false;
+		}
+
 		var existingCartIndex = this.getIndex(item);
 
 		// ensure angular sees cart's items as unique
@@ -20,6 +24,8 @@ cartService.service('CartService', ['EventService', function (EventService) {
 		this._totalQuantity++;
 		this._total += item.price;
 		this._broadcastCartUpdate();
+
+		return true;
 	};
 
 	this.removeItem = function (item) {
@@ -99,5 +105,13 @@ cartService.service('CartService', ['EventService', function (EventService) {
 
 	this._broadcastCartUpdate = function() {
 		EventService.broadcast('cart-updated');
+	};
+
+	this._validateItem = function (item) {
+		if (item.options !== undefined && item.option === undefined) {
+			return false;
+		}
+
+		return true;
 	};
 }]);

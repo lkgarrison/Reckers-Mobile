@@ -40,21 +40,12 @@ app.controller('customizeItemOrderController', ['$scope', '$timeout', '$state', 
 	vm.addItem = function () {
 		addButtonClicked = true;
 
-		if (!validateItem()) {
+		if (!CartService.addItem(vm.item)) {
 			return false;
 		}
 
 		$state.go('root.order');
-		CartService.addItem(vm.item);
 
 		return true;
 	};
-
-	function validateItem() {
-		if (vm.item.options !== undefined && vm.item.option === undefined) {
-			return false;
-		}
-
-		return true;
-	}
 }]);
