@@ -62,5 +62,23 @@ angular.module('app').config(function ($stateProvider, $urlRouterProvider, $loca
 					templateUrl: 'app/views/header-footer/footer/checkout/checkout-footer-view.html'
 				}
 			}
+		})
+
+		.state('root.customize-item-checkout', {
+			url: '/customize-item-checkout/{cartIndex}',
+			phase: 'checkout',
+			views: {
+				'header' : {
+					templateUrl: 'app/views/header-footer/header/checkout/checkout-header-view.html'
+				},
+				'content' : {
+					templateUrl: 'app/views/customize-item/customize-item-checkout/customize-item-checkout-view.html',
+					controller: 'customizeItemCheckoutController',
+					controllerAs: 'vm'
+				},
+				'footer' : {
+					templateUrl: 'app/views/header-footer/footer/checkout/checkout-footer-view.html'
+				}
+			}
 		});
 });

@@ -32,12 +32,7 @@ menuService.service('MenuService', ['configService', function (configService) {
 			console.error(error);
 		})
 	.then(function () {
-		// convert ingredients string to an array
-		for(var i = 0; i < menu.length; i++) {
-			if (menu[i].ingredients !== undefined) {
-				menu[i].ingredients = menu[i].ingredients.split(',');
-			}
-		}
+		setupItemData();
 
 		// when menu is entirely downloaded, create array of menu types (no repeats)
 		var allTypesRepeated = _.pluck(menu, 'type');
@@ -63,6 +58,20 @@ menuService.service('MenuService', ['configService', function (configService) {
 			return true;
 		});
 	};
+
+	function setupItemData () {
+		for(var i = 0; i < menu.length; i++) {
+			// convert ingredients string to an array
+			if (menu[i].ingredients !== undefined) {
+				menu[i].ingredients = menu[i].ingredients.split(',');
+			}
+
+			// convert options object into a an array of pairs for simpler iteration
+			if (menu[i].options !== undefined) {
+				menu[i].options = _.pairs(menu[i].options);
+			}
+		}
+	}
 
 	// validateConfiguredMenuTypes
 	// when menuTypes from menu service become available, make sure configured food types are legitimate food types from the Parse Menu

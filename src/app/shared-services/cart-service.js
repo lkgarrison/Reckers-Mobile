@@ -6,7 +6,7 @@ cartService.service('CartService', ['EventService', function (EventService) {
 	this._totalQuantity = 0;
 
 	this.addItem = function (item) {
-		var existingCartIndex = this._getIndex(item);
+		var existingCartIndex = this.getIndex(item);
 
 		// ensure angular sees cart's items as unique
 		item = _.omit(item, '$$hashKey');
@@ -23,7 +23,7 @@ cartService.service('CartService', ['EventService', function (EventService) {
 	};
 
 	this.removeItem = function (item) {
-		var cartIndex = this._getIndex(item);
+		var cartIndex = this.getIndex(item);
 		if (cartIndex === false) {
 			console.error('Unable to remove item');
 
@@ -63,12 +63,8 @@ cartService.service('CartService', ['EventService', function (EventService) {
 		this._broadcastCartUpdate();
 	};
 
-	this._broadcastCartUpdate = function() {
-		EventService.broadcast('cart-updated');
-	};
-
 	// return index of item if it already exists in the cart. If new item is unique, returns false
-	this._getIndex = function(newItem) {
+	this.getIndex = function(newItem) {
 		if (this._cart.length === 0) {
 			return false;
 		}
@@ -77,15 +73,7 @@ cartService.service('CartService', ['EventService', function (EventService) {
 		for (var i = 0; i < this._cart.length; i++) {
 			var item = this._cart[i];
 
-			if (newItem.name !== item.name) {
-				continue;
-			} else if (newItem.type !== item.type) {
-				continue;
-			} else if (newItem.price !== item.price) {
-				continue;
-			} else if (newItem.description !== item.description) {
-				continue;
-			} else if (newItem.index !== item.index) {
+			if (newItem.index !== item.index) {
 				continue;
 			} else if (newItem.option !== item.option) {
 				continue;
@@ -97,5 +85,9 @@ cartService.service('CartService', ['EventService', function (EventService) {
 		}
 
 		return false;
+	};
+
+	this._broadcastCartUpdate = function() {
+		EventService.broadcast('cart-updated');
 	};
 }]);

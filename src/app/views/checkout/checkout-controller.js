@@ -22,6 +22,10 @@ angular.module('app').controller('checkoutController', ['$scope', '$state', '$md
 		return optionAndIngredients;
 	};
 
+	vm.edit = function (item) {
+		$state.go('root.customize-item-checkout', {cartIndex: CartService.getIndex(item)});
+	};
+
 	vm.remove = function (item) {
 		CartService.removeItem(item);
 	};

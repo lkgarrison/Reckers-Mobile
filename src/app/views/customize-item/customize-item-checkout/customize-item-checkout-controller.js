@@ -1,25 +1,15 @@
-app.controller('customizeItemOrderController', ['$scope', '$timeout', '$state', '$stateParams', 'MenuService', 'CartService', function ($scope, $timeout, $state, $stateParams, MenuService, CartService) {
+app.controller('customizeItemCheckoutController', ['$scope', '$state', '$stateParams', 'CartService', function ($scope, $state, $stateParams, CartService) {
 	var vm = this;
 
 	var addButtonClicked = false;
 
-	var menuIndex = $stateParams.menuIndex;
+	var cartIndex = $stateParams.cartIndex;
 	var tempItem;
-	var selectedIngredients = [];
-	$timeout(function () {
-		MenuService.getMenu().then(function (menuData) {
-			// pull data from menu service
-			vm.menu = menuData;
-			vm.item = menuData[menuIndex];
-			vm.ingredients = menuData[menuIndex].ingredients;
-			vm.options = menuData[menuIndex].options;
-
-			// create a copy of the ingredients and the entire item
-			selectedIngredients = _.clone(menuData[menuIndex].ingredients, true);
-			tempItem = _.clone(menuData[menuIndex], true);
-		});
-	});
-
+	
+	var cart = CartService.getCart();
+	vm.item = cart[cartIndex];
+	var selectedIngredients = _.clone(vm.item.ingredients, true);
+	
 	vm.toggleIngredient = function (ingredient) {
 		var index = selectedIngredients.indexOf(ingredient);
 		if (index > -1) selectedIngredients.splice(index, 1);
@@ -47,7 +37,7 @@ app.controller('customizeItemOrderController', ['$scope', '$timeout', '$state', 
 			return false;
 		}
 
-		$state.go('root.order');
+		$state.go('root.checkout');
 		tempItem.ingredients = selectedIngredients;
 		tempItem.specialInstructions = vm.specialInstructions;
 		tempItem.option = vm.option;

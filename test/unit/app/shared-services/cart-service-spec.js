@@ -26,7 +26,9 @@ describe('cart-service', function () {
 				"Spinach",
 				"Mozzarella and Provolone cheeses"
 			],
-			"index": 41,
+			options: [['Large', 5.00], ['Regular', 3.50]],
+			option: 'Regular',
+			"index": 5,
 			"$$hashKey": "object:50"
 		};
 	});
@@ -91,9 +93,9 @@ describe('cart-service', function () {
 			cartService.addItem(mockItem);
 		});
 
-		it('should return false if item to remove doesn\'nt exist in cart', function () {
+		it('should return false if item to remove doesn\'t exist in cart', function () {
 			invalidItem = mockItem;
-			invalidItem.name = 'invalid item';
+			invalidItem.index = 6;
 			var result = cartService.removeItem(invalidItem);
 
 			expect(result).toEqual(false);
@@ -186,5 +188,49 @@ describe('cart-service', function () {
 		// it('should broadcast that the cart was updated', function () {
 		// 	expect(eventService.broadcast).toHaveBeenCalled();
 		// });
+	});
+
+	describe('getIndex', function () {
+		var mockItem2;
+		beforeEach(function () {
+			mockItem2 = _.clone(mockItem);
+		});
+
+		it('should return false if the cart is empty', function () {
+			expect(cartService.getIndex(mockItem)).toEqual(false);
+		});
+
+		it('should return false if the item does not exist in the cart', function () {
+			cartService.addItem(mockItem);
+			mockItem2.index = 6;
+			expect(cartService.getIndex(mockItem2)).toEqual(false);
+		});
+
+		it('should distinguish items based on their menuIndex', function () {
+			cartService.addItem(mockItem);
+			mockItem2.index = 6;
+			cartService.addItem(mockItem2);
+
+			expect(cartService.getIndex(mockItem)).toEqual(0);
+			expect(cartService.getIndex(mockItem2)).toEqual(1);
+		});
+
+		it('should distinguish items based on their selected ingredients', function () {
+			cartService.addItem(mockItem);
+			mockItem2.ingredients = ['Chicken', 'Spinach'];
+			cartService.addItem(mockItem2);
+
+			expect(cartService.getIndex(mockItem)).toEqual(0);
+			expect(cartService.getIndex(mockItem2)).toEqual(1);
+		});
+
+		it('should distinguish items based on their selected option', function () {
+			cartService.addItem(mockItem);
+			mockItem2.option = 'Large';
+			cartService.addItem(mockItem2);
+
+			expect(cartService.getIndex(mockItem)).toEqual(0);
+			expect(cartService.getIndex(mockItem2)).toEqual(1);
+		});
 	});
 });
