@@ -21,7 +21,8 @@
 		</div>
 		<div class='flex-container-customize-item options-container'>
 			<md-radio-group ng-model="vm.item.option">
-				<md-radio-button ng-repeat='option in vm.item.options' value="{{option[0]}}" class="md-primary customize-item-radio-option">{{option[0]}}: {{option[1] | currency}}</md-radio-button>
+				<md-radio-button ng-repeat='option in vm.item.options' value="{{option[0]}}" class="md-primary customize-item-radio-option">{{option[0]}}: {{option[1] | currency}}
+				</md-radio-button>
 			</md-radio-group>
 		</div>
 	</div>

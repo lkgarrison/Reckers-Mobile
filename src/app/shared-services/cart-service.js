@@ -11,6 +11,7 @@ cartService.service('CartService', ['EventService', function (EventService) {
 		}
 
 		var existingCartIndex = this.getIndex(item);
+		item.price = getPrice(item);
 
 		// ensure angular sees cart's items as unique
 		item = _.omit(item, '$$hashKey');
@@ -61,6 +62,17 @@ cartService.service('CartService', ['EventService', function (EventService) {
 			return false;
 		}
 
+		item = _.omit(item, '$$hashKey');
+		item = _.cloneDeep(item);	// work with a copy of the item only
+		item.qty = 1;				// only working with 1 of the item at a time
+
+		// subtract old item w/o changes' price
+		this._total -= item.price;
+		item.price = getPrice(item);
+
+		// add cost of saved item (ie updated options)
+		this._total += item.price;
+
 		var existingCartIndex = this.getIndex(item);
 		// check if user tried to save the item without any changes
 		if (parseInt(cartIndex) === existingCartIndex) {
@@ -95,15 +107,15 @@ cartService.service('CartService', ['EventService', function (EventService) {
 	};
 
 	this.getTotal = function () {
-		return this._total;
+		return _.cloneDeep(this._total);
 	};
 
 	this.getTotalQuantity = function () {
-		return this._totalQuantity;
+		return _.cloneDeep(this._totalQuantity);
 	};
 
 	this.getCart = function () {
-		return this._cart;
+		return _.cloneDeep(this._cart);
 	};
 
 	this.emptyCart = function () {
@@ -112,6 +124,21 @@ cartService.service('CartService', ['EventService', function (EventService) {
 		this._totalQuantity = 0;
 		this._broadcastCartUpdate();
 	};
+
+	function getPrice(item) {
+		if (item.option === undefined || item.options === undefined) {
+			return item.price;
+		}
+
+		// Option description is stored in index 0, price in index 1
+		for (var i = 0; i < item.options.length; i++) {
+			if (item.option === item.options[i][0]) {
+				return item.options[i][1];
+			}
+		}
+
+		return item.price;
+	}
 
 	// return index of item if it already exists in the cart. If new item is unique, returns false
 	this.getIndex = function(newItem) {

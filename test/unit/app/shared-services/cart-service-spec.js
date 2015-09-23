@@ -26,7 +26,7 @@ describe('cart-service', function () {
 				"Spinach",
 				"Mozzarella and Provolone cheeses"
 			],
-			"selectedIngredeients": [
+			"selectedIngredients": [
 				"Alfredo sauce",
 				"Chicken",
 				"Spinach",
@@ -204,7 +204,8 @@ describe('cart-service', function () {
 				cartService.saveItem(mockItem, 0);
 
 				expect(cartService._cart.length).toEqual(1);
-				expect(cartService._cart[0]).toEqual(mockItem);
+				expect(cartService._cart[0].selectedIngredients).toEqual(mockItem.selectedIngredients);
+				expect(cartService._cart[0].qty).toEqual(1);
 			});
 
 			it('should remove old item and increment the quantity of the updated item if the updated item already exists in the cart', function () {
@@ -247,6 +248,22 @@ describe('cart-service', function () {
 				expect(cartService._cart.length).toEqual(2);
 			});
 		});
+
+		describe('when item option is updated', function () {
+			beforeEach(function () {
+				mockItem2.price = 3.50;
+				mockItem2.option = "Large";
+				cartService.saveItem(mockItem2, 0);
+			});
+
+			it('should update price of item', function () {
+				expect(cartService._cart[0].price).toEqual(5.00);
+			});
+
+			it('should update total cost for cart', function () {
+				expect(cartService._total).toEqual(5.00);
+			});
+		});
 	});
 
 	describe('getTotal', function () {
@@ -277,6 +294,9 @@ describe('cart-service', function () {
 			mockCart.push(mockItem);
 
 			expect(result).toEqual(mockCart);
+			// ensure deep copy was made
+			result = [];
+			expect(result).not.toEqual(cartService.getCart());
 		});
 	});
 
