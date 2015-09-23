@@ -14,6 +14,7 @@ app.controller('customizeItemOrderController', ['$scope', '$timeout', '$state', 
 			// initialize selected ingredients and option
 			vm.item.selectedIngredients = _.clone(vm.item.availableIngredients, true);
 			vm.item.option = undefined;
+			vm.item.specialInstructions = undefined;
 		});
 	});
 
