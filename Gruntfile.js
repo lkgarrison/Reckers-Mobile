@@ -214,8 +214,7 @@ module.exports = function(grunt) {
 	grunt.registerTask('unit', ['jshint', 'karma:continuous']);
 	grunt.registerTask('debug', ['jshint', 'karma:debug']);
 	grunt.registerTask('minified', [ 'bower', 'connect:server', 'watch:min' ]);
-	grunt.registerTask('package', [ 'bower', 'jshint', 'karma:unit', 'ngtemplates:app', 'concat:appjs', 'uglify:dist',
-		'clean:tmp' ]);
+	grunt.registerTask('package', [ 'bower', 'jshint', 'karma:unit', 'ngtemplates:app', 'concat:appjs', 'uglify:dist', 'clean:tmp']);
 	grunt.registerTask('build', 
 		[
 			'jshint',

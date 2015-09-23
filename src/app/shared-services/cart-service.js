@@ -50,6 +50,8 @@ cartService.service('CartService', ['EventService', function (EventService) {
 		return true;
 	};
 
+	// @param item should be the item object with the new changes
+	// @param cartIndex is the cartIndex that the original item was at before the changes were made
 	this.saveItem = function (item, cartIndex) {
 		if (cartIndex < 0 || cartIndex >= this._cart.length) {
 			return false;
@@ -59,7 +61,35 @@ cartService.service('CartService', ['EventService', function (EventService) {
 			return false;
 		}
 
-		this._cart[cartIndex] = item;
+		var existingCartIndex = this.getIndex(item);
+		// check if user tried to save the item without any changes
+		if (parseInt(cartIndex) === existingCartIndex) {
+			return true;
+		}
+
+		if (this._cart[cartIndex].qty === 1) {
+			if (existingCartIndex === false) {
+				// safe to overwrite old item properties, the new item doesn't already exist
+				this._cart[cartIndex] = item;
+			} else {
+				// remove instance of old item in cart, increment qty of new item (already in cart)
+				this._cart[existingCartIndex].qty++;
+				this._cart.splice(cartIndex, 1);
+			}
+		} else {
+			// decrement original item's quantity
+			this._cart[cartIndex].qty--;
+
+			if (!existingCartIndex) {
+				// if item wasn't already in cart, add it
+				this._cart.push(item);
+			} else {
+				// if new item is already in cart, just increment its quantity
+				this._cart[existingCartIndex].qty++;
+			}
+		}
+
+		this._broadcastCartUpdate();
 
 		return true;
 	};

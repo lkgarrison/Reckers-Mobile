@@ -18,16 +18,22 @@ describe('cart-service', function () {
 			"name": "Chicken Alfredo Pizza",
 			"type": "pizza",
 			"price": 6.45,
-			"qty": 0,
+			"qty": 1,
 			"description": "Alfredo sauce, chicken, spinach and Mozzarella and Provolone cheeses.",
-			"ingredients": [
+			"availableIngredients": [
 				"Alfredo sauce",
 				"Chicken",
 				"Spinach",
 				"Mozzarella and Provolone cheeses"
 			],
-			options: [['Large', 5.00], ['Regular', 3.50]],
-			option: 'Regular',
+			"selectedIngredeients": [
+				"Alfredo sauce",
+				"Chicken",
+				"Spinach",
+				"Mozzarella and Provolone cheeses"
+			],
+			"options": [['Large', 5.00], ['Regular', 3.50]],
+			"option": 'Regular',
 			"index": 5,
 			"$$hashKey": "object:50"
 		};
@@ -98,10 +104,12 @@ describe('cart-service', function () {
 			expect(cartService.addItem(mockItem)).toEqual(true);
 		});
 
-		// fit('should broadcast that the cart was updated', function () {
-		// 	eventService.broadcast.and.callThrough();
-		// 	expect(eventService.broadcast).toHaveBeenCalled();
-		// });
+		it('should broadcast that the cart was updated', function () {
+			spyOn(cartService, "_broadcastCartUpdate");
+			cartService.addItem(mockItem);
+
+			expect(cartService._broadcastCartUpdate).toHaveBeenCalled();
+		});
 	});
 
 	describe('removeItem', function () {
@@ -145,17 +153,18 @@ describe('cart-service', function () {
 			expect(cartService._total).toEqual(0);
 		});
 
-		// it('should broadcast that the cart was updated', function () {
-		// 	cartService.removeItem(mockItem);
+		it('should broadcast that the cart was updated', function () {
+			spyOn(cartService, "_broadcastCartUpdate");
+			cartService.removeItem(mockItem);
 
-		// 	expect(eventService.broadcast).toHaveBeenCalled();
-		// });
+			expect(cartService._broadcastCartUpdate).toHaveBeenCalled();
+		});
 	});
 
 	describe('saveItem', function () {
 		beforeEach(function () {
 			cartService.addItem(mockItem);
-			mockItem2.ingredients = ['Chicken', 'Spinach'];
+			mockItem2.selectedIngredients = ['Chicken', 'Spinach'];
 		});
 
 		it('should return false if cartIndex is < 0', function () {
@@ -175,9 +184,68 @@ describe('cart-service', function () {
 			expect(cartService.saveItem(mockItem2, 0)).toEqual(true);
 		});
 
-		it('should update the item at the specified cart index', function () {
+		it('should call broadcastCartUpdate', function () {
+			spyOn(cartService, '_broadcastCartUpdate');
 			cartService.saveItem(mockItem2, 0);
-			expect(cartService._cart[0]).toEqual(mockItem2);
+			expect(cartService._broadcastCartUpdate).toHaveBeenCalled();
+		});
+
+		it('should return true and make no changes if the item is saved without changes', function () {
+			expect(cartService.saveItem(mockItem, 0)).toEqual(true);
+			expect(cartService._cart.length).toEqual(1);
+			mockItem = _.omit(mockItem, "$$hashKey");
+			expect(cartService._cart[0]).toEqual(mockItem);
+		});
+
+		describe('when original item quantity is 1', function () {
+			it('should remove old item and append updated item if updated item does not already exist in cart', function () {
+				mockItem.qty = 1;
+				mockItem.selectedIngredients = ['Chicken'];
+				cartService.saveItem(mockItem, 0);
+
+				expect(cartService._cart.length).toEqual(1);
+				expect(cartService._cart[0]).toEqual(mockItem);
+			});
+
+			it('should remove old item and increment the quantity of the updated item if the updated item already exists in the cart', function () {
+				// add another item to the cart. The original item will be saved to be the same as mockItem2
+				mockItem2.selectedIngredients = ['Chicken', 'Spinach'];
+				cartService.addItem(mockItem2);
+				expect(cartService._cart.length).toEqual(2);
+
+				cartService.saveItem(mockItem2, 0);
+				expect(cartService._cart.length).toEqual(1);
+				expect(cartService._cart[0].qty).toEqual(2);
+				expect(cartService._cart[0].selectedIngredients).toEqual(mockItem2.selectedIngredients);
+			});
+		});
+
+		describe('when original item quantity > 1', function () {
+			beforeEach(function () {
+				cartService.addItem(mockItem);
+				mockItem2.selectedIngredients = ['Chicken', 'Spinach'];
+			});
+
+			it('should decrement the original item\'s quantity and append the updated item if updated item does not already exist in cart', function () {
+				expect(cartService._cart.length).toEqual(1);
+				expect(cartService._cart[0].qty).toEqual(2);
+
+				cartService.saveItem(mockItem2, 0);
+				expect(cartService._cart.length).toEqual(2);
+				expect(cartService._cart[0].qty).toEqual(1);
+				expect(cartService._cart[1].qty).toEqual(1);
+			});
+
+			it('should decrement the original item\'s quantity and increment the qty of the updated item if it already exists in the cart', function () {
+				cartService.addItem(mockItem2);
+				expect(cartService._cart.length).toEqual(2);
+				expect(cartService._cart[0].qty).toEqual(2);
+
+				cartService.saveItem(mockItem2, 0);
+				expect(cartService._cart[0].qty).toEqual(1);
+				expect(cartService._cart[1].qty).toEqual(2);
+				expect(cartService._cart.length).toEqual(2);
+			});
 		});
 	});
 
@@ -230,9 +298,13 @@ describe('cart-service', function () {
 			expect(cartService._totalQuantity).toEqual(0);
 		});
 
-		// it('should broadcast that the cart was updated', function () {
-		// 	expect(eventService.broadcast).toHaveBeenCalled();
-		// });
+		it('should broadcast that the cart was updated', function () {
+			spyOn(cartService, "_broadcastCartUpdate");
+			cartService.addItem(mockItem);
+			cartService.emptyCart();
+
+			expect(cartService._broadcastCartUpdate).toHaveBeenCalled();
+		});
 	});
 
 	describe('getIndex', function () {
