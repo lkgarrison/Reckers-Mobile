@@ -1,0 +1,36 @@
+<div class='checkout-wrapper'>
+	<h2 class = "order-title">Order Summary</h2>
+	<p ng-if='vm.cart.length === 0'>Nothing has been ordered<br></p>
+	<div class='total-wrapper'>
+		<table class='order-table'>
+			<tbody ng-repeat='item in vm.cart'>
+				<tr>
+					<td ng-click='vm.remove(item)' class='remove-button'></td>
+					<td class='quantity checkout-page'>{{item.qty}}</td>
+					<td class='item-name-checkout' colspan='2'>{{item.name}}</td>
+					<td class='price'>{{item.price | currency}}</td>
+				</tr>
+				<tr>
+					<td colspan='2'></td>
+					<td class='ingredients-listing' colspan='2'>{{vm.getOptionsAndIngredients(item)}}</td>
+				</tr>
+				<tr>
+					<td colspan='2'></td>
+					<td ng-click='vm.edit(item)' class='edit-checkout line-item-option'>Edit</td>
+					<td ng-click='vm.remove(item)' class='remove-checkout line-item-option'>Remove</td>
+				</tr>
+			</tbody>
+		</table>
+		<div class='total-line'><img src="assets/img/totalLine.png" id="totalLinePNG"></div>
+		<div class='total right'>Total: {{vm.total | currency}}</div>
+	</div>
+
+	<div class='checkout-button-group'>
+		<a ui-sref='root.order'>
+			<md-button class='add-more-items checkout-button md-raised md-primary'>Add More Food</md-button>
+		</a>
+		<div>
+			<md-button class='cancel-order checkout-button md-raised md-primary' ng-click='vm.confirmCancel()'>Cancel Order</md-button>
+		</div>
+	</div>
+</div>

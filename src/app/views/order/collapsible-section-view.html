@@ -1,0 +1,24 @@
+<div data-role="collapsible" id="header_{{ section.type }}" class="menu-header">
+	<h3 class="orderSectionLabels">{{ section.label }}</h3>
+	<table>
+		<tbody ng-repeat='item in menu | filter: {type:section.type}'>
+			<tr>
+				<td>
+					<a ui-sref='root.customize-item-order({menuIndex: item.index})'>
+						<input id="item.index" type="button" class="add-button" value="" data-role="none">
+					</a>
+				</td>
+				<td>
+					<a class="item-name-order" ui-sref='root.customize-item-order({menuIndex: item.index})'>{{ item.name }}</a>
+				<td>
+				<td class="price">{{ item.price | currency }}</td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>
+					<a class="description" ui-sref='root.customize-item-order({menuIndex: item.index})'>{{ item.description }}</a>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>

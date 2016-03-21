@@ -1,0 +1,40 @@
+.header-logo-left {
+	height: 85%;
+	margin-top: 2px;
+	margin-left: 2px;
+}
+
+.header-center {
+	width: 100%;
+	text-align: center;
+}
+
+.header-text {
+	margin-top: 7px;
+	font-family: 'Raleway';
+	font-weight: 500;
+	font-size: 19px;
+}
+
+.header-cart-logo {
+	right: 0;
+	height: 30px;
+	width: auto;
+	margin-top: 6px;
+	margin-right: 5px;
+}
+
+.header-cart-quantity {
+	right: 0;
+	color: red;
+	font-size: 19px !important;
+	margin-top: 4px !important;
+}
+
+.cart-quantity-single-digits {
+	padding-right: 14px;
+}
+
+.cart-quantity-double-digits {
+	padding-right: 10px;
+}

@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang='en'>
+	<head>
+		<title>Reckers Online Ordering</title>
+		<meta name='viewport' content='width=device-width, initial-scale=1'>
+		<!-- <base href='http://www.example.com/'> -->
+
+		<!-- css -->
+		<!-- build:css libs.css -->
+		<link href='assets/lib/jquery-mobile-bower/css/jquery.mobile-1.4.5.css' rel='stylesheet'>
+		<link href='assets/lib/angular-material/angular-material.css' rel='stylesheet' >
+		<!-- endbuild -->
+
+		<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=RobotoDraft:300,400,500,700,400italic'>
+		<link rel='stylesheet' type='text/css' href='http://fonts.googleapis.com/css?family=Roboto:300,400,500,600,700|Raleway:400,500,600'>
+		<link rel='stylesheet', type='text/css' href='.tmp/styles.css'>
+		<link rel='shortcut icon' href='/assets/img/favicon.ico'> <!-- Tab icon -->
+
+		<!-- 3rd party -->
+
+		<!-- build:js libs.js -->
+		<script src='assets/lib/parse-js-sdk/lib/parse.min.js'></script>
+		<script src='assets/lib/angular/angular.min.js' type='text/javascript'></script>
+		<script src='assets/lib/angular-material/angular-material.min.js' type='text/javascript'></script>
+		<script src='assets/lib/angular-animate/angular-animate.min.js' type='text/javascript'></script>
+		<script src='assets/lib/angular-aria/angular-aria.min.js' type='text/javascript'></script>
+		<script src='assets/lib/jquery/dist/jquery.min.js' type='text/javascript'></script>
+		<script src='assets/lib/jquery-mobile-bower/js/jquery.mobile-1.4.5.min.js' type='text/javascript'></script>
+		<script src='assets/lib/angular-ui-router/release/angular-ui-router.min.js' type='text/javascript'></script>
+		<script src='assets/lib/lodash/lodash.min.js' type='text/javascript'></script>
+		<!-- endbuild -->
+
+		<!-- Shared Services -->
+		<script src='app/shared-services/event-bus.js' type='text/javascript'></script>
+		<script src='app/shared-services/cart-service.js' type='text/javascript'></script>
+		<script src='app/shared-services/menu-service.js' type='text/javascript'></script>
+
+		<!-- Angular App initialization -->
+		<script src='app/app-config.js' type='text/javascript'></script>
+		<script src='app/app-module.js' type='text/javascript'></script>
+		<script src='app/app-router.js' type='text/javascript'></script>
+
+		<!-- Directives -->
+		<script src='app/views/order/collapsible-section-directive.js' type='text/javascript'></script>
+		<script src='app/directives/material-back-button-directive.js' type='text/javascript'></script>
+
+		<!-- Controllers -->
+		<script src='app/views/order/collapsible-section-controller.js' type='text/javascript'></script>
+		<script src='app/views/order/order-controller.js' type='text/javascript'></script>
+		<script src='app/views/checkout/checkout-controller.js' type='text/javascript'></script>
+		<script src='app/views/header-footer/header-footer-controller.js' type='text/javascript'></script>
+		<script src='app/views/customize-item/customize-item-order/customize-item-order-controller.js' type='text/javascript'></script>
+		<script src='app/views/customize-item/customize-item-checkout/customize-item-checkout-controller.js' type='text/javascript'></script>
+
+	</head>
+
+	<body ng-app='app'>
+
+		<div ui-view></div>
+
+	</body>
+</html>

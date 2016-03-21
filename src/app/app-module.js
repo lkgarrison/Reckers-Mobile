@@ -1,0 +1,1 @@
+var app = angular.module('app', ['MenuService', 'CartService', 'EventBus', 'materialBackButton', 'ui.router', 'ngMaterial']);

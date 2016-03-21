@@ -1,0 +1,149 @@
+.md-dialog-backdrop {
+	background-color: rgba(0, 0, 0, 0.35) !important;
+}
+
+/* quantity next to line item */
+.quantity {
+	font-weight: bold;
+	padding-right: 9px;
+	vertical-align: top;
+	font-family: 'Roboto';
+	font-weight: 400;
+	font-size: 17px;
+}
+
+/* for price/item on checkout page */
+.price {
+	vertical-align: top;
+	text-align: left;
+	padding-left: 0;
+	font-family: 'Roboto';
+	font-size: 17px;
+	font-weight: 400;
+}
+
+/* menu item title inside each menu seaction. ie "chicken alfredo pizza" */
+.ui-collapsible {
+	font-size: 19px;
+}
+
+/* inside expanded accordion */
+.ui-collapsible-inset.ui-collapsible-themed-content .ui-collapsible-content {
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+/* Styling for "Expiration Date" in "Payment Method" section */
+.expirationDate {
+	font-family: 'Raleway';
+	font-weight: 600 !important;
+}
+
+/* "Please select an option" message in customize item popup */
+.itemOptionsMessage {
+	font-family: 'Raleway';
+	font-weight: 400;
+	margin-top: 11px;
+	margin-right: 12px;
+	font-size: 15px;
+	color: red; 
+	float: right;
+}
+
+/* wrapper for all payment related content on checkout page */
+#paymentWrapper {
+	padding-top: 15px;
+	clear: both;
+}
+
+/* styling for "submit" button on checkout page */
+#submit {
+	margin-top: 15px;        /* more spacing from payment method selection */
+	padding-left: 0;
+	padding-right: 0;
+	margin-left: 20%;
+	width: 60%;
+	background-image: url('img/header_salads.png') !important;
+	color: white;
+}
+
+/* styling for radio group of payment options on checkout page */
+#paymentRadioGroup {
+	padding-left: 10%;
+	width: 80%;
+}
+
+:focus {outline: none;} ::-moz-focus-inner {border: 0;}
+
+/* styling for detailed payment information fields that appears after selecting a payment method on checkout page */
+#enterPaymentDetails {
+	text-align: center;
+}
+
+/* stying for header "Enter Payment Information" */
+#enterPaymentDetails h3 {
+	margin-bottom: 2px;
+}
+
+/* styling for pickup page */
+#pickup {
+	background-image: url('img/reckersBackground.PNG') !important;
+}
+
+/* wrapper for content on pickup page */
+#pickupContent {
+	height: 100%;
+	margin-top: 30%;
+	text-align: center;
+	color: black;
+}
+
+/* styling for pickup code on pickup page */
+#pickupCode {
+	top-padding: 20px;
+	font-size: 80px;
+	font-family: Tahoma, Arial, Century Gothic, Verdana, sans-serif;
+	text-align: center;
+	font-weight: bold;
+}
+
+/* styling for date on pickup page */
+.date {
+	font-size: 30px;
+	color: black;
+	font-weight: bold;
+}
+
+/* styling for general html elements */
+h3 {
+	font-family: 'Raleway';
+	font-weight: 700;
+}
+
+p {
+	font-family: 'Roboto';
+	font-weight: 300;
+}
+
+input {
+	font-family: 'Raleway';
+	font-weight: 400;
+}
+
+a {
+	text-decoration: none;
+	color: #333 !important;
+}
+
+td {
+	padding: 0;
+}
+
+.content {
+	top: 42px;
+	width: 100%;
+	position: absolute;
+	overflow-y: auto;
+	overflow-x: hidden;
+	bottom: 65px;
+}

@@ -1,0 +1,19 @@
+/* class for ingredients checklist container */
+.flex-container-customize-item {
+	display: -webkit-flex;
+	display: flex;
+	-webkit-flex-direction: column;
+	flex-direction: column;
+	margin-left: 30px;
+}
+
+/* class for radio options */
+.customize-item-radio-option {
+	font-size:17px;
+}
+
+/* flex container for "Options" label and "Please select an option" message */
+.flex-container-item-options {
+	display: flex;
+	justify-content: space-between;
+}
