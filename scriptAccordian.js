@@ -783,20 +783,20 @@ var checkQuantity = function() {     // will determine whether to go to checkout
 	if(totalQuantity === 0) {
 		$("#emptyCartMessage").popup("open");
 	} else {
-		$.mobile.changePage("#order", {transition: 'slide'});
+		$.mobile.changePage("#order");
 	}
 };
 
 // function to change to menu page and collapse the accordion
 var goToMenu = function() {          // button click will change to menu page
 	$( "#accordion" ).children().collapsible( "collapse" );     // collapse the collapsible set
-	$.mobile.changePage("#menu", {transition: 'slide', reverse: true});
+	$.mobile.changePage("#menu");
 };
 
 // function to change to the pickup screen
 var goToPickup = function() {
 	displayDate();
-	$.mobile.changePage("#pickup", {transition: 'slide'});
+	$.mobile.changePage("#pickup");
 };
 
 // display date & time on pick-up page
